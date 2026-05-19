@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { MotionValue, motion, useScroll, useTransform } from 'motion/react';
 import {
   IconBrightnessDown,
@@ -48,12 +48,12 @@ export const MacbookScroll = ({
   });
   const scrollYProgress = externalScrollYProgress ?? internalScrollYProgress;
 
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (window && window.innerWidth < 768) {
-      setIsMobile(true);
+  const [isMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
     }
-  }, []);
+    return false;
+  });
 
   const scaleX = useTransform(scrollYProgress, [0, 0.3], [1.2, isMobile ? 1 : 1.5]);
   const scaleY = useTransform(scrollYProgress, [0, 0.3], [0.6, isMobile ? 1 : 1.5]);

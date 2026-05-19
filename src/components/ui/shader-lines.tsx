@@ -17,21 +17,9 @@ export function ShaderAnimation() {
   }>({ renderer: null, animationId: null });
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js';
-    script.onload = () => {
-      if (containerRef.current && window.THREE) initThreeJS();
-    };
-    document.head.appendChild(script);
+    const scene = sceneRef.current;
 
-    return () => {
-      if (sceneRef.current.animationId) cancelAnimationFrame(sceneRef.current.animationId);
-      if (sceneRef.current.renderer) sceneRef.current.renderer.dispose();
-      if (document.head.contains(script)) document.head.removeChild(script);
-    };
-  }, []);
-
-  const initThreeJS = () => {
+    function initThreeJS() {
     if (!containerRef.current || !window.THREE) return;
     const THREE = window.THREE;
     const container = containerRef.current;
@@ -97,7 +85,21 @@ export function ShaderAnimation() {
       renderer.render(scene, camera);
     };
     animate();
-  };
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js';
+    script.onload = () => {
+      if (containerRef.current && window.THREE) initThreeJS();
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      if (scene.animationId) cancelAnimationFrame(scene.animationId);
+      if (scene.renderer) scene.renderer.dispose();
+      if (document.head.contains(script)) document.head.removeChild(script);
+    };
+  }, []);
 
   return (
     <div

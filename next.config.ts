@@ -27,16 +27,21 @@ const nextConfig: NextConfig = {
     },
   },
   // Extend webpack to support .less files (CSS Modules + global)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   webpack(config, { dev, isServer }) {
     // Find the oneOf rule block where Next.js registers CSS rules
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rules = config.module.rules as any[];
     const ruleWithOneOf = rules.find(
-      (r) => typeof r === 'object' && r !== null && Array.isArray(r.oneOf),
+      (r: Record<string, unknown>) =>
+        typeof r === 'object' && r !== null && Array.isArray(r.oneOf),
     );
 
     if (ruleWithOneOf) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const clonedLessRules: any[] = [];
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ruleWithOneOf.oneOf.forEach((rule: any) => {
         if (!rule.test) return;
 
