@@ -20,24 +20,24 @@ export function ShaderAnimation() {
     const scene = sceneRef.current;
 
     function initThreeJS() {
-    if (!containerRef.current || !window.THREE) return;
-    const THREE = window.THREE;
-    const container = containerRef.current;
-    container.innerHTML = '';
+      if (!containerRef.current || !window.THREE) return;
+      const THREE = window.THREE;
+      const container = containerRef.current;
+      container.innerHTML = '';
 
-    const camera = new THREE.Camera();
-    camera.position.z = 1;
-    const scene = new THREE.Scene();
-    const geometry = new THREE.PlaneBufferGeometry(2, 2);
-    const uniforms = {
-      time: { type: 'f', value: 1.0 },
-      resolution: { type: 'v2', value: new THREE.Vector2() },
-    };
+      const camera = new THREE.Camera();
+      camera.position.z = 1;
+      const scene = new THREE.Scene();
+      const geometry = new THREE.PlaneBufferGeometry(2, 2);
+      const uniforms = {
+        time: { type: 'f', value: 1.0 },
+        resolution: { type: 'v2', value: new THREE.Vector2() },
+      };
 
-    const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
-      fragmentShader: `
+      const material = new THREE.ShaderMaterial({
+        uniforms,
+        vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
+        fragmentShader: `
         precision highp float;
         uniform vec2 resolution;
         uniform float time;
@@ -60,31 +60,31 @@ export function ShaderAnimation() {
           gl_FragColor = vec4(color[2], color[1], color[0], 1.0);
         }
       `,
-    });
+      });
 
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setPixelRatio(window.devicePixelRatio);
-    container.appendChild(renderer.domElement);
-    sceneRef.current.renderer = renderer;
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+      sceneRef.current.renderer = renderer;
 
-    const onResize = () => {
-      const rect = container.getBoundingClientRect();
-      renderer.setSize(rect.width, rect.height);
-      uniforms.resolution.value.x = renderer.domElement.width;
-      uniforms.resolution.value.y = renderer.domElement.height;
-    };
-    onResize();
-    window.addEventListener('resize', onResize, false);
+      const onResize = () => {
+        const rect = container.getBoundingClientRect();
+        renderer.setSize(rect.width, rect.height);
+        uniforms.resolution.value.x = renderer.domElement.width;
+        uniforms.resolution.value.y = renderer.domElement.height;
+      };
+      onResize();
+      window.addEventListener('resize', onResize, false);
 
-    const animate = () => {
-      sceneRef.current.animationId = requestAnimationFrame(animate);
-      uniforms.time.value += 0.02;
-      renderer.render(scene, camera);
-    };
-    animate();
+      const animate = () => {
+        sceneRef.current.animationId = requestAnimationFrame(animate);
+        uniforms.time.value += 0.02;
+        renderer.render(scene, camera);
+      };
+      animate();
     }
 
     const script = document.createElement('script');

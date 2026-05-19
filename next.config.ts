@@ -33,8 +33,7 @@ const nextConfig: NextConfig = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rules = config.module.rules as any[];
     const ruleWithOneOf = rules.find(
-      (r: Record<string, unknown>) =>
-        typeof r === 'object' && r !== null && Array.isArray(r.oneOf),
+      (r: Record<string, unknown>) => typeof r === 'object' && r !== null && Array.isArray(r.oneOf),
     );
 
     if (ruleWithOneOf) {
