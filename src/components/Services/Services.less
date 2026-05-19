@@ -1,0 +1,110 @@
+@import (reference) "global";
+
+.services {
+  background-color: @color-bg;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-4;
+    margin-bottom: @spacing-16;
+
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: @spacing-20;
+    }
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-size: clamp(@font-size-2xl, 4vw, @font-size-4xl);
+    font-weight: @font-weight-bold;
+    line-height: @line-height-tight;
+    letter-spacing: @tracking-tight;
+    color: @color-ink;
+    max-width: 28rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: @spacing-px;
+    background-color: @color-border;
+
+    @media (min-width: @bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-4;
+    padding: @spacing-10 @spacing-8;
+    background-color: @color-bg;
+    transition: background-color @transition-base;
+
+    @media (min-width: @bp-lg) {
+      padding: @spacing-12 @spacing-10;
+    }
+
+    &:hover {
+      background-color: @color-surface;
+      z-index: @z-above;
+
+      .services__card-number {
+        color: @color-accent;
+      }
+    }
+  }
+
+  &__card-number {
+    font-family: @font-display;
+    font-size: @font-size-xs;
+    font-weight: @font-weight-black;
+    letter-spacing: @tracking-widest;
+    text-transform: uppercase;
+    color: @color-ink-tertiary;
+    transition: color @transition-fast;
+    align-self: flex-start;
+    padding: @spacing-1 @spacing-3;
+    border: 1px solid @color-border;
+    border-radius: @radius-full;
+  }
+
+  &__card-title {
+    font-family: @font-display;
+    font-size: @font-size-xl;
+    font-weight: @font-weight-bold;
+    color: @color-ink;
+    letter-spacing: @tracking-tight;
+  }
+
+  &__card-description {
+    font-size: @font-size-base;
+    line-height: @line-height-relaxed;
+    color: @color-ink-secondary;
+    flex: 1;
+  }
+
+  &__card-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: @spacing-2;
+    margin-top: @spacing-2;
+  }
+
+  &__card-highlight {
+    font-size: @font-size-xs;
+    font-weight: @font-weight-medium;
+    letter-spacing: @tracking-wide;
+    color: @color-ink-secondary;
+    padding: @spacing-1 @spacing-3;
+    background: @color-surface-alt;
+    border-radius: @radius-full;
+    border: 1px solid @color-border;
+  }
+}

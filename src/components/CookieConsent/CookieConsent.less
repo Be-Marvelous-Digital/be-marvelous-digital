@@ -1,0 +1,148 @@
+@import (reference) '../../styles/global.less';
+
+.cookie-consent {
+  position: fixed;
+  bottom: @spacing-5;
+  left: @spacing-5;
+  right: @spacing-5;
+  z-index: @z-toast;
+  animation: cookie-slide-up @duration-slow @ease-out both;
+
+  @media (min-width: @bp-md) {
+    left: auto;
+    right: @spacing-8;
+    max-width: 28rem;
+  }
+
+  &__inner {
+    background: @color-surface;
+    border: @border-default;
+    border-radius: @radius-xl;
+    padding: @spacing-6;
+    box-shadow: @shadow-xl;
+  }
+
+  &__text {
+    margin-bottom: @spacing-5;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-size: @font-size-lg;
+    font-weight: @font-weight-semibold;
+    color: @color-ink;
+    margin-bottom: @spacing-2;
+  }
+
+  &__description {
+    font-size: @font-size-sm;
+    line-height: @line-height-normal;
+    color: @color-ink-secondary;
+  }
+
+  &__link {
+    color: @color-accent;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: @color-accent-hover;
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-3;
+    margin-bottom: @spacing-5;
+    padding-top: @spacing-4;
+    border-top: @border-default;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: @spacing-4;
+    cursor: pointer;
+
+    &--disabled {
+      cursor: default;
+      opacity: 0.7;
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &__option-info {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-0-5;
+  }
+
+  &__option-name {
+    font-size: @font-size-sm;
+    font-weight: @font-weight-semibold;
+    color: @color-ink;
+  }
+
+  &__option-desc {
+    font-size: @font-size-xs;
+    color: @color-ink-tertiary;
+    line-height: @line-height-normal;
+  }
+
+  &__toggle {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 1.5rem;
+    border-radius: @radius-full;
+    background: @color-border;
+    position: relative;
+    transition: background @transition-fast;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0.1875rem;
+      left: 0.1875rem;
+      width: 1.125rem;
+      height: 1.125rem;
+      border-radius: @radius-full;
+      background: @color-surface;
+      box-shadow: @shadow-xs;
+      transition: transform @transition-fast;
+    }
+
+    &--on {
+      background: @color-accent;
+
+      &::after {
+        transform: translateX(1.25rem);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: @spacing-2;
+    flex-wrap: wrap;
+  }
+}
+
+@keyframes cookie-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

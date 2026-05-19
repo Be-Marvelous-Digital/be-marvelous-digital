@@ -1,0 +1,156 @@
+@import (reference) 'global';
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
+  }
+}
+
+.contact {
+  background-color: @color-bg-dark-alt;
+
+  // ─── Main grid ─────────────────────────────────────────────────────────────
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: @spacing-16;
+
+    @media (min-width: @bp-lg) {
+      grid-template-columns: 5fr 7fr;
+      gap: @spacing-20;
+      align-items: start;
+    }
+  }
+
+  // ─── Left column ───────────────────────────────────────────────────────────
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-6;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-size: clamp(@font-size-2xl, 4vw, @font-size-4xl);
+    font-weight: @font-weight-bold;
+    line-height: @line-height-tight;
+    letter-spacing: @tracking-tight;
+    color: @color-ink-inverse;
+    margin-top: @spacing-4;
+  }
+
+  &__description {
+    font-size: @font-size-md;
+    line-height: @line-height-relaxed;
+    color: @color-ink-inverse-muted;
+    max-width: 30rem;
+  }
+
+  // ─── Quick-contact block ───────────────────────────────────────────────────
+
+  &__quick {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-3;
+    margin-top: @spacing-4;
+    padding-top: @spacing-6;
+    border-top: 1px solid rgba(247, 244, 238, 0.08);
+  }
+
+  &__quick-label {
+    font-size: @font-size-xs;
+    font-weight: @font-weight-semibold;
+    letter-spacing: @tracking-widest;
+    text-transform: uppercase;
+    color: @color-ink-inverse-muted;
+    margin: 0;
+  }
+
+  &__email-link {
+    font-family: @font-display;
+    font-size: @font-size-lg;
+    font-weight: @font-weight-bold;
+    color: @color-ink-inverse;
+    text-decoration: none;
+    letter-spacing: @tracking-tight;
+    transition: color @transition-fast;
+
+    &:hover {
+      color: @color-accent;
+    }
+
+    @media (min-width: @bp-lg) {
+      font-size: @font-size-xl;
+    }
+  }
+
+  &__availability {
+    display: inline-flex;
+    align-items: center;
+    gap: @spacing-3;
+    padding: @spacing-3 @spacing-4;
+    background: rgba(22, 163, 74, 0.06);
+    border: 1px solid rgba(22, 163, 74, 0.15);
+    border-radius: @radius-lg;
+    width: fit-content;
+  }
+
+  &__availability-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: @radius-full;
+    background: @color-success;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  &__availability-text {
+    font-size: @font-size-sm;
+    color: rgba(247, 244, 238, 0.55);
+  }
+
+  // ─── Right column ──────────────────────────────────────────────────────────
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // ─── Form shell — gradient border card ────────────────────────────────────
+
+  &__form-shell {
+    position: relative;
+    padding: @spacing-8;
+    background: rgba(247, 244, 238, 0.03);
+    border-radius: @radius-2xl;
+    border: 1px solid rgba(247, 244, 238, 0.08);
+
+    // Subtle accent glow on top edge
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: @spacing-8;
+      right: @spacing-8;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(36, 72, 255, 0.5) 40%,
+        rgba(36, 72, 255, 0.5) 60%,
+        transparent
+      );
+      border-radius: @radius-full;
+    }
+
+    @media (min-width: @bp-lg) {
+      padding: @spacing-10;
+    }
+  }
+}

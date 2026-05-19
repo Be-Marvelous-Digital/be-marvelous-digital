@@ -1,0 +1,253 @@
+@import (reference) "global";
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: @z-sticky;
+  padding-block: @spacing-5;
+  transition: background @transition-base, padding @transition-base, box-shadow @transition-base;
+
+  &--scrolled {
+    padding-block: @spacing-3;
+    background: @nav-bg;
+    backdrop-filter: @nav-backdrop;
+    -webkit-backdrop-filter: @nav-backdrop;
+    box-shadow: @shadow-sm;
+    border-bottom: @border-default;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: @spacing-8;
+  }
+
+  &__logo {
+    color: @color-ink-inverse;
+
+    .navigation--scrolled & {
+      color: @color-ink;
+    }
+  }
+
+  &__links {
+    display: none;
+    align-items: center;
+    gap: @spacing-8;
+    margin-inline-start: auto;
+
+    @media (min-width: @bp-lg) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    font-size: @font-size-sm;
+    font-weight: @font-weight-medium;
+    letter-spacing: @tracking-wide;
+    text-transform: uppercase;
+    color: @color-ink-inverse-dim;
+    text-decoration: none;
+    transition: color @transition-fast;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: @color-accent;
+      transition: width @transition-base;
+    }
+
+    &:hover {
+      color: #fff;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    .navigation--scrolled & {
+      color: @color-ink-secondary;
+
+      &:hover {
+        color: @color-ink;
+      }
+    }
+  }
+
+  &__cta {
+    display: none;
+    margin-inline-start: auto;
+    text-decoration: none;
+
+    @media (min-width: @bp-lg) {
+      display: inline-flex;
+    }
+  }
+
+  // ─── Hamburger Button ─────────────────────────────────────────────────────
+
+  &__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-inline-start: auto;
+    padding: @spacing-2;
+    cursor: pointer;
+    border: none;
+    background: none;
+
+    @media (min-width: @bp-lg) {
+      display: none;
+    }
+
+    span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: @color-ink-inverse;
+      border-radius: @radius-full;
+      transition: transform @transition-base, opacity @transition-fast;
+      transform-origin: center;
+
+      .navigation--scrolled & {
+        background: @color-ink;
+      }
+    }
+
+    &--open {
+      span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      span {
+        background: @color-ink !important;
+      }
+    }
+  }
+
+  // ─── Mobile Menu ──────────────────────────────────────────────────────────
+
+  &__mobile {
+    position: fixed;
+    inset: 0;
+    background: @color-surface;
+    z-index: @z-overlay;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: opacity @transition-slow, transform @transition-slow;
+
+    @media (min-width: @bp-lg) {
+      display: none;
+    }
+
+    &--open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+  }
+
+  &__mobile-close {
+    position: absolute;
+    top: @spacing-5;
+    right: @spacing-5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: @color-ink;
+    cursor: pointer;
+    transition: color @transition-fast;
+
+    &:hover {
+      color: @color-accent;
+    }
+  }
+
+  &__mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: @spacing-6;
+    text-align: center;
+  }
+
+  &__mobile-link {
+    font-family: @font-display;
+    font-size: @font-size-3xl;
+    font-weight: @font-weight-bold;
+    color: @color-ink;
+    text-decoration: none;
+    letter-spacing: @tracking-tight;
+    transition: color @transition-fast;
+
+    &:hover {
+      color: @color-accent;
+    }
+  }
+
+  &__locale-toggle {
+    display: none;
+    font-size: @font-size-xs;
+    font-weight: @font-weight-bold;
+    letter-spacing: @tracking-widest;
+    text-transform: uppercase;
+    color: @color-ink-inverse-muted;
+    text-decoration: none;
+    padding: @spacing-1 @spacing-3;
+    border: @border-width-thin solid @color-ink-inverse-subtle;
+    border-radius: @radius-full;
+    transition: color @transition-fast, border-color @transition-fast;
+    flex-shrink: 0;
+
+    @media (min-width: @bp-lg) {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    &:hover {
+      color: @color-ink-inverse;
+      border-color: @color-ink-inverse-muted;
+    }
+
+    .navigation--scrolled & {
+      color: @color-ink-secondary;
+      border-color: @color-border;
+
+      &:hover {
+        color: @color-ink;
+        border-color: @color-border-strong;
+      }
+    }
+  }
+
+  &__mobile-locale {
+    font-family: @font-display;
+    font-size: @font-size-xl;
+    font-weight: @font-weight-bold;
+    color: @color-ink-secondary;
+    text-decoration: none;
+    letter-spacing: @tracking-tight;
+    transition: color @transition-fast;
+    margin-top: @spacing-4;
+
+    &:hover {
+      color: @color-accent;
+    }
+  }
+}

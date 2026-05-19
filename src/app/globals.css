@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F7F4EE;
+  --color-foreground: #0D0D0B;
+  --color-primary: #2448FF;
+  --color-primary-hover: #1535E8;
+}
+
+body {
+  overflow-x: hidden;
+}

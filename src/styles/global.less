@@ -1,0 +1,634 @@
+// =============================================================================
+// GLOBAL DESIGN TOKENS — Be Marvelous Digital
+// Import this file in every component .less file:
+//   @import "global";   ← resolves from src/styles/ (less-loader paths config)
+// =============================================================================
+
+// ─── Brand Color Palette ─────────────────────────────────────────────────────
+
+@color-accent: #2448ff; // Electric indigo — primary CTA, links, highlights
+@color-accent-hover: #1535e8; // Darker on hover
+@color-accent-warm: #ff4d00; // Burnt orange — secondary accent, badges
+@color-accent-light: rgba(36, 72, 255, 0.08); // Soft tint for backgrounds
+
+// ─── Backgrounds ─────────────────────────────────────────────────────────────
+
+@color-bg: #f7f4ee; // Warm cream — main background
+@color-bg-dark: #0b0b0a; // Near-black — hero, footer, dark sections
+@color-bg-dark-alt: #141412; // Slightly lighter dark surface
+@color-surface: #ffffff; // Pure white — cards, modals
+@color-surface-alt: #efece5; // Muted cream — alternating sections
+
+// ─── Text ────────────────────────────────────────────────────────────────────
+
+@color-ink: #0d0d0b; // Primary text (near-black, slightly warm)
+@color-ink-secondary: #5c5950; // Secondary / subheadings
+@color-ink-tertiary: #9c9890; // Captions, meta, placeholders
+@color-ink-inverse: #f7f4ee; // Text on dark backgrounds
+@color-ink-inverse-dim: rgba(
+  247,
+  244,
+  238,
+  0.7
+); // Dimmed text on dark backgrounds
+@color-ink-inverse-muted: rgba(
+  247,
+  244,
+  238,
+  0.5
+); // Muted text on dark backgrounds
+@color-ink-inverse-subtle: rgba(
+  247,
+  244,
+  238,
+  0.2
+); // Subtle border/text on dark backgrounds
+@color-ink-accent: @color-accent;
+
+// ─── UI / Borders ────────────────────────────────────────────────────────────
+
+@color-border: #e4e1da; // Default border
+@color-border-strong: #c6c3bb; // Emphasized border
+@color-border-dark: rgba(255, 255, 255, 0.12); // Border on dark backgrounds
+@color-focus: @color-accent;
+
+// ─── Status Colors ───────────────────────────────────────────────────────────
+
+@color-success: #16a34a;
+@color-warning: #d97706;
+@color-error: #dc2626;
+@color-info: @color-accent;
+
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+// Font families — loaded via next/font/google in layout.tsx,
+// exposed as CSS custom properties on <html>
+@font-display: var(--font-syne), 'Syne', sans-serif;
+@font-body: var(--font-dm-sans), 'DM Sans', sans-serif;
+@font-mono: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
+
+// ─── Font Sizes (rem scale, base 16px) ───────────────────────────────────────
+
+@font-size-xs: 0.6875rem; // 11px
+@font-size-sm: 0.8125rem; // 13px
+@font-size-base: 1rem; // 16px
+@font-size-md: 1.125rem; // 18px
+@font-size-lg: 1.25rem; // 20px
+@font-size-xl: 1.5rem; // 24px
+@font-size-2xl: 2rem; // 32px
+@font-size-3xl: 2.5rem; // 40px
+@font-size-4xl: 3.25rem; // 52px
+@font-size-5xl: 4.25rem; // 68px
+@font-size-display: 5.5rem; // 88px
+@font-size-hero: 7.5rem; // 120px
+
+// ─── Responsive Font Sizes ───────────────────────────────────────────────────
+// Use these for headings that need to shrink on mobile
+
+@font-size-h1-mobile: 2.5rem; // 40px
+@font-size-h1-tablet: 3.5rem; // 56px
+@font-size-h1-desktop: 5.5rem; // 88px
+
+@font-size-h2-mobile: 2rem; // 32px
+@font-size-h2-tablet: 2.5rem; // 40px
+@font-size-h2-desktop: 3.25rem; // 52px
+
+// ─── Font Weights ────────────────────────────────────────────────────────────
+
+@font-weight-light: 300;
+@font-weight-regular: 400;
+@font-weight-medium: 500;
+@font-weight-semibold: 600;
+@font-weight-bold: 700;
+@font-weight-black: 800;
+@font-weight-ultra: 900;
+
+// ─── Line Heights ────────────────────────────────────────────────────────────
+
+@line-height-none: 1;
+@line-height-tight: 1.1;
+@line-height-snug: 1.25;
+@line-height-normal: 1.5;
+@line-height-relaxed: 1.625;
+@line-height-loose: 1.875;
+
+// ─── Letter Spacing ──────────────────────────────────────────────────────────
+
+@tracking-tight: -0.03em;
+@tracking-normal: 0;
+@tracking-wide: 0.04em;
+@tracking-wider: 0.08em;
+@tracking-widest: 0.15em;
+
+// =============================================================================
+// SPACING SCALE  (multiples of 4px)
+// =============================================================================
+
+@spacing-0: 0;
+@spacing-px: 1px;
+@spacing-0-5: 0.125rem; // 2px
+@spacing-1: 0.25rem; // 4px
+@spacing-2: 0.5rem; // 8px
+@spacing-3: 0.75rem; // 12px
+@spacing-4: 1rem; // 16px
+@spacing-5: 1.25rem; // 20px
+@spacing-6: 1.5rem; // 24px
+@spacing-7: 1.75rem; // 28px
+@spacing-8: 2rem; // 32px
+@spacing-10: 2.5rem; // 40px
+@spacing-12: 3rem; // 48px
+@spacing-14: 3.5rem; // 56px
+@spacing-16: 4rem; // 64px
+@spacing-20: 5rem; // 80px
+@spacing-24: 6rem; // 96px
+@spacing-28: 7rem; // 112px
+@spacing-32: 8rem; // 128px
+@spacing-40: 10rem; // 160px
+@spacing-48: 12rem; // 192px
+@spacing-64: 16rem; // 256px
+
+// Semantic spacing aliases
+@spacing-xs: @spacing-2; // 8px
+@spacing-sm: @spacing-4; // 16px
+@spacing-md: @spacing-6; // 24px
+@spacing-lg: @spacing-8; // 32px
+@spacing-xl: @spacing-12; // 48px
+@spacing-2xl: @spacing-16; // 64px
+@spacing-3xl: @spacing-24; // 96px
+@spacing-4xl: @spacing-32; // 128px
+
+// Section padding
+@section-padding-y-mobile: @spacing-16; // 64px
+@section-padding-y-tablet: @spacing-24; // 96px
+@section-padding-y-desktop: @spacing-32; // 128px
+
+// =============================================================================
+// LAYOUT
+// =============================================================================
+
+@container-sm: 640px;
+@container-md: 768px;
+@container-lg: 1024px;
+@container-xl: 1280px;
+@container-2xl: 1440px;
+@container-max: 1600px;
+
+@container-padding-x-mobile: @spacing-5; // 20px
+@container-padding-x-tablet: @spacing-8; // 32px
+@container-padding-x-desktop: @spacing-12; // 48px
+
+@grid-gutter: @spacing-6; // 24px
+@grid-gutter-lg: @spacing-8; // 32px
+
+// =============================================================================
+// BORDER RADIUS
+// =============================================================================
+
+@radius-none: 0;
+@radius-xs: 0.125rem; // 2px
+@radius-sm: 0.25rem; // 4px
+@radius-md: 0.5rem; // 8px
+@radius-lg: 0.75rem; // 12px
+@radius-xl: 1rem; // 16px
+@radius-2xl: 1.5rem; // 24px
+@radius-3xl: 2rem; // 32px
+@radius-full: 9999px;
+
+// =============================================================================
+// SHADOWS
+// =============================================================================
+
+@shadow-xs: 0 1px 2px rgba(13, 13, 11, 0.04);
+@shadow-sm: 0 2px 8px rgba(13, 13, 11, 0.06);
+@shadow-md: 0 4px 16px rgba(13, 13, 11, 0.08);
+@shadow-lg: 0 8px 32px rgba(13, 13, 11, 0.12);
+@shadow-xl: 0 16px 56px rgba(13, 13, 11, 0.16);
+@shadow-2xl: 0 24px 80px rgba(13, 13, 11, 0.22);
+@shadow-accent: 0 0 0 3px rgba(36, 72, 255, 0.22);
+@shadow-inset: inset 0 1px 2px rgba(13, 13, 11, 0.06);
+
+// =============================================================================
+// BORDERS
+// =============================================================================
+
+@border-width-thin: 1px;
+@border-width-medium: 2px;
+@border-width-thick: 4px;
+
+@border-default: @border-width-thin solid @color-border;
+@border-strong: @border-width-thin solid @color-border-strong;
+@border-dark: @border-width-thin solid @color-border-dark;
+@border-accent: @border-width-medium solid @color-accent;
+
+// =============================================================================
+// Z-INDEX SCALE
+// =============================================================================
+
+@z-below: -1;
+@z-base: 0;
+@z-above: 1;
+@z-raised: 10;
+@z-dropdown: 100;
+@z-sticky: 200;
+@z-overlay: 300;
+@z-modal: 400;
+@z-toast: 500;
+@z-tooltip: 600;
+
+// =============================================================================
+// TRANSITIONS & ANIMATION
+// =============================================================================
+
+@duration-instant: 50ms;
+@duration-fast: 150ms;
+@duration-base: 250ms;
+@duration-slow: 400ms;
+@duration-slower: 600ms;
+@duration-slowest: 900ms;
+
+@ease-default: ease;
+@ease-in: cubic-bezier(0.4, 0, 1, 1);
+@ease-out: cubic-bezier(0, 0, 0.2, 1);
+@ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+@ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+@ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+
+@transition-fast: @duration-fast @ease-out;
+@transition-base: @duration-base @ease-out;
+@transition-slow: @duration-slow @ease-out;
+@transition-spring: @duration-slow @ease-spring;
+
+// =============================================================================
+// BREAKPOINTS (for use in @media queries)
+// =============================================================================
+
+@bp-xs: 375px;
+@bp-sm: 640px;
+@bp-md: 768px;
+@bp-lg: 1024px;
+@bp-xl: 1280px;
+@bp-2xl: 1440px;
+@bp-3xl: 1920px;
+
+// =============================================================================
+// COMPONENT TOKENS (semantic, built from primitives above)
+// =============================================================================
+
+// ─── Buttons ─────────────────────────────────────────────────────────────────
+
+@btn-height-sm: 2.25rem; // 36px
+@btn-height-md: 2.875rem; // 46px
+@btn-height-lg: 3.5rem; // 56px
+@btn-padding-x-sm: @spacing-4;
+@btn-padding-x-md: @spacing-6;
+@btn-padding-x-lg: @spacing-8;
+@btn-radius: @radius-full;
+@btn-font-weight: @font-weight-semibold;
+@btn-transition:
+  background @transition-fast,
+  transform @transition-fast,
+  box-shadow @transition-fast;
+
+// ─── Cards ───────────────────────────────────────────────────────────────────
+
+@card-radius: @radius-xl;
+@card-padding: @spacing-6;
+@card-padding-lg: @spacing-8;
+@card-shadow: @shadow-md;
+@card-shadow-hover: @shadow-xl;
+@card-border: @border-default;
+@card-transition:
+  transform @transition-base,
+  box-shadow @transition-base;
+
+// ─── Navigation ──────────────────────────────────────────────────────────────
+
+@nav-height: 4rem; // 64px
+@nav-height-lg: 5rem; // 80px
+@nav-bg: rgba(247, 244, 238, 0.92);
+@nav-bg-dark: rgba(11, 11, 10, 0.92);
+@nav-backdrop: blur(16px) saturate(180%);
+@nav-border: @border-default;
+@nav-z: @z-sticky;
+
+// ─── Form Inputs ─────────────────────────────────────────────────────────────
+
+@input-height: 3rem; // 48px
+@input-padding-x: @spacing-4;
+@input-padding-y: @spacing-3;
+@input-radius: @radius-lg;
+@input-border: @border-default;
+@input-border-focus: @border-accent;
+@input-bg: @color-surface;
+@input-font-size: @font-size-base;
+@input-transition:
+  border-color @transition-fast,
+  box-shadow @transition-fast;
+
+// ─── Badge / Tag ─────────────────────────────────────────────────────────────
+
+@badge-radius: @radius-full;
+@badge-padding-x: @spacing-3;
+@badge-padding-y: @spacing-1;
+@badge-font-size: @font-size-xs;
+@badge-font-weight: @font-weight-semibold;
+
+// =============================================================================
+// GLOBAL RESETS & BASE STYLES
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: @font-body;
+  font-size: @font-size-base;
+  font-weight: @font-weight-regular;
+  line-height: @line-height-normal;
+  color: @color-ink;
+  background-color: @color-bg;
+}
+
+// ─── Typography Reset ────────────────────────────────────────────────────────
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: @font-display;
+  font-weight: @font-weight-bold;
+  line-height: @line-height-tight;
+  letter-spacing: @tracking-tight;
+  color: @color-ink;
+}
+
+p {
+  line-height: @line-height-relaxed;
+  color: @color-ink-secondary;
+}
+
+a {
+  color: @color-accent;
+  text-decoration: none;
+  transition: color @transition-fast;
+
+  &:hover {
+    color: @color-accent-hover;
+  }
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+// ─── Focus Visible ───────────────────────────────────────────────────────────
+
+:focus-visible {
+  outline: 2px solid @color-focus;
+  outline-offset: 3px;
+  border-radius: @radius-sm;
+}
+
+// ─── Selection ───────────────────────────────────────────────────────────────
+
+::selection {
+  background-color: rgba(36, 72, 255, 0.15);
+  color: @color-ink;
+}
+
+// ─── Scrollbar (WebKit) ──────────────────────────────────────────────────────
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: @color-border-strong;
+  border-radius: @radius-full;
+
+  &:hover {
+    background: @color-ink-tertiary;
+  }
+}
+
+// =============================================================================
+// LAYOUT UTILITIES
+// =============================================================================
+
+.container {
+  width: 100%;
+  max-width: @container-2xl;
+  margin-inline: auto;
+  padding-inline: @container-padding-x-mobile;
+
+  @media (min-width: @bp-md) {
+    padding-inline: @container-padding-x-tablet;
+  }
+
+  @media (min-width: @bp-lg) {
+    padding-inline: @container-padding-x-desktop;
+  }
+
+  &--wide {
+    max-width: @container-2xl;
+  }
+
+  &--narrow {
+    max-width: @container-md;
+  }
+}
+
+.section {
+  padding-block: @section-padding-y-mobile;
+
+  @media (min-width: @bp-md) {
+    padding-block: @section-padding-y-tablet;
+  }
+
+  @media (min-width: @bp-lg) {
+    padding-block: @section-padding-y-desktop;
+  }
+
+  &--dark {
+    background-color: @color-bg-dark;
+    color: @color-ink-inverse;
+  }
+
+  &--surface {
+    background-color: @color-surface;
+  }
+
+  &--alt {
+    background-color: @color-surface-alt;
+  }
+}
+
+// =============================================================================
+// TYPOGRAPHY UTILITY CLASSES
+// =============================================================================
+
+.display-text {
+  font-family: @font-display;
+  font-weight: @font-weight-black;
+  line-height: @line-height-tight;
+  letter-spacing: @tracking-tight;
+}
+
+.label-text {
+  font-size: @font-size-xs;
+  font-weight: @font-weight-semibold;
+  letter-spacing: @tracking-widest;
+  text-transform: uppercase;
+  color: @color-ink-tertiary;
+}
+
+.mono-text {
+  font-family: @font-mono;
+  font-size: @font-size-sm;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    @color-accent 0%,
+    @color-accent-warm 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// =============================================================================
+// BUTTON BASE STYLES
+// =============================================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: @spacing-2;
+  height: @btn-height-md;
+  padding-inline: @btn-padding-x-md;
+  border-radius: @btn-radius;
+  font-family: @font-body;
+  font-size: @font-size-sm;
+  font-weight: @btn-font-weight;
+  letter-spacing: @tracking-wide;
+  text-transform: uppercase;
+  transition: @btn-transition;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &--primary {
+    background-color: @color-accent;
+    color: #fff;
+    border: @border-width-medium solid @color-accent;
+
+    &:hover {
+      background-color: transparent;
+      color: @color-accent;
+      border-color: @color-accent;
+      transform: translateY(-1px);
+      box-shadow: @shadow-lg;
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: @color-ink;
+    border: @border-width-medium solid @color-ink;
+
+    &:hover {
+      background-color: @color-ink;
+      color: @color-bg;
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: @color-accent;
+    border: @border-width-thin solid @color-accent;
+
+    &:hover {
+      background-color: @color-accent-light;
+    }
+  }
+
+  &--dark {
+    background-color: @color-ink-inverse;
+    color: @color-ink;
+
+    &:hover {
+      background-color: @color-bg;
+      color: @color-ink;
+      transform: translateY(-1px);
+      box-shadow: @shadow-lg;
+    }
+  }
+
+  &--sm {
+    height: @btn-height-sm;
+    padding-inline: @btn-padding-x-sm;
+    font-size: @font-size-xs;
+  }
+
+  &--lg {
+    height: @btn-height-lg;
+    padding-inline: @btn-padding-x-lg;
+    font-size: @font-size-base;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+}

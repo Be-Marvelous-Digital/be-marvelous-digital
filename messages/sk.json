@@ -1,0 +1,226 @@
+{
+  "nav": {
+    "services": "Služby",
+    "portfolio": "Portfólio",
+    "process": "Proces",
+    "about": "O mne",
+    "blog": "Blog",
+    "cta": "Začať projekt"
+  },
+  "hero": {
+    "badge": "Freelance vývoj webov",
+    "location": "Slovensko · Dostupný po celom svete",
+    "line1": "TVORÍM",
+    "line2": "ÚŽASNÉ",
+    "line3": "WEBY",
+    "description": "Vysokokvalitné webstránky s precíznou pozornosťou na dizajn a výkon — pre firmy, ktoré chcú zanechať trvalý dojem. Keď so mnou pracujete, komunikujete priamo s vývojárom, ktorý vašu stránku buduje. Žiadni account manageri. Žiadne odovzdávanie projektov.",
+    "ctaPrimary": "Začať projekt",
+    "ctaSecondary": "Pozrieť portfólio",
+    "stats": {
+      "projects": "Projektov",
+      "experience": "Rokov skúseností",
+      "communication": "Priama komunikácia",
+      "response": "Priem. čas odpovede"
+    }
+  },
+  "services": {
+    "label": "Čo ponúkam",
+    "title": "Všetko, čo potrebujete,\nnič navyše.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Webdizajn a vývoj",
+        "description": "Webstránky a webové aplikácie na mieru — rýchle, prístupné a škálovateľné. Žiadne šablóny. Každý riadok kódu napísaný pre vaše konkrétne potreby.",
+        "highlights": ["Next.js / React", "TypeScript", "Performance-first", "SEO-ready"]
+      },
+      {
+        "number": "02",
+        "title": "UI / UX Dizajn",
+        "description": "Rozhrania, ktoré ľudia skutočne radi používajú. Čistá vizuálna hierarchia, premyslené interakcie a dizajnový jazyk, ktorý vás odlíši od konkurencie.",
+        "highlights": ["Figma prototypovanie", "Dizajnové systémy", "Responzívne rozloženia", "Mikrointerakcie"]
+      },
+      {
+        "number": "03",
+        "title": "Výkon a SEO",
+        "description": "Krásna webstránka, ktorú nikto nenájde, je premrhaná investícia. Optimalizujem Core Web Vitals, štruktúrované dáta a viditeľnosť vo vyhľadávačoch od prvého dňa.",
+        "highlights": ["Core Web Vitals", "Lighthouse 95+", "Štruktúrované dáta", "Technické SEO"]
+      },
+      {
+        "number": "04",
+        "title": "Vlastný CMS",
+        "description": "Váš vlastný systém správy obsahu — prispôsobený tomu, ako skutočne pracujete. Žiadne nafúknuté platformy, žiadne mesačné SaaS poplatky. Plné vlastníctvo vášho obsahu.",
+        "highlights": ["Headless CMS", "Vlastný admin panel", "Blog a obsah", "Rolový prístup"]
+      }
+    ]
+  },
+  "portfolio": {
+    "label": "Vybrané práce",
+    "title": "Reálne projekty.\nReálne výsledky.",
+    "subtitle": "Kliknite na projekt pre prípadovú štúdiu.",
+    "visitSite": "Navštíviť stránku"
+  },
+  "process": {
+    "label": "Ako pracujem",
+    "title": "Od nápadu\npo spustenie.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Objavovanie",
+        "description": "Začíname hlbokým ponorením sa do vašich cieľov, publika a konkurencie. Chcem pochopiť, čo robí váš biznis výnimočným, skôr ako sa dotknem kódu."
+      },
+      {
+        "number": "02",
+        "title": "Dizajn",
+        "description": "Wireframes, vizuálny dizajn a prototypy — iterujeme, kým dizajn presne nezodpovedá vašej vízii. Bez prekvapení pri vývoji."
+      },
+      {
+        "number": "03",
+        "title": "Vývoj",
+        "description": "Čistý, udržiavateľný kód s dôrazom na výkon, prístupnosť, technickú kvalitu a bezpečnosť."
+      },
+      {
+        "number": "04",
+        "title": "Spustenie a starostlivosť",
+        "description": "Nasadenie, monitorovanie a podpora po spustení. Väčšina klientov zostáva so mnou dlhodobo — pretože dobré webstránky sa vyvíjajú."
+      }
+    ]
+  },
+  "about": {
+    "label": "O mne",
+    "title": "Výhoda\nfreelancera.",
+    "intro1": "Som Peter Lehocký — webový vývojár so sídlom na Slovensku s viac ako 8 rokmi skúseností s budovaním webstránok pre klientov doma aj v zahraničí.",
+    "intro2": "Keď najímate agentúru, platíte za infraštruktúru, projektových manažérov a réžiu. Keď pracujete so mnou, každý cent smeruje do skutočnej práce. Získate odbornosť agentúry s agilosťou a priamosťou jednoosového štúdia.",
+    "cta": "Porozprávajme sa",
+    "advantages": [
+      {
+        "title": "Hovoríte priamo so mnou",
+        "description": "Žiadni account manageri, ktorí sprostredkúvajú vašu spätnú väzbu. Každý e-mail, hovor a rozhodnutie prechádza cez osobu, ktorá skutočne buduje vašu stránku."
+      },
+      {
+        "title": "Rýchlo, bez kompromisov",
+        "description": "Krátke dodacie lehoty bez skrátenia v kvalite. Za 8+ rokov som vybudoval efektívne pracovné postupy, ktoré mi umožňujú pohybovať sa rýchlo a zároveň dbať na každý detail."
+      },
+      {
+        "title": "Obsesívna pozornosť k detailom",
+        "description": "Medzery medzi riadkami, prechody pri hover, meta popis každej stránky — nič nie je ponechané náhode. Dosť dobré nikdy nie je dosť dobré."
+      },
+      {
+        "title": "Dlhodobé partnerstvo",
+        "description": "Po spustení nezmiznem. Väčšina mojich klientov je so mnou roky. Záleží mi na vašom úspechu, pretože moja reputácia na ňom závisí."
+      }
+    ]
+  },
+  "contact": {
+    "label": "Kontakt",
+    "title": "Poďme spolu\nstvoriť niečo\núžasné.",
+    "description": "Napíšte mi o svojom projekte. Odpoviem do 48 hodín s úprimnými otázkami a realistickým odhadom.",
+    "emailLabel": "Alebo ma kontaktujte priamo",
+    "divider": "alebo",
+    "availability": "Dostupný pre nové projekty — aktuálna kapacita: 2 projekty",
+    "form": {
+      "name": "Celé meno",
+      "email": "E-mailová adresa",
+      "phone": "Telefónne číslo",
+      "message": "Povedzte mi o svojom projekte",
+      "submit": "Odoslať správu",
+      "submitting": "Odosielam…",
+      "success": "Správa odoslaná!",
+      "successDetail": "Ozvem sa vám do 48 hodín.",
+      "error": "Niečo sa pokazilo. Skúste znova alebo mi napíšte priamo.",
+      "invalidEmail": "Prosím, zadajte platnú e-mailovú adresu.",
+      "invalidPhone": "Prosím, zadajte platné telefónne číslo."
+    }
+  },
+  "footer": {
+    "navigate": "Navigácia",
+    "more": "Viac",
+    "credit": "Navrhol & vytvoril Peter Lehocký"
+  },
+  "blog": {
+    "label": "Všetky články",
+    "title": "Postrehy, ktoré stoja za to.",
+    "description": "Praktické, priamočiare články o webdizajne, výkone, dizajne a veciach, ktoré skutočne posúvajú váš online biznis.",
+    "empty": "Zatiaľ žiadne články. Sledujte nás.",
+    "readMore": "Čítať článok",
+    "preview": {
+      "label": "Z blogu",
+      "all": "Všetky články"
+    }
+  },
+  "portfolio_page": {
+    "back": "← Späť na portfólio",
+    "problem": "Problém",
+    "solution": "Riešenie",
+    "results": "Výsledky",
+    "visitSite": "Navštíviť stránku",
+    "nextProject": "Ďalší projekt"
+  },
+  "cookies": {
+    "title": "Vaše súkromie je pre nás dôležité",
+    "description": "Používame cookies na analýzu návštevnosti webu a optimalizáciu vášho zážitku. Môžete si vybrať, ktoré cookies povolíte.",
+    "acceptAll": "Prijať všetky",
+    "rejectAll": "Odmietnuť všetky",
+    "customize": "Prispôsobiť",
+    "save": "Uložiť preferencie",
+    "necessary": "Nevyhnutné",
+    "necessaryDesc": "Potrebné pre fungovanie webstránky. Nie je možné ich vypnúť.",
+    "analytics": "Analytické",
+    "analyticsDesc": "Pomáhajú nám pochopiť, ako návštevníci používajú web (Google Analytics).",
+    "marketing": "Marketingové",
+    "marketingDesc": "Slúžia na zobrazovanie relevantných reklám a meranie účinnosti kampaní (Meta Pixel).",
+    "privacyLink": "Ochrana osobných údajov"
+  },
+  "privacy": {
+    "title": "Ochrana osobných údajov",
+    "metaTitle": "Ochrana osobných údajov",
+    "metaDescription": "Zásady ochrany osobných údajov Be Marvelous Digital — ako zhromažďujeme, používame a chránime vaše osobné údaje v súlade s GDPR a slovenskou legislatívou.",
+    "lastUpdated": "Posledná aktualizácia: 19. máj 2026",
+    "intro": "Be Marvelous Digital (\"my\", \"nás\", \"náš\"), prevádzkované Petrom Lehockým, sa zaväzuje chrániť vaše súkromie. Tieto zásady ochrany osobných údajov vysvetľujú, ako zhromažďujeme, používame a chránime vaše osobné údaje pri návšteve webstránky bemarvelousdigital.com (\"Webstránka\").",
+    "sections": {
+      "controller": {
+        "title": "1. Prevádzkovateľ",
+        "content": "Prevádzkovateľom zodpovedným za vaše osobné údaje je:\n\nPeter Lehocký — Be Marvelous Digital\nEmail: hello@bemarvelousdigital.com\n\nAko prevádzkovateľ určujeme účely a prostriedky spracúvania vašich osobných údajov v súlade s Nariadením Európskeho parlamentu a Rady (EÚ) 2016/679 (GDPR) a Zákonom č. 18/2018 Z. z. o ochrane osobných údajov Slovenskej republiky."
+      },
+      "dataCollected": {
+        "title": "2. Osobné údaje, ktoré zhromažďujeme",
+        "content": "Zhromažďujeme nasledovné osobné údaje:\n\na) Údaje z kontaktného formulára — Pri odoslaní kontaktného formulára zhromažďujeme: celé meno, e-mailovú adresu, telefónne číslo (voliteľné) a popis projektu.\n\nb) Analytické údaje (so súhlasom) — S vaším výslovným súhlasom zhromažďujeme anonymizované údaje o používaní cez Google Analytics, vrátane: navštívených stránok, času stráveného na stránkach, zdroja návštevy, typu zariadenia a prehliadača, približnej geografickej polohy (úroveň krajiny/mesta).\n\nc) Marketingové údaje (so súhlasom) — S vaším výslovným súhlasom Meta Pixel zhromažďuje údaje o vašich interakciách s naším webom na meranie účinnosti reklamných kampaní na platformách Meta (Facebook, Instagram).\n\nd) Technické údaje — Naša hostingová infraštruktúra automaticky zaznamenáva: IP adresu (anonymizovanú), typ a verziu prehliadača, operačný systém a dátum/čas prístupu. Tieto údaje sú nevyhnutné pre bezpečnú prevádzku Webstránky."
+      },
+      "purpose": {
+        "title": "3. Účel a právny základ spracúvania",
+        "content": "Vaše osobné údaje spracúvame na nasledovné účely:\n\nOdpovede na dotazy z kontaktného formulára — Právny základ: Čl. 6 ods. 1 písm. b) GDPR — Plnenie zmluvy alebo predzmluvné opatrenia.\n\nAnalytika webstránky (Google Analytics) — Právny základ: Čl. 6 ods. 1 písm. a) GDPR — Váš výslovný súhlas.\n\nMeranie reklamy (Meta Pixel) — Právny základ: Čl. 6 ods. 1 písm. a) GDPR — Váš výslovný súhlas.\n\nBezpečnosť a prevádzka webstránky — Právny základ: Čl. 6 ods. 1 písm. f) GDPR — Oprávnený záujem.\n\nPlnenie zákonných povinností — Právny základ: Čl. 6 ods. 1 písm. c) GDPR — Zákonná povinnosť."
+      },
+      "cookies": {
+        "title": "4. Cookies",
+        "content": "Naša webstránka používa cookies — malé textové súbory uložené vo vašom zariadení.\n\nNevyhnutné cookies sú potrebné pre správne fungovanie webstránky (napr. preferencie súhlasu s cookies). Tieto nevyžadujú súhlas podľa čl. 5 ods. 3 smernice ePrivacy.\n\nAnalytické cookies (Google Analytics) sa nastavujú len po vašom výslovnom súhlase. Pomáhajú nám pochopiť, ako návštevníci používajú web.\n\nMarketingové cookies (Meta Pixel) sa nastavujú len po vašom výslovnom súhlase. Umožňujú nám merať účinnosť reklamy na platformách Meta.\n\nSvoje preferencie cookies môžete kedykoľvek zmeniť vymazaním cookies v prehliadači a opätovnou návštevou webstránky."
+      },
+      "retention": {
+        "title": "5. Doba uchovávania údajov",
+        "content": "Vaše osobné údaje uchovávame len po nevyhnutne potrebnú dobu:\n\nÚdaje z kontaktného formulára: Až 2 roky od poslednej komunikácie, alebo do vymazania na vašu žiadosť.\n\nAnalytické údaje: 14 mesiacov (predvolená doba uchovávania Google Analytics).\n\nMarketingové údaje: V súlade s pravidlami Meta, až 2 roky.\n\nServerové záznamy: 30 dní."
+      },
+      "sharing": {
+        "title": "6. Zdieľanie a prenos údajov",
+        "content": "Vaše údaje môžeme zdieľať s nasledovnými tretími stranami:\n\nMailchimp (The Rocket Science Group LLC) — na spracovanie odoslaní kontaktného formulára. Mailchimp je certifikovaný v rámci EU-US Data Privacy Framework.\n\nGoogle LLC — na analytické služby (Google Analytics). Google je certifikovaný v rámci EU-US Data Privacy Framework.\n\nMeta Platforms, Inc. — na meranie reklamy (Meta Pixel). Meta je certifikovaná v rámci EU-US Data Privacy Framework.\n\nVšetci spracovatelia tretích strán sú viazaní zmluvami o spracúvaní údajov a pôsobia v súlade s požiadavkami GDPR. V prípade prenosu údajov mimo EHP sú zavedené primerané záruky (štandardné zmluvné doložky alebo rozhodnutia o primeranosti)."
+      },
+      "rights": {
+        "title": "7. Vaše práva",
+        "content": "Podľa GDPR a Zákona č. 18/2018 Z. z. máte právo na:\n\nPrístup k osobným údajom (čl. 15 GDPR)\nOpravu nesprávnych údajov (čl. 16 GDPR)\nVymazanie údajov - pravo na zabudnutie (čl. 17 GDPR)\nObmedzenie spracúvania (čl. 18 GDPR)\nPrenosnosť údajov (čl. 20 GDPR)\nNamietanie proti spracúvaniu (čl. 21 GDPR)\nOdvolanie súhlasu kedykoľvek bez vplyvu na zákonnosť predchádzajúceho spracúvania (čl. 7 ods. 3 GDPR)\n\nNa uplatnenie týchto práv nás kontaktujte na hello@bemarvelousdigital.com. Odpovieme do 30 dní.\n\nMáte tiež právo podať sťažnosť dozornému orgánu:\n\nÚrad na ochranu osobných údajov Slovenskej republiky\nHraničná 12, 820 07 Bratislava 27\nWebstránka: dataprotection.gov.sk"
+      },
+      "security": {
+        "title": "8. Bezpečnosť údajov",
+        "content": "Uplatňujeme primerané technické a organizačné opatrenia na ochranu vašich osobných údajov, vrátane: HTTPS šifrovania pre všetky prenášané údaje, bezpečnej hosťingovej infraštruktúry, prístupových kontrol obmedzujúcich prístup k údajom len oprávneným osobám a pravidelných bezpečnostných aktualizácií."
+      },
+      "children": {
+        "title": "9. Ochrana súkromia detí",
+        "content": "Naša Webstránka nie je určená deťom mladším ako 16 rokov. Vedome nezhromažďujeme osobné údaje od detí. Ak sa domnievate, že sme takéto údaje neúmyselne zhromaždili, kontaktujte nás a bezodkladne ich vymažeme."
+      },
+      "changes": {
+        "title": "10. Zmeny týchto zásad",
+        "content": "Tieto zásady ochrany osobných údajov môžeme priebežne aktualizovať. Aktualizovaná verzia bude označená dátumom Posledná aktualizácia v hornej časti. Odporúčame pravidelne túto stránku kontrolovať."
+      },
+      "contact": {
+        "title": "11. Kontakt",
+        "content": "Ak máte akékoľvek otázky ohľadom týchto zásad ochrany osobných údajov alebo našich postupov spracovania údajov, kontaktujte nás:\n\nPeter Lehocký — Be Marvelous Digital\nEmail: hello@bemarvelousdigital.com"
+      }
+    }
+  }
+}

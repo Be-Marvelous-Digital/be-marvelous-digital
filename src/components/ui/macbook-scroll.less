@@ -1,0 +1,464 @@
+@import (reference) "global";
+
+// =============================================================================
+// MacBook Scroll Component
+// =============================================================================
+
+// ─── Outer scroll container ─────────────────────────────────────────────────
+
+.macbook {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 80vh;
+  flex-shrink: 0;
+  margin-inline: auto;
+  padding-block: 0;
+  transform: scale(0.55);
+  transform-origin: top center;
+
+  @media (min-width: @bp-sm) {
+    min-height: 120vh;
+    transform: scale(0.75);
+  }
+
+  @media (min-width: @bp-md) {
+    min-height: 200vh;
+    padding-block: 2rem;
+    transform: scale(1.4);
+  }
+
+  &__title {
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+
+  // ─── Lid ────────────────────────────────────────────────────────────────────
+
+  &__lid-wrapper {
+    position: relative;
+    perspective: 800px;
+  }
+
+  &__lid-back {
+    position: relative;
+    height: 12rem;
+    width: 32rem;
+    border-radius: @radius-2xl;
+    background-color: #010101;
+    padding: 0.5rem;
+  }
+
+  &__lid-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: @radius-lg;
+    background-color: #010101;
+    box-shadow: 0px 2px 0px 2px #171717 inset;
+  }
+
+  &__lid-logo-icon {
+    color: #fff;
+  }
+
+  &__lid-screen {
+    position: absolute;
+    inset: 0;
+    height: 24rem;
+    width: 32rem;
+    border-radius: @radius-2xl;
+    background-color: #010101;
+    padding: 0.5rem;
+  }
+
+  &__lid-screen-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: @radius-lg;
+    background-color: #272729;
+  }
+
+  &__lid-screen-link {
+    position: absolute;
+    inset: 0;
+    border-radius: @radius-lg;
+    cursor: none;
+  }
+
+  &__lid-screen-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: @radius-lg;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  // ─── Base ───────────────────────────────────────────────────────────────────
+
+  &__base {
+    position: relative;
+    z-index: -10;
+    height: 24rem;
+    width: 32rem;
+    overflow: hidden;
+    border-radius: @radius-2xl;
+    background-color: #272729;
+  }
+
+  // ─── Top bar (hinge area) ─────────────────────────────────────────────────
+
+  &__top-bar {
+    position: relative;
+    height: 2.5rem;
+    width: 100%;
+  }
+
+  &__hinge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    height: 1rem;
+    width: 80%;
+    background-color: #050505;
+  }
+
+  // ─── Speaker + keyboard row ───────────────────────────────────────────────
+
+  &__keyboard-row {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+
+  &__speaker {
+    height: 100%;
+    width: 10%;
+    overflow: hidden;
+  }
+
+  &__keypad-wrapper {
+    height: 100%;
+    width: 80%;
+  }
+
+  // ─── Trackpad ─────────────────────────────────────────────────────────────
+
+  &__trackpad {
+    margin: 0.25rem auto;
+    height: 8rem;
+    width: 40%;
+    border-radius: @radius-xl;
+    box-shadow: 0px 0px 1px 1px #00000020 inset;
+  }
+
+  // ─── Bottom cutout ────────────────────────────────────────────────────────
+
+  &__cutout {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-inline: auto;
+    height: 0.5rem;
+    width: 5rem;
+    border-radius: @radius-3xl @radius-3xl 0 0;
+    background: linear-gradient(to top, #272729, #050505);
+  }
+
+  // ─── Gradient overlay ─────────────────────────────────────────────────────
+
+  &__gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    height: 10rem;
+    width: 100%;
+    background: linear-gradient(to top, #000, #000 30%, transparent);
+  }
+
+  // ─── Keypad container ─────────────────────────────────────────────────────
+
+  &__keypad {
+    margin-inline: 0.25rem;
+    height: 100%;
+    border-radius: @radius-md;
+    background-color: #050505;
+    padding: 0.25rem;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  // ─── Keyboard rows ────────────────────────────────────────────────────────
+
+  &__key-row {
+    display: flex;
+    width: 100%;
+    flex-shrink: 0;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  // ─── Key button ───────────────────────────────────────────────────────────
+
+  &__key-outer {
+    border-radius: 4px;
+    padding: 0.5px;
+    transform: translateZ(0);
+    will-change: transform;
+
+    &--backlit {
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 1),
+        0 8px 10px -6px rgba(255, 255, 255, 1);
+    }
+  }
+
+  &__key-inner {
+    display: flex;
+    height: 1.5rem;
+    width: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3.5px;
+    background-color: #0a090d;
+    box-shadow: 0px -0.5px 2px 0 #0d0d0f inset,
+      -0.5px 0px 2px 0 #0d0d0f inset;
+
+    // ── Width modifiers ──
+    &--w10 {
+      width: 2.5rem;
+    }
+    &--w8 {
+      width: 2rem;
+    }
+    &--w-caps {
+      width: 2.8rem;
+    }
+    &--w-return {
+      width: 2.85rem;
+    }
+    &--w-shift {
+      width: 3.65rem;
+    }
+    &--w-space {
+      width: 8.2rem;
+    }
+
+    // ── Alignment modifiers ──
+    &--align-start {
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding-bottom: 2px;
+      padding-left: 4px;
+    }
+    &--align-end {
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-bottom: 2px;
+      padding-right: 4px;
+    }
+
+    // ── Half-height keys (arrows) ──
+    &--half {
+      height: 0.75rem;
+      width: 1.5rem;
+    }
+  }
+
+  &__key-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 5px;
+    color: #e5e5e5;
+
+    &--backlit {
+      color: #fff;
+    }
+
+    &--start {
+      align-items: flex-start;
+    }
+
+    &--end {
+      align-items: flex-end;
+    }
+
+    &--split {
+      height: 100%;
+      justify-content: space-between;
+      padding-block: 4px;
+    }
+  }
+
+  &__key-label {
+    display: block;
+  }
+
+  &__key-label-inline {
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+
+  &__key-icon {
+    height: 6px;
+    width: 6px;
+  }
+
+  // ─── Power button ─────────────────────────────────────────────────────────
+
+  &__power-outer {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 9999px;
+    background: linear-gradient(
+      to bottom,
+      #171717 20%,
+      #000 50%,
+      #171717 95%
+    );
+    padding: 1px;
+  }
+
+  &__power-inner {
+    height: 100%;
+    width: 100%;
+    border-radius: 9999px;
+    background-color: #000;
+  }
+
+  // ─── Split key layout (fn, control, option, command) ──────────────────────
+
+  &__key-split-row {
+    display: flex;
+    width: 100%;
+
+    &--end {
+      justify-content: flex-end;
+      padding-right: 0.25rem;
+    }
+
+    &--start {
+      justify-content: flex-start;
+      padding-left: 0.25rem;
+    }
+  }
+
+  // ─── Arrow key cluster ────────────────────────────────────────────────────
+
+  &__arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 1.5rem;
+    width: 4.9rem;
+    margin-top: 2px;
+    border-radius: 4px;
+    padding: 0.5px;
+  }
+
+  &__arrows-row {
+    display: flex;
+  }
+
+  // ─── Speaker grid ─────────────────────────────────────────────────────────
+
+  &__speaker-grid {
+    margin-top: 0.5rem;
+    display: flex;
+    height: 10rem;
+    gap: 2px;
+    padding-inline: 0.5px;
+    background-image: radial-gradient(
+      circle,
+      #08080a 0.5px,
+      transparent 0.5px
+    );
+    background-size: 3px 3px;
+  }
+
+  // ─── Logo SVGs ────────────────────────────────────────────────────────────
+
+  &__logo-svg {
+    height: 0.75rem;
+    width: 0.75rem;
+    color: #fff;
+  }
+
+  &__option-svg {
+    height: 6px;
+    width: 6px;
+  }
+
+  // ─── Link overlay ──────────────────────────────────────────────────────────
+
+  &__link-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 60;
+    cursor: none;
+  }
+
+  // ─── Cursor popover ───────────────────────────────────────────────────────
+
+  &__cursor-popover {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: @radius-full;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+
+    &--visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+  }
+
+  &__cursor-dot {
+    flex-shrink: 0;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: @radius-full;
+    background: @color-success;
+    animation: macbook-pulse-dot 2s ease-in-out infinite;
+  }
+
+  &__cursor-label {
+    font-family: @font-body;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1;
+  }
+}
+
+@keyframes macbook-pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
+  }
+}

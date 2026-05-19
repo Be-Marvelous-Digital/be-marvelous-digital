@@ -1,0 +1,115 @@
+@import (reference) "global";
+
+.process {
+  background-color: @color-surface;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-4;
+    margin-bottom: @spacing-16;
+
+    @media (min-width: @bp-lg) {
+      margin-bottom: @spacing-20;
+    }
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-size: clamp(@font-size-2xl, 4vw, @font-size-4xl);
+    font-weight: @font-weight-bold;
+    line-height: @line-height-tight;
+    letter-spacing: @tracking-tight;
+    color: @color-ink;
+    max-width: 22rem;
+  }
+
+  &__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+
+    @media (min-width: @bp-lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__step {
+    position: relative;
+    padding: @spacing-8 0;
+    border-top: 2px solid @color-border;
+
+    @media (min-width: @bp-lg) {
+      padding: @spacing-12 @spacing-6;
+      border-top: none;
+      border-left: 2px solid @color-border;
+    }
+  }
+
+  &__step-divider {
+    display: none;
+
+    @media (min-width: @bp-lg) {
+      --progress: 0;
+
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: -2px;
+      width: 2px;
+      height: calc(var(--progress) * 100%);
+      background: @color-accent;
+      transform: translateY(-50%);
+      will-change: height;
+
+      .process__step--done & {
+        background: @color-border-strong;
+      }
+    }
+  }
+
+  &__step-inner {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-5;
+    height: 100%;
+  }
+
+  &__step-number {
+    font-family: @font-display;
+    font-size: @font-size-xs;
+    font-weight: @font-weight-black;
+    letter-spacing: @tracking-widest;
+    color: @color-ink-tertiary;
+    border: 1px solid @color-border;
+    border-radius: @radius-full;
+    padding: @spacing-1 @spacing-3;
+    align-self: flex-start;
+    transition: color @transition-fast, border-color @transition-fast;
+
+    .process__step--active & {
+      color: @color-accent;
+      border-color: @color-accent;
+    }
+  }
+
+  &__step-body {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-3;
+  }
+
+  &__step-title {
+    font-family: @font-display;
+    font-size: @font-size-xl;
+    font-weight: @font-weight-bold;
+    color: @color-ink;
+    letter-spacing: @tracking-tight;
+  }
+
+  &__step-description {
+    font-size: @font-size-sm;
+    line-height: @line-height-relaxed;
+    color: @color-ink-secondary;
+  }
+}

@@ -1,0 +1,125 @@
+@import (reference) "global";
+
+.login {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: @color-bg;
+  padding: @spacing-5;
+
+  &__card {
+    width: 100%;
+    max-width: 24rem;
+    background: @color-surface;
+    border: @border-default;
+    border-radius: @radius-2xl;
+    padding: @spacing-10 @spacing-8;
+    box-shadow: @shadow-xl;
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-5;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: @spacing-2;
+    margin-bottom: @spacing-2;
+  }
+
+  &__logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: @color-accent;
+    color: #fff;
+    font-family: @font-display;
+    font-size: @font-size-sm;
+    font-weight: @font-weight-black;
+    letter-spacing: @tracking-tight;
+    border-radius: @radius-md;
+  }
+
+  &__logo-text {
+    font-family: @font-display;
+    font-size: @font-size-sm;
+    font-weight: @font-weight-bold;
+    color: @color-ink-tertiary;
+    letter-spacing: @tracking-widest;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-size: @font-size-2xl;
+    font-weight: @font-weight-bold;
+    color: @color-ink;
+    letter-spacing: @tracking-tight;
+  }
+
+  &__subtitle {
+    font-size: @font-size-sm;
+    color: @color-ink-secondary;
+    margin-top: -@spacing-3;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-4;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-2;
+  }
+
+  &__label {
+    font-size: @font-size-sm;
+    font-weight: @font-weight-medium;
+    color: @color-ink;
+  }
+
+  &__input {
+    height: @input-height;
+    padding-inline: @input-padding-x;
+    border: @input-border;
+    border-radius: @input-radius;
+    background: @input-bg;
+    font-size: @input-font-size;
+    color: @color-ink;
+    transition: @input-transition;
+    width: 100%;
+
+    &::placeholder {
+      color: @color-ink-tertiary;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: @color-accent;
+      box-shadow: @shadow-accent;
+    }
+  }
+
+  &__error {
+    font-size: @font-size-sm;
+    color: @color-error;
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: @radius-md;
+    padding: @spacing-3 @spacing-4;
+  }
+
+  &__submit {
+    width: 100%;
+    margin-top: @spacing-2;
+    border-radius: @radius-lg;
+    height: @btn-height-md;
+    font-size: @font-size-base;
+  }
+}

@@ -1,0 +1,326 @@
+@import (reference) "global";
+
+.post-editor {
+  display: flex;
+  flex-direction: column;
+  gap: @spacing-6;
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-5;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-2;
+    position: relative;
+  }
+
+  &__label {
+    font-size: @font-size-sm;
+    font-weight: @font-weight-medium;
+    color: @color-ink;
+  }
+
+  &__input {
+    height: @input-height;
+    padding-inline: @input-padding-x;
+    border: @input-border;
+    border-radius: @input-radius;
+    background: @input-bg;
+    font-size: @input-font-size;
+    color: @color-ink;
+    transition: @input-transition;
+    width: 100%;
+
+    &::placeholder { color: @color-ink-tertiary; }
+    &:focus { outline: none; border-color: @color-accent; box-shadow: @shadow-accent; }
+
+    &--title {
+      height: auto;
+      padding-block: @spacing-4;
+      font-family: @font-display;
+      font-size: @font-size-xl;
+      font-weight: @font-weight-bold;
+    }
+  }
+
+  &__slug-wrap {
+    display: flex;
+    align-items: center;
+    border: @input-border;
+    border-radius: @input-radius;
+    background: @input-bg;
+    overflow: hidden;
+    transition: @input-transition;
+
+    &:focus-within {
+      border-color: @color-accent;
+      box-shadow: @shadow-accent;
+    }
+  }
+
+  &__slug-prefix {
+    padding-inline: @input-padding-x;
+    height: @input-height;
+    display: flex;
+    align-items: center;
+    font-size: @font-size-sm;
+    color: @color-ink-tertiary;
+    background: @color-bg;
+    border-right: @border-default;
+    white-space: nowrap;
+  }
+
+  &__slug-input {
+    flex: 1;
+    height: @input-height;
+    padding-inline: @input-padding-x;
+    border: none;
+    background: transparent;
+    font-size: @font-size-sm;
+    color: @color-accent;
+    font-family: @font-mono;
+
+    &:focus { outline: none; }
+  }
+
+  &__textarea {
+    padding: @input-padding-x;
+    border: @input-border;
+    border-radius: @input-radius;
+    background: @input-bg;
+    font-size: @font-size-sm;
+    color: @color-ink;
+    resize: vertical;
+    line-height: @line-height-relaxed;
+    transition: @input-transition;
+    font-family: @font-body;
+
+    &::placeholder { color: @color-ink-tertiary; }
+    &:focus { outline: none; border-color: @color-accent; box-shadow: @shadow-accent; }
+  }
+
+  &__char-count {
+    position: absolute;
+    bottom: @spacing-2;
+    right: @spacing-3;
+    font-size: @font-size-xs;
+    color: @color-ink-tertiary;
+  }
+
+  // ─── Language Tabs ───────────────────────────────────────────────────────
+
+  &__tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid @color-border;
+    margin-bottom: @spacing-8;
+  }
+
+  &__tab {
+    padding: @spacing-3 @spacing-6;
+    font-size: @font-size-sm;
+    font-weight: @font-weight-medium;
+    color: @color-ink-secondary;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition: color @transition-fast, border-color @transition-fast;
+
+    &:hover {
+      color: @color-ink;
+    }
+
+    &--active {
+      color: @color-accent;
+      border-bottom-color: @color-accent;
+      font-weight: @font-weight-semibold;
+    }
+  }
+
+  &__hint {
+    font-size: @font-size-sm;
+    color: @color-ink-tertiary;
+    font-style: italic;
+    margin-top: -@spacing-2;
+  }
+
+  // ─── Toolbar ─────────────────────────────────────────────────────────────
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: @spacing-1;
+    padding: @spacing-2 @spacing-3;
+    background: @color-bg;
+    border: @border-default;
+    border-radius: @radius-lg @radius-lg 0 0;
+    border-bottom: none;
+  }
+
+  &__tool {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding-inline: @spacing-2;
+    border-radius: @radius-md;
+    font-size: @font-size-xs;
+    font-weight: @font-weight-semibold;
+    font-family: @font-body;
+    color: @color-ink-secondary;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background @transition-fast, color @transition-fast;
+
+    &:hover {
+      background: @color-surface-alt;
+      color: @color-ink;
+    }
+
+    &--active {
+      background: @color-accent;
+      color: #fff;
+
+      &:hover {
+        background: @color-accent-hover;
+        color: #fff;
+      }
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 1.25rem;
+    background: @color-border;
+    margin-inline: @spacing-1;
+  }
+
+  // ─── Editor body ─────────────────────────────────────────────────────────
+
+  &__body {
+    position: relative;
+    border: @border-default;
+    border-radius: 0 0 @radius-lg @radius-lg;
+    background: @color-surface;
+    min-height: 24rem;
+  }
+
+  &__content {
+    padding: @spacing-6;
+    min-height: 24rem;
+
+    // Tiptap editor prose styles
+    .tiptap {
+      outline: none;
+      font-size: @font-size-base;
+      line-height: @line-height-relaxed;
+      color: @color-ink;
+
+      p { margin-bottom: @spacing-4; }
+
+      h2 {
+        font-family: @font-display;
+        font-size: @font-size-2xl;
+        font-weight: @font-weight-bold;
+        letter-spacing: @tracking-tight;
+        margin-block: @spacing-8 @spacing-4;
+      }
+
+      h3 {
+        font-family: @font-display;
+        font-size: @font-size-xl;
+        font-weight: @font-weight-bold;
+        letter-spacing: @tracking-tight;
+        margin-block: @spacing-6 @spacing-3;
+      }
+
+      ul, ol {
+        padding-left: @spacing-6;
+        margin-bottom: @spacing-4;
+
+        li + li { margin-top: @spacing-2; }
+      }
+
+      ul { list-style: disc; }
+      ol { list-style: decimal; }
+
+      blockquote {
+        border-left: 3px solid @color-accent;
+        padding-left: @spacing-5;
+        margin-block: @spacing-6;
+        font-style: italic;
+        color: @color-ink-secondary;
+      }
+
+      pre {
+        background: @color-bg-dark;
+        color: @color-ink-inverse;
+        padding: @spacing-5;
+        border-radius: @radius-lg;
+        font-family: @font-mono;
+        font-size: @font-size-sm;
+        margin-block: @spacing-6;
+        overflow-x: auto;
+      }
+
+      code {
+        background: @color-surface-alt;
+        color: @color-accent;
+        padding: 0.1em 0.4em;
+        border-radius: @radius-sm;
+        font-family: @font-mono;
+        font-size: 0.9em;
+      }
+
+      a {
+        color: @color-accent;
+        text-decoration: underline;
+      }
+
+      // Placeholder
+      p.is-editor-empty:first-child::before {
+        content: attr(data-placeholder);
+        color: @color-ink-tertiary;
+        pointer-events: none;
+        float: left;
+        height: 0;
+      }
+    }
+  }
+
+  &__word-count {
+    position: absolute;
+    bottom: @spacing-3;
+    right: @spacing-4;
+    font-size: @font-size-xs;
+    color: @color-ink-tertiary;
+  }
+
+  // ─── Actions ─────────────────────────────────────────────────────────────
+
+  &__error {
+    font-size: @font-size-sm;
+    color: @color-error;
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: @radius-md;
+    padding: @spacing-3 @spacing-4;
+  }
+
+  &__actions {
+    display: flex;
+    gap: @spacing-3;
+    justify-content: flex-end;
+    padding-top: @spacing-4;
+    border-top: @border-default;
+  }
+}

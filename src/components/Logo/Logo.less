@@ -1,0 +1,33 @@
+@import (reference) '../../styles/global.less';
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: @spacing-2;
+  text-decoration: none;
+  flex-shrink: 0;
+
+  &__mark {
+    width: 2.25rem;
+    height: 2.25rem;
+    transition: transform @transition-spring;
+  }
+
+  &:hover &__mark {
+    transform: rotate(-5deg) scale(1.05);
+  }
+
+  &__text {
+    font-family: @font-display;
+    font-size: @font-size-sm;
+    font-weight: @font-weight-bold;
+    letter-spacing: @tracking-wide;
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+  &--sm &__mark {
+    width: 2rem;
+    height: 2rem;
+  }
+}

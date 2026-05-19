@@ -1,0 +1,323 @@
+@import (reference) 'global';
+
+// ─── Keyframes ────────────────────────────────────────────────────────────────
+
+@keyframes cf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cf-success-pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes cf-check-draw {
+  from {
+    stroke-dashoffset: 60;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cf-line-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+// ─── Form shell ───────────────────────────────────────────────────────────────
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: @spacing-5;
+
+  // ─── Two-column row (name + phone) ────────────────────────────────────────
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: @spacing-4;
+
+    @media (max-width: @bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ─── Field wrapper ────────────────────────────────────────────────────────
+
+  &__field {
+    position: relative;
+
+    // Floating label — active state (focused or has value)
+    &--active {
+      .contact-form__label {
+        transform: translateY(-0.9rem) scale(0.76);
+        color: @color-accent;
+        letter-spacing: @tracking-widest;
+      }
+
+      .contact-form__line {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    }
+
+    // Error state
+    &--error {
+      .contact-form__input,
+      .contact-form__textarea {
+        border-color: @color-error;
+      }
+
+      .contact-form__label {
+        color: @color-error;
+      }
+
+      .contact-form__line {
+        background: @color-error;
+      }
+    }
+
+    // Textarea adjustments
+    &--textarea {
+      .contact-form__label {
+        top: @spacing-5;
+        transform: none;
+      }
+
+      &.contact-form__field--active {
+        .contact-form__label {
+          transform: translateY(-1.25rem) scale(0.76);
+        }
+      }
+    }
+  }
+
+  // ─── Floating label ───────────────────────────────────────────────────────
+
+  &__label {
+    position: absolute;
+    top: 50%;
+    left: @spacing-4;
+    transform: translateY(-50%);
+    font-size: @font-size-sm;
+    font-weight: @font-weight-medium;
+    color: rgba(247, 244, 238, 0.3);
+    pointer-events: none;
+    transition:
+      transform 0.22s @ease-out,
+      color 0.22s @ease-out,
+      letter-spacing 0.22s @ease-out;
+    transform-origin: left center;
+    white-space: nowrap;
+  }
+
+  // ─── Input / Textarea shared styles ───────────────────────────────────────
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    background: rgba(247, 244, 238, 0.04);
+    border: 1px solid rgba(247, 244, 238, 0.1);
+    border-radius: @radius-lg;
+    color: @color-ink-inverse;
+    font-family: @font-body;
+    font-size: @font-size-base;
+    line-height: @line-height-relaxed;
+    // Top padding creates the floating label zone
+    padding: @spacing-7 @spacing-4 @spacing-3;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition:
+      border-color 0.22s ease,
+      background 0.22s ease,
+      box-shadow 0.22s ease;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus {
+      border-color: rgba(36, 72, 255, 0.5);
+      background: rgba(36, 72, 255, 0.05);
+      box-shadow: 0 0 0 3px rgba(36, 72, 255, 0.1);
+    }
+
+    // Autofill — prevent browser style override
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 100px #141412 inset;
+      -webkit-text-fill-color: @color-ink-inverse;
+    }
+  }
+
+  &__textarea {
+    min-height: 8rem;
+    resize: none;
+    padding-top: @spacing-7;
+  }
+
+  // ─── Animated accent line (bottom of field) ───────────────────────────────
+
+  &__line {
+    position: absolute;
+    bottom: 0;
+    left: @spacing-3;
+    right: @spacing-3;
+    height: 2px;
+    background: @color-accent;
+    border-radius: @radius-full;
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition:
+      transform 0.3s @ease-out,
+      opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  // ─── Message character counter ────────────────────────────────────────────
+
+  &__char-count {
+    position: absolute;
+    bottom: @spacing-3;
+    right: @spacing-4;
+    font-size: @font-size-xs;
+    color: rgba(247, 244, 238, 0.18);
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  // ─── Submit button ────────────────────────────────────────────────────────
+
+  &__submit {
+    align-self: flex-start;
+    margin-top: @spacing-2;
+    display: inline-flex;
+    align-items: center;
+    gap: @spacing-2;
+
+    svg {
+      flex-shrink: 0;
+      transition: transform 0.2s @ease-out;
+    }
+
+    &:not(:disabled):hover svg {
+      transform: translateX(5px);
+    }
+
+    &--loading {
+      opacity: 0.65;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  // ─── Loading spinner ──────────────────────────────────────────────────────
+
+  &__spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-top-color: #fff;
+    border-radius: @radius-full;
+    animation: cf-spin 0.65s linear infinite;
+    flex-shrink: 0;
+  }
+
+  // ─── Field-level error ─────────────────────────────────────────────────────
+
+  &__field-error {
+    display: block;
+    font-size: @font-size-xs;
+    color: @color-error;
+    margin-top: @spacing-1;
+    padding-left: @spacing-4;
+  }
+
+  // ─── Error message ────────────────────────────────────────────────────────
+
+  &__error-msg {
+    font-size: @font-size-sm;
+    color: @color-error;
+    padding: @spacing-3 @spacing-4;
+    background: rgba(220, 38, 38, 0.07);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: @radius-md;
+    line-height: @line-height-relaxed;
+  }
+
+  // ─── Success state ────────────────────────────────────────────────────────
+
+  &__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: @spacing-4;
+    padding: @spacing-16 @spacing-8;
+    animation: cf-success-pop 0.5s @ease-out both;
+  }
+
+  &__success-icon {
+    width: 5rem;
+    height: 5rem;
+    border-radius: @radius-full;
+    background: rgba(22, 163, 74, 0.1);
+    border: 1px solid rgba(22, 163, 74, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: @color-success;
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      path {
+        stroke-dasharray: 60;
+        stroke-dashoffset: 60;
+        animation: cf-check-draw 0.5s 0.3s @ease-out forwards;
+      }
+
+      circle {
+        stroke-dasharray: 70;
+        stroke-dashoffset: 70;
+        animation: cf-check-draw 0.4s 0.1s @ease-out forwards;
+      }
+    }
+  }
+
+  &__success-title {
+    font-family: @font-display;
+    font-size: @font-size-xl;
+    font-weight: @font-weight-bold;
+    color: @color-ink-inverse;
+    letter-spacing: @tracking-tight;
+  }
+
+  &__success-detail {
+    font-size: @font-size-sm;
+    color: rgba(247, 244, 238, 0.45);
+    max-width: 22rem;
+    line-height: @line-height-relaxed;
+  }
+}

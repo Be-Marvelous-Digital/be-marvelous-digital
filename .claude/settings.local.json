@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(grep -c '\"\"version\"\"' /Users/petusko/Documents/Claude/Projects/BeMarvelousDigital/bmarvelous-digital/package-lock.json)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(''''name:'''', d.get\\(''''name''''\\)\\); print\\(''''version:'''', repr\\(d.get\\(''''version''''\\)\\)\\)\")",
+      "Bash(npm list:*)",
+      "Bash(npx @tailwindcss/cli@latest --input /dev/stdin)",
+      "Bash(grep -l \"scale-\\\\|\\\\.transform\\\\b\\\\|origin-top\" .next/static/chunks/*.css)",
+      "Bash(grep -rl \"perspective\\\\|origin-top\\\\|shrink\" .next/static/chunks/*.css)",
+      "Bash(grep -rl \"w-\\\\[32rem\\\\]\\\\|w-\\\\[80%\\\\]\" .next/static/chunks/*.css)",
+      "Bash(head -5 grep -o \"origin[^;{}]*[;}]\" .next/static/chunks/0-desp00-syed.css)",
+      "Bash(head -5 grep -o \"shrink[^;{}]*[;}]\" .next/static/chunks/0-desp00-syed.css)",
+      "Bash(head -5 grep -o \"scale[^;{}]*[;}]\" .next/static/chunks/0-desp00-syed.css)",
+      "Read(//dev/**)",
+      "Bash(find /Users/petusko/Documents/Claude/Projects/BeMarvelousDigital/bmarvelous-digital -maxdepth 2 \\\\\\(-type f -name Dockerfile* -o -type f -name docker-compose* -o -type f -name .prettierrc* -o -type f -name prettier.config.* -o -type d -name .github \\\\\\))"
+    ]
+  }
+}

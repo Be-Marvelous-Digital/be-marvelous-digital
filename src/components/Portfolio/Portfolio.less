@@ -1,0 +1,46 @@
+@import (reference) "global";
+
+.portfolio {
+  background-color: @color-bg-dark;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-4;
+    margin-bottom: @spacing-16;
+
+    @media (min-width: @bp-lg) {
+      margin-bottom: @spacing-20;
+    }
+  }
+
+  &__label {
+    color: @color-ink-inverse-muted;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-size: clamp(@font-size-2xl, 4vw, @font-size-4xl);
+    font-weight: @font-weight-bold;
+    line-height: @line-height-tight;
+    letter-spacing: @tracking-tight;
+    color: @color-ink-inverse;
+    max-width: 22rem;
+  }
+
+  &__subtitle {
+    font-size: @font-size-sm;
+    color: @color-ink-inverse-muted;
+    margin-top: @spacing-2;
+  }
+
+  &__columns-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: @spacing-6;
+    max-height: 860px;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  }
+}
