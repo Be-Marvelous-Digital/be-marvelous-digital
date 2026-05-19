@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import '../dashboard.less';
 
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Posts' };
 
 export default async function AdminPostsPage() {
