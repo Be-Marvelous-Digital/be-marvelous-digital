@@ -70,31 +70,45 @@ export default async function AdminDashboard() {
         <section className="dashboard__section">
           <div className="dashboard__section-header">
             <h2 className="dashboard__section-title">Recent posts</h2>
-            <Link href="/admin/posts" className="dashboard__view-all">View all</Link>
+            <Link href="/admin/posts" className="dashboard__view-all">
+              View all
+            </Link>
           </div>
 
           {recentPosts.length === 0 ? (
             <div className="dashboard__empty">
-              <p>No posts yet. <Link href="/admin/posts/new">Create your first post →</Link></p>
+              <p>
+                No posts yet. <Link href="/admin/posts/new">Create your first post →</Link>
+              </p>
             </div>
           ) : (
             <ul className="dashboard__post-list">
               {recentPosts.map((post) => (
                 <li key={post.id} className="dashboard__post-item">
                   <div className="dashboard__post-info">
-                    <span className={`dashboard__post-status ${post.published ? 'dashboard__post-status--published' : ''}`}>
+                    <span
+                      className={`dashboard__post-status ${post.published ? 'dashboard__post-status--published' : ''}`}
+                    >
                       {post.published ? 'Published' : 'Draft'}
                     </span>
                     <span className="dashboard__post-title">{post.title}</span>
                   </div>
                   <div className="dashboard__post-actions">
                     <span className="dashboard__post-date">
-                      {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(post.updatedAt))}
+                      {new Intl.DateTimeFormat('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                      }).format(new Date(post.updatedAt))}
                     </span>
                     <Link href={`/admin/posts/${post.id}/edit`} className="dashboard__post-edit">
                       Edit
                     </Link>
-                    <Link href={`/blog/${post.slug}`} target="_blank" className="dashboard__post-view">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      target="_blank"
+                      className="dashboard__post-view"
+                    >
                       View ↗
                     </Link>
                   </div>

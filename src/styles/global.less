@@ -25,24 +25,9 @@
 @color-ink-secondary: #5c5950; // Secondary / subheadings
 @color-ink-tertiary: #9c9890; // Captions, meta, placeholders
 @color-ink-inverse: #f7f4ee; // Text on dark backgrounds
-@color-ink-inverse-dim: rgba(
-  247,
-  244,
-  238,
-  0.7
-); // Dimmed text on dark backgrounds
-@color-ink-inverse-muted: rgba(
-  247,
-  244,
-  238,
-  0.5
-); // Muted text on dark backgrounds
-@color-ink-inverse-subtle: rgba(
-  247,
-  244,
-  238,
-  0.2
-); // Subtle border/text on dark backgrounds
+@color-ink-inverse-dim: rgba(247, 244, 238, 0.7); // Dimmed text on dark backgrounds
+@color-ink-inverse-muted: rgba(247, 244, 238, 0.5); // Muted text on dark backgrounds
+@color-ink-inverse-subtle: rgba(247, 244, 238, 0.2); // Subtle border/text on dark backgrounds
 @color-ink-accent: @color-accent;
 
 // ─── UI / Borders ────────────────────────────────────────────────────────────
@@ -532,11 +517,7 @@ select {
 }
 
 .gradient-text {
-  background: linear-gradient(
-    135deg,
-    @color-accent 0%,
-    @color-accent-warm 100%
-  );
+  background: linear-gradient(135deg, @color-accent 0%, @color-accent-warm 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

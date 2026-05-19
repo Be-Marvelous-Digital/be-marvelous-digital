@@ -178,10 +178,7 @@ interface CardProps {
   children: React.ReactNode;
 }
 
-export const ContainerScroll = ({
-  titleComponent,
-  children,
-}: ContainerScrollProps) => {
+export const ContainerScroll = ({ titleComponent, children }: ContainerScrollProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
   const [isMobile, setIsMobile] = React.useState(false);
@@ -203,10 +200,7 @@ export const ContainerScroll = ({
       className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
       ref={containerRef}
     >
-      <div
-        className="py-10 md:py-40 w-full relative"
-        style={{ perspective: '1000px' }}
-      >
+      <div className="py-10 md:py-40 w-full relative" style={{ perspective: '1000px' }}>
         <Header translate={translate} titleComponent={titleComponent} />
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
@@ -217,10 +211,7 @@ export const ContainerScroll = ({
 };
 
 export const Header = ({ translate, titleComponent }: HeaderProps) => (
-  <motion.div
-    style={{ translateY: translate }}
-    className="max-w-5xl mx-auto text-center"
-  >
+  <motion.div style={{ translateY: translate }} className="max-w-5xl mx-auto text-center">
     {titleComponent}
   </motion.div>
 );
@@ -294,9 +285,7 @@ export const TestimonialsColumn = (props: {
                     <span className="font-medium tracking-tight leading-5 text-gray-900">
                       {name}
                     </span>
-                    <span className="leading-5 text-gray-500 tracking-tight text-sm">
-                      {role}
-                    </span>
+                    <span className="leading-5 text-gray-500 tracking-tight text-sm">{role}</span>
                   </div>
                 </div>
               </div>
@@ -330,16 +319,14 @@ export function ShaderAnimation() {
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src =
-      'https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js';
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js';
     script.onload = () => {
       if (containerRef.current && window.THREE) initThreeJS();
     };
     document.head.appendChild(script);
 
     return () => {
-      if (sceneRef.current.animationId)
-        cancelAnimationFrame(sceneRef.current.animationId);
+      if (sceneRef.current.animationId) cancelAnimationFrame(sceneRef.current.animationId);
       if (sceneRef.current.renderer) sceneRef.current.renderer.dispose();
       if (document.head.contains(script)) document.head.removeChild(script);
     };
@@ -465,28 +452,19 @@ export const Hero = () => (
           <span className="hero__title-line hero__title-line--2">
             <span className="hero__title-accent">MARVELOUS</span>
           </span>
-          <span className="hero__title-line hero__title-line--3">
-            WEBSITES.
-          </span>
+          <span className="hero__title-line hero__title-line--3">WEBSITES.</span>
         </h1>
 
         <div className="hero__side">
           <p className="hero__description">
-            High-quality websites built with obsessive attention to design and
-            performance — for businesses that want to make a lasting impression.
-            When you work with me, you always talk directly to the developer
-            building your site. No account managers. No handoffs.
+            High-quality websites built with obsessive attention to design and performance — for
+            businesses that want to make a lasting impression. When you work with me, you always
+            talk directly to the developer building your site. No account managers. No handoffs.
           </p>
           <div className="hero__ctas">
             <a href="#contact" className="btn btn--dark btn--lg">
               Start a Project
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-              >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path
                   d="M3 8h10M9 4l4 4-4 4"
                   stroke="currentColor"
@@ -895,8 +873,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: 'Design Studio',
     tags: ['Agency', 'Portfolio', 'Creative'],
     accentColor: '#1A1A2E',
-    screenshot:
-      'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&h=720&fit=crop',
+    screenshot: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&h=720&fit=crop',
     problem:
       'Eyes Open, a Bratislava-based design studio, had built a reputation through word-of-mouth but lacked a digital portfolio that could do the same. Their existing website was generic and failed to differentiate them from dozens of similar studios.',
     solution:
@@ -917,8 +894,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: 'Entertainment / Leisure',
     tags: ['Entertainment', 'Family', 'Slovakia'],
     accentColor: '#D4480A',
-    screenshot:
-      'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1400&h=720&fit=crop',
+    screenshot: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1400&h=720&fit=crop',
     problem:
       "Kids Arena, a popular indoor play center in Slovakia, was losing potential bookings to phone calls because their website lacked an online reservation system. Parents couldn't check availability or book birthday parties without calling during business hours.",
     solution:
@@ -963,15 +939,13 @@ import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1';
 import { portfolioProjects } from '@/data/portfolio';
 import './Portfolio.less';
 
-const portfolioItems: PortfolioCardItem[] = portfolioProjects.map(
-  (project) => ({
-    text: project.description,
-    image: project.screenshot,
-    name: project.name,
-    role: project.category,
-    url: project.url,
-  }),
-);
+const portfolioItems: PortfolioCardItem[] = portfolioProjects.map((project) => ({
+  text: project.description,
+  image: project.screenshot,
+  name: project.name,
+  role: project.category,
+  url: project.url,
+}));
 
 const col1 = portfolioItems.slice(0, 2);
 const col2 = portfolioItems.slice(2, 4);
@@ -991,23 +965,13 @@ export const Portfolio = () => (
           <br />
           Real results.
         </h2>
-        <p className="portfolio__subtitle">
-          Click any project to read the full case study.
-        </p>
+        <p className="portfolio__subtitle">Click any project to read the full case study.</p>
       </div>
 
       <div className="portfolio__columns-wrapper">
         <TestimonialsColumn testimonials={col1} duration={18} />
-        <TestimonialsColumn
-          testimonials={col2}
-          className="hidden md:block"
-          duration={22}
-        />
-        <TestimonialsColumn
-          testimonials={col3}
-          className="hidden lg:block"
-          duration={20}
-        />
+        <TestimonialsColumn testimonials={col2} className="hidden md:block" duration={22} />
+        <TestimonialsColumn testimonials={col3} className="hidden lg:block" duration={20} />
       </div>
 
       <div className="portfolio__cta">
@@ -1076,20 +1040,8 @@ export const Portfolio = () => (
     gap: @spacing-6;
     max-height: 740px;
     overflow: hidden;
-    mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      black 25%,
-      black 75%,
-      transparent
-    );
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      black 25%,
-      black 75%,
-      transparent
-    );
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
   }
 
   &__cta {
@@ -1151,11 +1103,7 @@ const ADVANTAGES = [
 ] as const;
 
 export const About = () => (
-  <section
-    className="about section section--dark"
-    id="about"
-    aria-labelledby="about-heading"
-  >
+  <section className="about section section--dark" id="about" aria-labelledby="about-heading">
     <div className="container">
       <div className="about__layout">
         <div className="about__left">
@@ -1175,15 +1123,13 @@ export const About = () => (
             advantage.
           </h2>
           <p className="about__intro">
-            I'm Peter Lehocky — a web developer based in Slovakia with 8+ years
-            of experience building websites for clients across Europe and the
-            Middle East.
+            I'm Peter Lehocky — a web developer based in Slovakia with 8+ years of experience
+            building websites for clients across Europe and the Middle East.
           </p>
           <p className="about__intro">
-            When you hire an agency, you're paying for infrastructure, project
-            managers, and overhead. When you work with me, every penny goes
-            towards the actual work. You get the expertise of an agency with the
-            agility and directness of a one-person studio.
+            When you hire an agency, you're paying for infrastructure, project managers, and
+            overhead. When you work with me, every penny goes towards the actual work. You get the
+            expertise of an agency with the agility and directness of a one-person studio.
           </p>
           <a href="#contact" className="btn btn--dark about__cta">
             Let's Talk
@@ -1572,12 +1518,7 @@ git commit -m "feat: add next-intl i18n infrastructure (SK default, EN at /en/)"
         "number": "01",
         "title": "Webdizajn a vývoj",
         "description": "Webstránky a webové aplikácie na mieru — rýchle, prístupné a škálovateľné. Žiadne šablóny. Každý riadok kódu napísaný pre vaše konkrétne potreby.",
-        "highlights": [
-          "Next.js / React",
-          "TypeScript",
-          "Performance-first",
-          "SEO-ready"
-        ]
+        "highlights": ["Next.js / React", "TypeScript", "Performance-first", "SEO-ready"]
       },
       {
         "number": "02",
@@ -1594,23 +1535,13 @@ git commit -m "feat: add next-intl i18n infrastructure (SK default, EN at /en/)"
         "number": "03",
         "title": "Výkon & SEO",
         "description": "Krásna webstránka, ktorú nikto nenájde, je premrhaná investícia. Optimalizujem Core Web Vitals, štruktúrované dáta a viditeľnosť vo vyhľadávačoch od prvého dňa.",
-        "highlights": [
-          "Core Web Vitals",
-          "Lighthouse 95+",
-          "Štruktúrované dáta",
-          "Technické SEO"
-        ]
+        "highlights": ["Core Web Vitals", "Lighthouse 95+", "Štruktúrované dáta", "Technické SEO"]
       },
       {
         "number": "04",
         "title": "Vlastný CMS",
         "description": "Váš vlastný systém správy obsahu — prispôsobený tomu, ako skutočne pracujete. Žiadne nafúknuté platformy, žiadne mesačné SaaS poplatky. Plné vlastníctvo vášho obsahu.",
-        "highlights": [
-          "Headless CMS",
-          "Vlastný admin panel",
-          "Blog a obsah",
-          "Rolový prístup"
-        ]
+        "highlights": ["Headless CMS", "Vlastný admin panel", "Blog a obsah", "Rolový prístup"]
       }
     ]
   },
@@ -1742,12 +1673,7 @@ git commit -m "feat: add next-intl i18n infrastructure (SK default, EN at /en/)"
         "number": "01",
         "title": "Web Development",
         "description": "Custom-built websites and web applications — fast, accessible, and made to scale. No templates. Every line of code written for your specific needs.",
-        "highlights": [
-          "Next.js / React",
-          "TypeScript",
-          "Performance-first",
-          "SEO-ready"
-        ]
+        "highlights": ["Next.js / React", "TypeScript", "Performance-first", "SEO-ready"]
       },
       {
         "number": "02",
@@ -1764,23 +1690,13 @@ git commit -m "feat: add next-intl i18n infrastructure (SK default, EN at /en/)"
         "number": "03",
         "title": "Performance & SEO",
         "description": "A beautiful website nobody can find is a wasted investment. I optimise for Core Web Vitals, structured data, and search visibility from day one.",
-        "highlights": [
-          "Core Web Vitals",
-          "Lighthouse 95+",
-          "Structured data",
-          "Technical SEO"
-        ]
+        "highlights": ["Core Web Vitals", "Lighthouse 95+", "Structured data", "Technical SEO"]
       },
       {
         "number": "04",
         "title": "Custom CMS",
         "description": "Your own content management system — tailored to how you actually work. No bloated platforms, no monthly SaaS fees. Full ownership of your content.",
-        "highlights": [
-          "Headless CMS",
-          "Custom admin panel",
-          "Blog & content",
-          "Role-based access"
-        ]
+        "highlights": ["Headless CMS", "Custom admin panel", "Blog & content", "Role-based access"]
       }
     ]
   },
@@ -1912,10 +1828,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: LocaleLayoutProps) {
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
 
   if (!routing.locales.includes(locale as Locale)) {
@@ -1924,11 +1837,7 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  return (
-    <NextIntlClientProvider messages={messages}>
-      {children}
-    </NextIntlClientProvider>
-  );
+  return <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>;
 }
 ```
 
@@ -1949,10 +1858,7 @@ import { Contact } from '@/components/Contact/Contact';
 import { Footer } from '@/components/Footer/Footer';
 import type { Post } from '@prisma/client';
 
-type PostPreview = Pick<
-  Post,
-  'id' | 'title' | 'slug' | 'excerpt' | 'coverImage' | 'publishedAt'
->;
+type PostPreview = Pick<Post, 'id' | 'title' | 'slug' | 'excerpt' | 'coverImage' | 'publishedAt'>;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('hero');
@@ -2221,9 +2127,7 @@ export function generateStaticParams() {
   return portfolioProjects.map((project) => ({ id: project.id }));
 }
 
-export async function generateMetadata({
-  params,
-}: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { id, locale } = await params;
   const project = portfolioProjects.find((p) => p.id === id);
   if (!project) return {};
@@ -2251,8 +2155,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) notFound();
 
   const currentIndex = portfolioProjects.findIndex((p) => p.id === id);
-  const nextProject =
-    portfolioProjects[(currentIndex + 1) % portfolioProjects.length];
+  const nextProject = portfolioProjects[(currentIndex + 1) % portfolioProjects.length];
 
   const portfolioHref = locale === 'sk' ? '/#portfolio' : '/en/#portfolio';
 
@@ -2318,13 +2221,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             className="btn btn--primary btn--lg"
           >
             {t('visitSite')}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden="true"
-            >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path
                 d="M3 8h10M9 4l4 4-4 4"
                 stroke="currentColor"
@@ -2336,9 +2233,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </a>
           <Link
             href={
-              locale === 'sk'
-                ? `/portfolio/${nextProject.id}`
-                : `/en/portfolio/${nextProject.id}`
+              locale === 'sk' ? `/portfolio/${nextProject.id}` : `/en/portfolio/${nextProject.id}`
             }
             className="btn btn--secondary btn--lg"
           >
@@ -2439,11 +2334,7 @@ export const Navigation = () => {
   return (
     <header className={`navigation ${scrolled ? 'navigation--scrolled' : ''}`}>
       <div className="navigation__inner container">
-        <Link
-          href={locale === 'en' ? '/en' : '/'}
-          className="navigation__logo"
-          onClick={closeMenu}
-        >
+        <Link href={locale === 'en' ? '/en' : '/'} className="navigation__logo" onClick={closeMenu}>
           <span className="navigation__logo-mark">B·M</span>
           <span className="navigation__logo-text">B-Marvels Digital</span>
         </Link>
@@ -2489,12 +2380,7 @@ export const Navigation = () => {
       >
         <nav className="navigation__mobile-links">
           {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="navigation__mobile-link"
-              onClick={closeMenu}
-            >
+            <Link key={href} href={href} className="navigation__mobile-link" onClick={closeMenu}>
               {label}
             </Link>
           ))}
@@ -2505,11 +2391,7 @@ export const Navigation = () => {
           >
             {ctaLabel}
           </Link>
-          <Link
-            href={altHref}
-            className="navigation__mobile-locale"
-            onClick={closeMenu}
-          >
+          <Link href={altHref} className="navigation__mobile-locale" onClick={closeMenu}>
             {altLocale}
           </Link>
         </nav>
@@ -2894,9 +2776,7 @@ export const TestimonialsColumn = (props: {
 
               const cardContent = (
                 <div className="p-6 rounded-3xl border border-gray-200 shadow-lg max-w-xs w-full bg-white hover:shadow-xl transition-shadow duration-300">
-                  <p className="text-sm leading-relaxed text-gray-700">
-                    {text}
-                  </p>
+                  <p className="text-sm leading-relaxed text-gray-700">{text}</p>
                   <div className="flex items-center gap-3 mt-5">
                     <img
                       width={40}
@@ -2909,9 +2789,7 @@ export const TestimonialsColumn = (props: {
                       <span className="font-medium tracking-tight leading-5 text-gray-900">
                         {name}
                       </span>
-                      <span className="leading-5 text-gray-500 tracking-tight text-sm">
-                        {role}
-                      </span>
+                      <span className="leading-5 text-gray-500 tracking-tight text-sm">{role}</span>
                     </div>
                   </div>
                 </div>
@@ -2941,15 +2819,13 @@ import { portfolioProjects } from '@/data/portfolio';
 import type { PortfolioCardItem } from '@/components/ui/testimonials-columns-1';
 import './Portfolio.less';
 
-const portfolioItems: PortfolioCardItem[] = portfolioProjects.map(
-  (project) => ({
-    text: project.description,
-    image: project.screenshot,
-    name: project.name,
-    role: project.category,
-    url: project.url,
-  }),
-);
+const portfolioItems: PortfolioCardItem[] = portfolioProjects.map((project) => ({
+  text: project.description,
+  image: project.screenshot,
+  name: project.name,
+  role: project.category,
+  url: project.url,
+}));
 
 export const Portfolio = () => (
   <section
@@ -2965,9 +2841,7 @@ export const Portfolio = () => (
           <br />
           Real results.
         </h2>
-        <p className="portfolio__subtitle">
-          Click any project to read the full case study.
-        </p>
+        <p className="portfolio__subtitle">Click any project to read the full case study.</p>
       </div>
 
       <PortfolioColumnsClient
@@ -3024,9 +2898,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.com',
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.com'),
   title: {
     default: 'B-Marvels Digital — Freelance Web Developer',
     template: '%s | B-Marvels Digital',
@@ -3074,26 +2946,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html
-      lang="sk"
-      className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="sk" className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <link
-          rel="alternate"
-          hrefLang="sk"
-          href="https://bemarvelousdigital.com"
-        />
-        <link
-          rel="alternate"
-          hrefLang="en"
-          href="https://bearvelousdigital.com/en"
-        />
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href="https://bmearvelousdigital.com"
-        />
+        <link rel="alternate" hrefLang="sk" href="https://bemarvelousdigital.com" />
+        <link rel="alternate" hrefLang="en" href="https://bearvelousdigital.com/en" />
+        <link rel="alternate" hrefLang="x-default" href="https://bmearvelousdigital.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -3105,13 +2962,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               url: 'https://bemarvelousdigital.com',
               email: 'hello@bemarvelousdigital.com',
               address: { '@type': 'PostalAddress', addressCountry: 'SK' },
-              knowsAbout: [
-                'Web Development',
-                'UI/UX Design',
-                'Next.js',
-                'React',
-                'TypeScript',
-              ],
+              knowsAbout: ['Web Development', 'UI/UX Design', 'Next.js', 'React', 'TypeScript'],
             }),
           }}
         />

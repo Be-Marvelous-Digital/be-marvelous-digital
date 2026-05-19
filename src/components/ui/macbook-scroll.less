@@ -1,4 +1,4 @@
-@import (reference) "global";
+@import (reference) 'global';
 
 // =============================================================================
 // MacBook Scroll Component
@@ -217,7 +217,8 @@
 
     &--backlit {
       background-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 1),
+      box-shadow:
+        0 20px 25px -5px rgba(255, 255, 255, 1),
         0 8px 10px -6px rgba(255, 255, 255, 1);
     }
   }
@@ -230,7 +231,8 @@
     justify-content: center;
     border-radius: 3.5px;
     background-color: #0a090d;
-    box-shadow: 0px -0.5px 2px 0 #0d0d0f inset,
+    box-shadow:
+      0px -0.5px 2px 0 #0d0d0f inset,
       -0.5px 0px 2px 0 #0d0d0f inset;
 
     // ── Width modifiers ──
@@ -322,12 +324,7 @@
     height: 1rem;
     width: 1rem;
     border-radius: 9999px;
-    background: linear-gradient(
-      to bottom,
-      #171717 20%,
-      #000 50%,
-      #171717 95%
-    );
+    background: linear-gradient(to bottom, #171717 20%, #000 50%, #171717 95%);
     padding: 1px;
   }
 
@@ -381,11 +378,7 @@
     height: 10rem;
     gap: 2px;
     padding-inline: 0.5px;
-    background-image: radial-gradient(
-      circle,
-      #08080a 0.5px,
-      transparent 0.5px
-    );
+    background-image: radial-gradient(circle, #08080a 0.5px, transparent 0.5px);
     background-size: 3px 3px;
   }
 
@@ -426,7 +419,9 @@
     pointer-events: none;
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.5);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
     white-space: nowrap;
 
     &--visible {

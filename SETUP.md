@@ -11,6 +11,7 @@ cp .env.example .env
 ```
 
 Edit `.env` and set:
+
 - `NEXTAUTH_SECRET` — run `openssl rand -base64 32` in your terminal to generate one
 - `ADMIN_EMAIL` — the email you'll use to log into the CMS
 - `ADMIN_PASSWORD` — your CMS password (plain text is fine locally; in production, replace with a bcrypt hash)
@@ -37,6 +38,7 @@ Go to [http://localhost:3000/admin](http://localhost:3000/admin).
 Log in with the `ADMIN_EMAIL` and `ADMIN_PASSWORD` values from your `.env`.
 
 From the admin you can:
+
 - Create and publish blog posts with the Tiptap rich-text editor
 - Edit or unpublish existing posts
 - Preview posts live on the site
@@ -89,15 +91,15 @@ prisma/
 
 ## Available scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build (runs `prisma generate` first) |
-| `npm run start` | Start production server |
-| `npm run db:push` | Apply schema changes to the database (no migration history) |
-| `npm run db:migrate` | Create a migration and apply it |
-| `npm run db:studio` | Open Prisma Studio (visual DB browser) |
-| `npm run db:seed` | Seed the database with starter blog posts |
+| Script               | Description                                                 |
+| -------------------- | ----------------------------------------------------------- |
+| `npm run dev`        | Start development server                                    |
+| `npm run build`      | Production build (runs `prisma generate` first)             |
+| `npm run start`      | Start production server                                     |
+| `npm run db:push`    | Apply schema changes to the database (no migration history) |
+| `npm run db:migrate` | Create a migration and apply it                             |
+| `npm run db:studio`  | Open Prisma Studio (visual DB browser)                      |
+| `npm run db:seed`    | Seed the database with starter blog posts                   |
 
 ---
 
@@ -106,7 +108,7 @@ prisma/
 All component styles use LESS with BEM naming. Every component `.less` file starts with:
 
 ```less
-@import (reference) "global";
+@import (reference) 'global';
 ```
 
 This imports all design tokens (colors, spacing, fonts, etc.) without duplicating the CSS output. Use the variables — never hardcode values.

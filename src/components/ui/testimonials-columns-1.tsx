@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import { motion } from "motion/react";
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'motion/react';
 import './testimonials-columns-1.less';
 
 export interface PortfolioCardItem {
@@ -22,12 +22,12 @@ export const TestimonialsColumn = (props: {
   return (
     <div className={props.className}>
       <motion.div
-        animate={{ translateY: "-50%" }}
+        animate={{ translateY: '-50%' }}
         transition={{
           duration: props.duration ?? 10,
           repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
+          ease: 'linear',
+          repeatType: 'loop',
         }}
         className="flex flex-col gap-4 pb-4"
       >

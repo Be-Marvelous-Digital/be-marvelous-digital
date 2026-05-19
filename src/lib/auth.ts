@@ -33,7 +33,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         } else {
           // Plain text — development only, warn loudly
           console.warn(
-            '[Auth] ADMIN_PASSWORD is plain text. Hash it with bcrypt before deploying to production.'
+            '[Auth] ADMIN_PASSWORD is plain text. Hash it with bcrypt before deploying to production.',
           );
           isValid = password === adminPasswordHash;
         }

@@ -11,7 +11,18 @@ import { Contact } from '@/components/Contact/Contact';
 import { Footer } from '@/components/Footer/Footer';
 import type { Post } from '@prisma/client';
 
-type PostPreview = Pick<Post, 'id' | 'title' | 'slug' | 'excerpt' | 'coverImage' | 'publishedAt' | 'titleSk' | 'slugSk' | 'excerptSk'>;
+type PostPreview = Pick<
+  Post,
+  | 'id'
+  | 'title'
+  | 'slug'
+  | 'excerpt'
+  | 'coverImage'
+  | 'publishedAt'
+  | 'titleSk'
+  | 'slugSk'
+  | 'excerptSk'
+>;
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;

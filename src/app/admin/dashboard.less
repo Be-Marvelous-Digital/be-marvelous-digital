@@ -1,4 +1,4 @@
-@import (reference) "global";
+@import (reference) 'global';
 
 .dashboard {
   min-height: 100svh;
@@ -72,7 +72,9 @@
     cursor: pointer;
     transition: color @transition-fast;
 
-    &:hover { color: @color-error; }
+    &:hover {
+      color: @color-error;
+    }
   }
 
   &__main {
@@ -170,7 +172,9 @@
     text-decoration: none;
     font-weight: @font-weight-medium;
 
-    &:hover { text-decoration: underline; }
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__empty {
@@ -179,7 +183,9 @@
     color: @color-ink-secondary;
     font-size: @font-size-sm;
 
-    a { color: @color-accent; }
+    a {
+      color: @color-accent;
+    }
   }
 
   &__post-list {
@@ -196,8 +202,12 @@
     border-bottom: @border-default;
     flex-wrap: wrap;
 
-    &:last-child { border-bottom: none; }
-    &:hover { background: @color-bg; }
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      background: @color-bg;
+    }
   }
 
   &__post-info {
@@ -248,7 +258,9 @@
     color: @color-ink-tertiary;
     display: none;
 
-    @media (min-width: @bp-md) { display: block; }
+    @media (min-width: @bp-md) {
+      display: block;
+    }
   }
 
   &__post-edit,
@@ -261,11 +273,15 @@
 
   &__post-edit {
     color: @color-accent;
-    &:hover { color: @color-accent-hover; }
+    &:hover {
+      color: @color-accent-hover;
+    }
   }
 
   &__post-view {
     color: @color-ink-tertiary;
-    &:hover { color: @color-ink; }
+    &:hover {
+      color: @color-ink;
+    }
   }
 }

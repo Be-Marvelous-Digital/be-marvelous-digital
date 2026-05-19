@@ -20,17 +20,13 @@ export function generateStaticParams() {
   );
 }
 
-export async function generateMetadata({
-  params,
-}: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { id, locale } = await params;
   const project = portfolioProjects.find((p) => p.id === id);
   if (!project) return {};
 
   const metaDescription =
-    locale === 'sk' && project.descriptionSk
-      ? project.descriptionSk
-      : project.description;
+    locale === 'sk' && project.descriptionSk ? project.descriptionSk : project.description;
 
   return {
     title: project.name,
@@ -60,20 +56,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const isSk = locale === 'sk';
   const displayDescription =
     isSk && project.descriptionSk ? project.descriptionSk : project.description;
-  const displayProblem =
-    isSk && project.problemSk ? project.problemSk : project.problem;
-  const displaySolution =
-    isSk && project.solutionSk ? project.solutionSk : project.solution;
-  const displayResults =
-    isSk && project.resultsSk ? project.resultsSk : project.results;
+  const displayProblem = isSk && project.problemSk ? project.problemSk : project.problem;
+  const displaySolution = isSk && project.solutionSk ? project.solutionSk : project.solution;
+  const displayResults = isSk && project.resultsSk ? project.resultsSk : project.results;
 
   const currentIndex = portfolioProjects.findIndex((p) => p.id === id);
-  const nextProject =
-    portfolioProjects[(currentIndex + 1) % portfolioProjects.length];
+  const nextProject = portfolioProjects[(currentIndex + 1) % portfolioProjects.length];
   const portfolioHref = isSk ? '/#portfolio' : '/en/#portfolio';
-  const nextHref = isSk
-    ? `/portfolio/${nextProject.id}`
-    : `/en/portfolio/${nextProject.id}`;
+  const nextHref = isSk ? `/portfolio/${nextProject.id}` : `/en/portfolio/${nextProject.id}`;
 
   return (
     <>
@@ -130,13 +120,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               className="btn btn--primary btn--lg"
             >
               {t('visitSite')}
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-              >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path
                   d="M3 8h10M9 4l4 4-4 4"
                   stroke="currentColor"

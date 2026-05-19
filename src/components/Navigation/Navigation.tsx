@@ -70,8 +70,7 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
 
-  const isScrolledState =
-    forceDark || (heroIntersecting !== null ? !heroIntersecting : scrolled);
+  const isScrolledState = forceDark || (heroIntersecting !== null ? !heroIntersecting : scrolled);
 
   return (
     <header className={`navigation ${isScrolledState ? 'navigation--scrolled' : ''}`}>
@@ -121,23 +120,20 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
         className={`navigation__mobile ${menuOpen ? 'navigation__mobile--open' : ''}`}
         aria-hidden={!menuOpen}
       >
-        <button
-          className="navigation__mobile-close"
-          onClick={closeMenu}
-          aria-label="Close menu"
-        >
+        <button className="navigation__mobile-close" onClick={closeMenu} aria-label="Close menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M18 6L6 18M6 6l12 12"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
         <nav className="navigation__mobile-links">
           {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="navigation__mobile-link"
-              onClick={closeMenu}
-            >
+            <Link key={href} href={href} className="navigation__mobile-link" onClick={closeMenu}>
               {label}
             </Link>
           ))}
@@ -148,11 +144,7 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
           >
             {ctaLabel}
           </Link>
-          <a
-            href={altHref}
-            className="navigation__mobile-locale"
-            onClick={closeMenu}
-          >
+          <a href={altHref} className="navigation__mobile-locale" onClick={closeMenu}>
             {altLocale}
           </a>
         </nav>

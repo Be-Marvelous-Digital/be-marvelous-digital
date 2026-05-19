@@ -21,7 +21,10 @@ export const Footer = async () => {
   const moreLinks = [
     { href: `${prefix}/blog`, label: 'Blog' },
     { href: `${home}#contact`, label: locale === 'en' ? 'Contact' : 'Kontakt' },
-    { href: `${prefix}/privacy-policy`, label: locale === 'en' ? 'Privacy Policy' : 'Ochrana osobných údajov' },
+    {
+      href: `${prefix}/privacy-policy`,
+      label: locale === 'en' ? 'Privacy Policy' : 'Ochrana osobných údajov',
+    },
   ];
 
   return (
@@ -43,7 +46,9 @@ export const Footer = async () => {
               <ul className="footer__nav-list">
                 {navigateLinks.map(({ href, label }) => (
                   <li key={href}>
-                    <Link href={href} className="footer__nav-link">{label}</Link>
+                    <Link href={href} className="footer__nav-link">
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -54,7 +59,9 @@ export const Footer = async () => {
               <ul className="footer__nav-list">
                 {moreLinks.map(({ href, label }) => (
                   <li key={href}>
-                    <Link href={href} className="footer__nav-link">{label}</Link>
+                    <Link href={href} className="footer__nav-link">
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>

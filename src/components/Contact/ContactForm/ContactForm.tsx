@@ -39,11 +39,14 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setValues((prev) => ({ ...prev, [name]: value }));
-    setFieldErrors((prev) => ({ ...prev, [name]: undefined }));
-  }, []);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setValues((prev) => ({ ...prev, [name]: value }));
+      setFieldErrors((prev) => ({ ...prev, [name]: undefined }));
+    },
+    [],
+  );
 
   const handleFocus = useCallback((name: string) => setFocused(name), []);
   const handleBlur = useCallback(() => setFocused(null), []);
@@ -114,7 +117,9 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <div className="contact-form__row">
-        <div className={`contact-form__field${isActive('name') ? ' contact-form__field--active' : ''}`}>
+        <div
+          className={`contact-form__field${isActive('name') ? ' contact-form__field--active' : ''}`}
+        >
           <input
             type="text"
             id="cf-name"
@@ -134,7 +139,9 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
           <span className="contact-form__line" aria-hidden="true" />
         </div>
 
-        <div className={`contact-form__field${isActive('phone') ? ' contact-form__field--active' : ''}${fieldErrors.phone ? ' contact-form__field--error' : ''}`}>
+        <div
+          className={`contact-form__field${isActive('phone') ? ' contact-form__field--active' : ''}${fieldErrors.phone ? ' contact-form__field--error' : ''}`}
+        >
           <input
             type="tel"
             id="cf-phone"
@@ -152,12 +159,16 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
           </label>
           <span className="contact-form__line" aria-hidden="true" />
           {fieldErrors.phone && (
-            <span className="contact-form__field-error" role="alert">{fieldErrors.phone}</span>
+            <span className="contact-form__field-error" role="alert">
+              {fieldErrors.phone}
+            </span>
           )}
         </div>
       </div>
 
-      <div className={`contact-form__field${isActive('email') ? ' contact-form__field--active' : ''}${fieldErrors.email ? ' contact-form__field--error' : ''}`}>
+      <div
+        className={`contact-form__field${isActive('email') ? ' contact-form__field--active' : ''}${fieldErrors.email ? ' contact-form__field--error' : ''}`}
+      >
         <input
           type="email"
           id="cf-email"
@@ -176,7 +187,9 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
         </label>
         <span className="contact-form__line" aria-hidden="true" />
         {fieldErrors.email && (
-          <span className="contact-form__field-error" role="alert">{fieldErrors.email}</span>
+          <span className="contact-form__field-error" role="alert">
+            {fieldErrors.email}
+          </span>
         )}
       </div>
 

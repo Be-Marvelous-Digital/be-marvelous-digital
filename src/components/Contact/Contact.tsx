@@ -55,9 +55,7 @@ export const Contact = async () => {
 
               <div className="contact__availability">
                 <div className="contact__availability-dot" aria-hidden="true" />
-                <span className="contact__availability-text">
-                  {t('availability')}
-                </span>
+                <span className="contact__availability-text">{t('availability')}</span>
               </div>
             </div>
           </FadeIn>

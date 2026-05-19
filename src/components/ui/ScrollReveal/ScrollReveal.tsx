@@ -48,7 +48,7 @@ export const ScrollReveal = ({
             // play forward entering viewport, reverse when scrolling back up
             toggleActions: 'play none none reverse',
           },
-        }
+        },
       );
     }, ref);
 

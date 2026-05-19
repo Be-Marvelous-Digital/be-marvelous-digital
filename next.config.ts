@@ -86,7 +86,7 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-  output: 'standalone',
+  output: process.env.DOCKER === 'true' ? 'standalone' : undefined,
 
   images: {
     remotePatterns: [

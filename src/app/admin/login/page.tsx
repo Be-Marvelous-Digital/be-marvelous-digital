@@ -90,11 +90,7 @@ const LoginForm = () => {
             </p>
           )}
 
-          <button
-            type="submit"
-            className="btn btn--primary login__submit"
-            disabled={loading}
-          >
+          <button type="submit" className="btn btn--primary login__submit" disabled={loading}>
             {loading ? 'Signing in…' : 'Sign in'}
           </button>
         </form>

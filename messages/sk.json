@@ -37,7 +37,12 @@
         "number": "02",
         "title": "UI / UX Dizajn",
         "description": "Rozhrania, ktoré ľudia skutočne radi používajú. Čistá vizuálna hierarchia, premyslené interakcie a dizajnový jazyk, ktorý vás odlíši od konkurencie.",
-        "highlights": ["Figma prototypovanie", "Dizajnové systémy", "Responzívne rozloženia", "Mikrointerakcie"]
+        "highlights": [
+          "Figma prototypovanie",
+          "Dizajnové systémy",
+          "Responzívne rozloženia",
+          "Mikrointerakcie"
+        ]
       },
       {
         "number": "03",

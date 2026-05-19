@@ -1,10 +1,13 @@
-@import (reference) "global";
+@import (reference) 'global';
 
 .portfolio-card {
   background-color: @color-bg-dark-alt;
   border-color: @color-border-dark;
   cursor: pointer;
-  transition: border-color @transition-base, transform @transition-base, box-shadow @transition-base;
+  transition:
+    border-color @transition-base,
+    transform @transition-base,
+    box-shadow @transition-base;
 
   &:hover {
     border-color: rgba(247, 244, 238, 0.18);

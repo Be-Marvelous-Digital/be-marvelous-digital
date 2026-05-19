@@ -40,9 +40,7 @@ export default async function PrivacyPolicyPage() {
 
           {SECTION_KEYS.map((key) => (
             <section key={key} className="privacy__section">
-              <h2 className="privacy__section-title">
-                {t(`sections.${key}.title`)}
-              </h2>
+              <h2 className="privacy__section-title">{t(`sections.${key}.title`)}</h2>
               <div className="privacy__section-body">
                 {t(`sections.${key}.content`)
                   .split('\n\n')

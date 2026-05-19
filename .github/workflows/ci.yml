@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: ['**']
   pull_request:
-    branches: [main]
+    branches: ['**']
 
 jobs:
-  lint-and-typecheck:
-    name: Lint & Type Check
+  lint-format-typecheck:
+    name: Lint, Format & Type Check
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +27,9 @@ jobs:
       - name: Generate Prisma client
         run: npx prisma generate
 
+      - name: Format check
+        run: npm run format:check
+
       - name: Lint
         run: npm run lint
 
@@ -36,7 +39,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    needs: lint-and-typecheck
+    needs: lint-format-typecheck
 
     steps:
       - name: Checkout
@@ -55,5 +58,5 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://bemarvelousdigital.com
-          NEXT_PUBLIC_GA_ID: ""
-          NEXT_PUBLIC_META_PIXEL_ID: ""
+          NEXT_PUBLIC_GA_ID: ''
+          NEXT_PUBLIC_META_PIXEL_ID: ''

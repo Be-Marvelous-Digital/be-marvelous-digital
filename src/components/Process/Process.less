@@ -1,4 +1,4 @@
-@import (reference) "global";
+@import (reference) 'global';
 
 .process {
   background-color: @color-surface;
@@ -85,7 +85,9 @@
     border-radius: @radius-full;
     padding: @spacing-1 @spacing-3;
     align-self: flex-start;
-    transition: color @transition-fast, border-color @transition-fast;
+    transition:
+      color @transition-fast,
+      border-color @transition-fast;
 
     .process__step--active & {
       color: @color-accent;

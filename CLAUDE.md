@@ -2,10 +2,10 @@
 
 ## Stack
 
--   **Framework**: NextJS (functional components, hooks only — no class components)
--   **Language**: TypeScript with strict mode enabled
--   **Styling**: LESS with global variables and nesting
--   **State**: Redux Toolik if will be needed for complex state management, otherwise local component state with `useState`
+- **Framework**: NextJS (functional components, hooks only — no class components)
+- **Language**: TypeScript with strict mode enabled
+- **Styling**: LESS with global variables and nesting
+- **State**: Redux Toolik if will be needed for complex state management, otherwise local component state with `useState`
 
 ---
 
@@ -13,17 +13,17 @@
 
 ### Always prefer small, reusable components
 
--   If a JSX block is used more than once — or could reasonably be used elsewhere — extract it into its own component immediately.
--   A component should do **one thing**. If you find yourself describing a component with "and", split it.
--   Keep components under ~150 lines. If a `.tsx` file is growing beyond that, treat it as a signal to refactor.
--   Co-locate component files: `ComponentName/ComponentName.tsx`, `ComponentName/ComponentName.less`, `ComponentName/ComponentName.helpers.ts`.
+- If a JSX block is used more than once — or could reasonably be used elsewhere — extract it into its own component immediately.
+- A component should do **one thing**. If you find yourself describing a component with "and", split it.
+- Keep components under ~150 lines. If a `.tsx` file is growing beyond that, treat it as a signal to refactor.
+- Co-locate component files: `ComponentName/ComponentName.tsx`, `ComponentName/ComponentName.less`, `ComponentName/ComponentName.helpers.ts`.
 
 ### Naming conventions
 
--   Components: `PascalCase`
--   Helper functions, hooks, utilities: `camelCase`
--   LESS variables: `@kebab-case`
--   Files: `PascalCase` for components, `camelCase` for helpers and hooks
+- Components: `PascalCase`
+- Helper functions, hooks, utilities: `camelCase`
+- LESS variables: `@kebab-case`
+- Files: `PascalCase` for components, `camelCase` for helpers and hooks
 
 ### Named exports only
 
@@ -39,24 +39,24 @@ export default function UserCard() { ... }
 
 ## TypeScript Rules
 
--   Always type props explicitly — never use `any`.
--   Define prop types with `interface`, not `type`, for components.
--   Use `type` for unions, mapped types, and utility types.
--   Never suppress TypeScript errors with `// @ts-ignore` — fix the root cause.
--   Avoid optional chaining as a lazy workaround for missing type guards.
--   Never use inline `import('...')` type references in `.ts`/`.tsx` files — always use a standard `import type` at the top of the file.
+- Always type props explicitly — never use `any`.
+- Define prop types with `interface`, not `type`, for components.
+- Use `type` for unions, mapped types, and utility types.
+- Never suppress TypeScript errors with `// @ts-ignore` — fix the root cause.
+- Avoid optional chaining as a lazy workaround for missing type guards.
+- Never use inline `import('...')` type references in `.ts`/`.tsx` files — always use a standard `import type` at the top of the file.
 
 ```ts
 // ❌ avoid — inline import type
 interface MyProps {
-    data: import('./my-helpers').MyType;
+  data: import('./my-helpers').MyType;
 }
 
 // ✅ correct — top-level import
 import type { MyType } from './my-helpers';
 
 interface MyProps {
-    data: MyType;
+  data: MyType;
 }
 ```
 
@@ -78,17 +78,17 @@ const Button = (props: any) => { ... }
 
 ### Hooks
 
--   Never call hooks conditionally or inside loops.
--   Extract complex hook logic into a custom hook in `/hooks/useXxx.ts`.
--   `useEffect` must always have an explicit dependency array — never omit it.
--   Avoid overusing `useEffect` — prefer derived state and event handlers where possible.
+- Never call hooks conditionally or inside loops.
+- Extract complex hook logic into a custom hook in `/hooks/useXxx.ts`.
+- `useEffect` must always have an explicit dependency array — never omit it.
+- Avoid overusing `useEffect` — prefer derived state and event handlers where possible.
 
 ### Performance
 
--   Memoize expensive computations with `useMemo`.
--   Wrap callbacks passed as props with `useCallback` to prevent unnecessary re-renders.
--   Use `React.memo` on pure presentational components that receive stable props.
--   Never create functions or objects inline in JSX props unless they're trivial.
+- Memoize expensive computations with `useMemo`.
+- Wrap callbacks passed as props with `useCallback` to prevent unnecessary re-renders.
+- Use `React.memo` on pure presentational components that receive stable props.
+- Never create functions or objects inline in JSX props unless they're trivial.
 
 ```tsx
 // ❌ avoid — creates new reference on every render
@@ -101,18 +101,18 @@ const handleButtonClick = useCallback(() => handleClick(id), [id]);
 
 ### State
 
--   Keep state as local as possible — lift only when needed.
--   Prefer multiple focused `useState` calls over one large state object, unless the state is logically coupled.
--   Never mutate state directly.
+- Keep state as local as possible — lift only when needed.
+- Prefer multiple focused `useState` calls over one large state object, unless the state is logically coupled.
+- Never mutate state directly.
 
 ---
 
 ## Helper Files
 
--   If a function is longer than ~20 lines or handles business logic (formatting, calculations, transformations, API mapping), move it to a `*.helpers.ts` or `*.utils.ts` file.
--   Group helpers by domain, not by file they were extracted from.
--   Always export helpers as named functions — not arrow functions assigned to `const` — so they appear correctly in stack traces.
--   Pure helper functions must have no side effects and should be independently testable.
+- If a function is longer than ~20 lines or handles business logic (formatting, calculations, transformations, API mapping), move it to a `*.helpers.ts` or `*.utils.ts` file.
+- Group helpers by domain, not by file they were extracted from.
+- Always export helpers as named functions — not arrow functions assigned to `const` — so they appear correctly in stack traces.
+- Pure helper functions must have no side effects and should be independently testable.
 
 ```
 src/
@@ -133,63 +133,63 @@ src/
 
 ### Always use variables from `global.less`
 
--   **Never hardcode** color values, font families, font sizes, border radii, spacing, or z-index values.
--   All design tokens must reference variables defined in `global.less`.
--   If a value is used more than once and doesn't have a variable, define one in `global.less`.
+- **Never hardcode** color values, font families, font sizes, border radii, spacing, or z-index values.
+- All design tokens must reference variables defined in `global.less`.
+- If a value is used more than once and doesn't have a variable, define one in `global.less`.
 
 ```less
 // ❌ avoid
 .card {
-    background: #ffffff;
-    font-family: 'Inter', sans-serif;
-    border-radius: 8px;
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  border-radius: 8px;
 }
 
 // ✅ correct
 .card {
-    background: @color-background;
-    font-family: @font-primary;
-    border-radius: @border-radius-md;
+  background: @color-background;
+  font-family: @font-primary;
+  border-radius: @border-radius-md;
 }
 ```
 
 ### Always use nesting
 
--   LESS supports nesting — use it. Flat selectors are forbidden unless targeting a global reset or third-party override.
--   Nest pseudo-classes, pseudo-elements, modifiers, and child elements within the parent block.
--   Use `&` for modifier classes and state variants.
+- LESS supports nesting — use it. Flat selectors are forbidden unless targeting a global reset or third-party override.
+- Nest pseudo-classes, pseudo-elements, modifiers, and child elements within the parent block.
+- Use `&` for modifier classes and state variants.
 
 ```less
 // ✅ correct
 .card {
-    background: @color-surface;
-    padding: @spacing-md;
+  background: @color-surface;
+  padding: @spacing-md;
 
-    &:hover {
-        background: @color-surface-hover;
-    }
+  &:hover {
+    background: @color-surface-hover;
+  }
 
-    &--active {
-        border: 1px solid @color-primary;
-    }
+  &--active {
+    border: 1px solid @color-primary;
+  }
 
-    &__title {
-        font-size: @font-size-lg;
-        font-weight: @font-weight-bold;
-        color: @color-text-primary;
-    }
+  &__title {
+    font-size: @font-size-lg;
+    font-weight: @font-weight-bold;
+    color: @color-text-primary;
+  }
 
-    &__body {
-        color: @color-text-secondary;
-        margin-top: @spacing-sm;
-    }
+  &__body {
+    color: @color-text-secondary;
+    margin-top: @spacing-sm;
+  }
 }
 ```
 
 ### Class naming
 
--   Follow BEM: `block__element--modifier`
--   Keep class names semantic — describe what the element **is**, not how it looks
+- Follow BEM: `block__element--modifier`
+- Keep class names semantic — describe what the element **is**, not how it looks
 
 ---
 
@@ -209,14 +209,14 @@ If a `.tsx` file exceeds ~150 lines, flag it and propose a refactoring plan befo
 
 ## What to Avoid
 
--   Class components
--   `any` type
--   Hardcoded colors, fonts, or spacing values
--   Inline styles (use LESS classes)
--   Direct DOM manipulation outside of refs
--   Nested ternaries in JSX (extract to a variable or subcomponent)
--   `useEffect` without dependency arrays
--   Default exports for components
--   Using px instead of rem
--   Using hardoceded css values (use variables from global.less)
--   Commented-out dead code — delete it
+- Class components
+- `any` type
+- Hardcoded colors, fonts, or spacing values
+- Inline styles (use LESS classes)
+- Direct DOM manipulation outside of refs
+- Nested ternaries in JSX (extract to a variable or subcomponent)
+- `useEffect` without dependency arrays
+- Default exports for components
+- Using px instead of rem
+- Using hardoceded css values (use variables from global.less)
+- Commented-out dead code — delete it

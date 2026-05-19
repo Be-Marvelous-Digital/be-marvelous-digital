@@ -20,9 +20,14 @@ export const Services = async () => {
           <div className="services__header">
             <span className="label-text">{t('label')}</span>
             <h2 className="services__title" id="services-heading">
-              {t('title').split('\n').map((line, i) => (
-                <span key={i}>{line}{i === 0 && <br />}</span>
-              ))}
+              {t('title')
+                .split('\n')
+                .map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i === 0 && <br />}
+                  </span>
+                ))}
             </h2>
           </div>
         </FadeIn>

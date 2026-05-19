@@ -11,10 +11,12 @@ interface PostPageProps {
 }
 
 export async function generateStaticParams() {
-  const posts = await prisma.post.findMany({
-    where: { published: true },
-    select: { slug: true, slugSk: true },
-  }).catch(() => []);
+  const posts = await prisma.post
+    .findMany({
+      where: { published: true },
+      select: { slug: true, slugSk: true },
+    })
+    .catch(() => []);
 
   const params: Array<{ locale: string; slug: string }> = [];
   for (const post of posts) {
@@ -26,13 +28,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const { slug, locale } = await params;
-  const post = await prisma.post.findFirst({
-    where: {
-      published: true,
-      OR: [{ slug }, { slugSk: slug }],
-    },
-    select: { title: true, excerpt: true, titleSk: true, excerptSk: true },
-  }).catch(() => null);
+  const post = await prisma.post
+    .findFirst({
+      where: {
+        published: true,
+        OR: [{ slug }, { slugSk: slug }],
+      },
+      select: { title: true, excerpt: true, titleSk: true, excerptSk: true },
+    })
+    .catch(() => null);
 
   if (!post) return { title: 'Post not found' };
 
@@ -59,15 +63,14 @@ export default async function PostPage({ params }: PostPageProps) {
   const { slug, locale } = await params;
   const prefix = locale === 'en' ? '/en' : '';
 
-  const post = await prisma.post.findFirst({
-    where: {
-      published: true,
-      OR: [
-        { slug },
-        { slugSk: slug },
-      ],
-    },
-  }).catch(() => null);
+  const post = await prisma.post
+    .findFirst({
+      where: {
+        published: true,
+        OR: [{ slug }, { slugSk: slug }],
+      },
+    })
+    .catch(() => null);
 
   if (!post) notFound();
 
@@ -78,10 +81,14 @@ export default async function PostPage({ params }: PostPageProps) {
   const labels = {
     back: locale === 'sk' ? '← Všetky články' : '← All articles',
     writtenBy: locale === 'sk' ? 'Napísal' : 'Written by',
-    ctaTitle: locale === 'sk' ? 'Chcete opraviť tieto problémy na vašej stránke?' : 'Ready to fix these issues on your site?',
-    ctaDescription: locale === 'sk'
-      ? 'Staviam webstránky, ktoré sú rýchle, SEO-optimalizované a správne nakonfigurované od prvého dňa.'
-      : "I build websites that are fast, SEO-optimised, and properly configured from day one. Let's talk about your project.",
+    ctaTitle:
+      locale === 'sk'
+        ? 'Chcete opraviť tieto problémy na vašej stránke?'
+        : 'Ready to fix these issues on your site?',
+    ctaDescription:
+      locale === 'sk'
+        ? 'Staviam webstránky, ktoré sú rýchle, SEO-optimalizované a správne nakonfigurované od prvého dňa.'
+        : "I build websites that are fast, SEO-optimised, and properly configured from day one. Let's talk about your project.",
     ctaButton: locale === 'sk' ? 'Začať rozhovor' : 'Start a conversation',
   };
 
@@ -99,7 +106,10 @@ export default async function PostPage({ params }: PostPageProps) {
 
             <header className="blog-post__header">
               {post.publishedAt && (
-                <time className="blog-post__date" dateTime={new Date(post.publishedAt).toISOString()}>
+                <time
+                  className="blog-post__date"
+                  dateTime={new Date(post.publishedAt).toISOString()}
+                >
                   {formatDate(post.publishedAt, locale)}
                 </time>
               )}

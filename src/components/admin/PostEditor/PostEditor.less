@@ -1,4 +1,4 @@
-@import (reference) "global";
+@import (reference) 'global';
 
 .post-editor {
   display: flex;
@@ -35,8 +35,14 @@
     transition: @input-transition;
     width: 100%;
 
-    &::placeholder { color: @color-ink-tertiary; }
-    &:focus { outline: none; border-color: @color-accent; box-shadow: @shadow-accent; }
+    &::placeholder {
+      color: @color-ink-tertiary;
+    }
+    &:focus {
+      outline: none;
+      border-color: @color-accent;
+      box-shadow: @shadow-accent;
+    }
 
     &--title {
       height: auto;
@@ -84,7 +90,9 @@
     color: @color-accent;
     font-family: @font-mono;
 
-    &:focus { outline: none; }
+    &:focus {
+      outline: none;
+    }
   }
 
   &__textarea {
@@ -99,8 +107,14 @@
     transition: @input-transition;
     font-family: @font-body;
 
-    &::placeholder { color: @color-ink-tertiary; }
-    &:focus { outline: none; border-color: @color-accent; box-shadow: @shadow-accent; }
+    &::placeholder {
+      color: @color-ink-tertiary;
+    }
+    &:focus {
+      outline: none;
+      border-color: @color-accent;
+      box-shadow: @shadow-accent;
+    }
   }
 
   &__char-count {
@@ -130,7 +144,9 @@
     border-bottom: 2px solid transparent;
     margin-bottom: -2px;
     cursor: pointer;
-    transition: color @transition-fast, border-color @transition-fast;
+    transition:
+      color @transition-fast,
+      border-color @transition-fast;
 
     &:hover {
       color: @color-ink;
@@ -179,7 +195,9 @@
     background: none;
     border: none;
     cursor: pointer;
-    transition: background @transition-fast, color @transition-fast;
+    transition:
+      background @transition-fast,
+      color @transition-fast;
 
     &:hover {
       background: @color-surface-alt;
@@ -225,7 +243,9 @@
       line-height: @line-height-relaxed;
       color: @color-ink;
 
-      p { margin-bottom: @spacing-4; }
+      p {
+        margin-bottom: @spacing-4;
+      }
 
       h2 {
         font-family: @font-display;
@@ -243,15 +263,22 @@
         margin-block: @spacing-6 @spacing-3;
       }
 
-      ul, ol {
+      ul,
+      ol {
         padding-left: @spacing-6;
         margin-bottom: @spacing-4;
 
-        li + li { margin-top: @spacing-2; }
+        li + li {
+          margin-top: @spacing-2;
+        }
       }
 
-      ul { list-style: disc; }
-      ol { list-style: decimal; }
+      ul {
+        list-style: disc;
+      }
+      ol {
+        list-style: decimal;
+      }
 
       blockquote {
         border-left: 3px solid @color-accent;

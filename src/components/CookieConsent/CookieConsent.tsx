@@ -85,12 +85,10 @@ export const CookieConsent = ({ locale }: CookieConsentProps) => {
                 <span className="cookie-consent__option-name">{t('analytics')}</span>
                 <span className="cookie-consent__option-desc">{t('analyticsDesc')}</span>
               </span>
-              <input
-                type="checkbox"
-                checked={prefs.analytics}
-                onChange={handleToggleAnalytics}
+              <input type="checkbox" checked={prefs.analytics} onChange={handleToggleAnalytics} />
+              <span
+                className={`cookie-consent__toggle${prefs.analytics ? ' cookie-consent__toggle--on' : ''}`}
               />
-              <span className={`cookie-consent__toggle${prefs.analytics ? ' cookie-consent__toggle--on' : ''}`} />
             </label>
 
             <label className="cookie-consent__option">
@@ -98,12 +96,10 @@ export const CookieConsent = ({ locale }: CookieConsentProps) => {
                 <span className="cookie-consent__option-name">{t('marketing')}</span>
                 <span className="cookie-consent__option-desc">{t('marketingDesc')}</span>
               </span>
-              <input
-                type="checkbox"
-                checked={prefs.marketing}
-                onChange={handleToggleMarketing}
+              <input type="checkbox" checked={prefs.marketing} onChange={handleToggleMarketing} />
+              <span
+                className={`cookie-consent__toggle${prefs.marketing ? ' cookie-consent__toggle--on' : ''}`}
               />
-              <span className={`cookie-consent__toggle${prefs.marketing ? ' cookie-consent__toggle--on' : ''}`} />
             </label>
           </div>
         )}

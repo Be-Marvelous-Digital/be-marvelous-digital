@@ -67,11 +67,11 @@ export const portfolioProjects: PortfolioProject[] = [
     screenshot: '/project-icons/project-repette.png',
     pageImage: '/project-pages/repette.png',
     problem:
-      'Repette helps families navigate one of the most emotionally difficult experiences in life — yet their website was making it harder, not easier. Poor UX, cluttered layout, and unclear information meant that parents and children in distress couldn\'t quickly find the support they were looking for. For an audience already under significant stress, a frustrating website wasn\'t just a design problem; it was a barrier to getting help.',
+      "Repette helps families navigate one of the most emotionally difficult experiences in life — yet their website was making it harder, not easier. Poor UX, cluttered layout, and unclear information meant that parents and children in distress couldn't quickly find the support they were looking for. For an audience already under significant stress, a frustrating website wasn't just a design problem; it was a barrier to getting help.",
     problemSk:
       'Repette pomáha rodinám zvládnuť jeden z emocionálne najnáročnejších zážitkov v živote — no ich webstránka to skôr sťažovala. Slabé UX, neusporiadané rozloženie a nejasné informácie spôsobovali, že rodičia a deti v núdzi nedokázali rýchlo nájsť pomoc, ktorú hľadali. Pre publikum vystavené výraznému stresu nebola frustrujúca stránka len dizajnovým problémom — bola to bariéra na ceste k pomoci.',
     solution:
-      'Redesigned the website from the ground up with clarity, empathy, and trust as the guiding principles. Restructured the information architecture so visitors immediately understand what Repette does and how to reach them. Simplified navigation, plain-language content, and a calm, reassuring visual tone suited to the emotional weight of their audience\'s situation.',
+      "Redesigned the website from the ground up with clarity, empathy, and trust as the guiding principles. Restructured the information architecture so visitors immediately understand what Repette does and how to reach them. Simplified navigation, plain-language content, and a calm, reassuring visual tone suited to the emotional weight of their audience's situation.",
     solutionSk:
       'Celkovo sme prenavrhli webstránku, pričom vodiacimi princípmi boli zrozumiteľnosť, empatia a dôvera. Preštruktúrovali sme informačnú architektúru tak, aby návštevníci okamžite pochopili, čo Repette robí a ako ich kontaktovať. Zjednodušená navigácia, obsah v zrozumiteľnom jazyku a pokojný, upokojujúci vizuálny tón zodpovedajúci emocionálnej váhe situácie ich cieľovej skupiny.',
     results: [
@@ -166,7 +166,7 @@ export const portfolioProjects: PortfolioProject[] = [
     screenshot: '/project-icons/project-kidsarena.png',
     pageImage: '/project-pages/kidsarena.png',
     problem:
-      "Kids Arena had no web presence to showcase their full offer — not just the indoor play centre, but also jumping castle and attraction rentals available for birthday parties, school events, city events, and other occasions. Without an online booking option, parents had no way to check availability or reserve without calling during business hours. The client also had a limited budget, ruling out a custom-built reservation system.",
+      'Kids Arena had no web presence to showcase their full offer — not just the indoor play centre, but also jumping castle and attraction rentals available for birthday parties, school events, city events, and other occasions. Without an online booking option, parents had no way to check availability or reserve without calling during business hours. The client also had a limited budget, ruling out a custom-built reservation system.',
     problemSk:
       'Kids Arena nemala žiadnu webovú prezentáciu, ktorá by predstavila celú ich ponuku — nielen vnútorné detské ihrisko, ale aj prenájom skákacích hradov a atrakcií na narodeninovné párty, školské podujatia, mestské akcie a iné príležitosti. Bez online rezervácie rodičia nemali možnosť overiť dostupnosť ani rezervovať bez telefonovania počas pracovných hodín. Klient mal navyše obmedzený rozpočet, čo vylučovalo vývoj vlastného rezervačného systému.',
     solution:

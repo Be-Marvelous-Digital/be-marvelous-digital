@@ -14,10 +14,7 @@ interface CardProps {
   children: React.ReactNode;
 }
 
-export const ContainerScroll = ({
-  titleComponent,
-  children,
-}: ContainerScrollProps) => {
+export const ContainerScroll = ({ titleComponent, children }: ContainerScrollProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -48,10 +45,7 @@ export const ContainerScroll = ({
       className="h-240 md:h-320 flex items-center justify-center relative p-2 md:p-20"
       ref={containerRef}
     >
-      <div
-        className="py-10 md:py-40 w-full relative"
-        style={{ perspective: '1000px' }}
-      >
+      <div className="py-10 md:py-40 w-full relative" style={{ perspective: '1000px' }}>
         <Header translate={translate} titleComponent={titleComponent} />
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
@@ -64,10 +58,7 @@ export const ContainerScroll = ({
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Header = ({ translate, titleComponent }: any) => {
   return (
-    <motion.div
-      style={{ translateY: translate }}
-      className="max-w-5xl mx-auto text-center"
-    >
+    <motion.div style={{ translateY: translate }} className="max-w-5xl mx-auto text-center">
       {titleComponent}
     </motion.div>
   );

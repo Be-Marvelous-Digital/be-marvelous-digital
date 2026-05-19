@@ -21,8 +21,16 @@ export async function PATCH(request: Request, { params }: RouteContext) {
 
   const body = await request.json();
   const {
-    title, slug: rawSlug, excerpt, body: postBody, published, publishedAt,
-    titleSk, slugSk, excerptSk, bodySk,
+    title,
+    slug: rawSlug,
+    excerpt,
+    body: postBody,
+    published,
+    publishedAt,
+    titleSk,
+    slugSk,
+    excerptSk,
+    bodySk,
   } = body;
 
   if (!title || !rawSlug || !excerpt || !postBody) {
@@ -40,9 +48,7 @@ export async function PATCH(request: Request, { params }: RouteContext) {
         excerpt,
         body: postBody,
         published: Boolean(published),
-        publishedAt: published
-          ? (publishedAt ? new Date(publishedAt) : new Date())
-          : null,
+        publishedAt: published ? (publishedAt ? new Date(publishedAt) : new Date()) : null,
         titleSk: titleSk || null,
         slugSk: slugSk ? slugify(slugSk, { lower: true, strict: true }) : null,
         excerptSk: excerptSk || null,

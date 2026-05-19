@@ -35,22 +35,24 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const t = await getTranslations('blog');
   const prefix = locale === 'en' ? '/en' : '';
 
-  const posts = await prisma.post.findMany({
-    where: { published: true },
-    orderBy: { publishedAt: 'desc' },
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-      excerpt: true,
-      coverImage: true,
-      publishedAt: true,
-      author: true,
-      titleSk: true,
-      slugSk: true,
-      excerptSk: true,
-    },
-  }).catch(() => []);
+  const posts = await prisma.post
+    .findMany({
+      where: { published: true },
+      orderBy: { publishedAt: 'desc' },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        excerpt: true,
+        coverImage: true,
+        publishedAt: true,
+        author: true,
+        titleSk: true,
+        slugSk: true,
+        excerptSk: true,
+      },
+    })
+    .catch(() => []);
 
   return (
     <>
@@ -74,7 +76,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
               <div className="blog-index__grid">
                 {posts.map((post, index) => {
                   const displayTitle = locale === 'sk' && post.titleSk ? post.titleSk : post.title;
-                  const displayExcerpt = locale === 'sk' && post.excerptSk ? post.excerptSk : post.excerpt;
+                  const displayExcerpt =
+                    locale === 'sk' && post.excerptSk ? post.excerptSk : post.excerpt;
                   const displaySlug = locale === 'sk' && post.slugSk ? post.slugSk : post.slug;
                   const postHref = `${prefix}/blog/${displaySlug}`;
                   const isFeatured = index === 0;
@@ -84,11 +87,19 @@ export default async function BlogPage({ params }: BlogPageProps) {
                       key={post.id}
                       className={`blog-index__card${isFeatured ? ' blog-index__card--featured' : ''}`}
                     >
-                      <Link href={postHref} className="blog-index__card-overlay" aria-label={displayTitle} />
+                      <Link
+                        href={postHref}
+                        className="blog-index__card-overlay"
+                        aria-label={displayTitle}
+                      />
 
                       <div className="blog-index__card-image">
                         {post.coverImage ? (
-                          <img src={post.coverImage} alt={displayTitle} className="blog-index__card-img" />
+                          <img
+                            src={post.coverImage}
+                            alt={displayTitle}
+                            className="blog-index__card-img"
+                          />
                         ) : (
                           <div className="blog-index__card-image-placeholder" />
                         )}

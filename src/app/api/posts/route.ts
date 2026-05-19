@@ -11,8 +11,16 @@ export async function POST(request: Request) {
 
   const body = await request.json();
   const {
-    title, slug: rawSlug, excerpt, body: postBody, published, publishedAt,
-    titleSk, slugSk, excerptSk, bodySk,
+    title,
+    slug: rawSlug,
+    excerpt,
+    body: postBody,
+    published,
+    publishedAt,
+    titleSk,
+    slugSk,
+    excerptSk,
+    bodySk,
   } = body;
 
   if (!title || !rawSlug || !excerpt || !postBody) {

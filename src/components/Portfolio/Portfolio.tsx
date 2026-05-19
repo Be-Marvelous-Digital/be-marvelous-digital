@@ -19,15 +19,24 @@ export const Portfolio = async () => {
   }));
 
   return (
-    <section className="portfolio section section--dark" id="portfolio" aria-labelledby="portfolio-heading">
+    <section
+      className="portfolio section section--dark"
+      id="portfolio"
+      aria-labelledby="portfolio-heading"
+    >
       <div className="container">
         <FadeIn>
           <div className="portfolio__header">
             <span className="label-text portfolio__label">{t('label')}</span>
             <h2 className="portfolio__title" id="portfolio-heading">
-              {t('title').split('\n').map((line, i) => (
-                <span key={i}>{line}{i === 0 && <br />}</span>
-              ))}
+              {t('title')
+                .split('\n')
+                .map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i === 0 && <br />}
+                  </span>
+                ))}
             </h2>
             <p className="portfolio__subtitle">{t('subtitle')}</p>
           </div>

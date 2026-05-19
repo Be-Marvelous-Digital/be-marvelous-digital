@@ -9,10 +9,11 @@
  */
 export function getAlternateHref(pathname: string, locale: string): string {
   // Strip any locale prefix to get the bare path
-  const bare = pathname
-    .replace(/^\/en(\/|$)/, '/')
-    .replace(/^\/sk(\/|$)/, '/')
-    .replace(/\/$/, '') || '/';
+  const bare =
+    pathname
+      .replace(/^\/en(\/|$)/, '/')
+      .replace(/^\/sk(\/|$)/, '/')
+      .replace(/\/$/, '') || '/';
 
   if (locale === 'sk') {
     // Currently on SK → switch to EN (add /en prefix)

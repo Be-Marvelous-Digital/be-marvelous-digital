@@ -9,9 +9,7 @@ const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 year in seconds
 export function getCookieConsent(): CookiePreferences | null {
   if (typeof document === 'undefined') return null;
 
-  const match = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith(`${COOKIE_NAME}=`));
+  const match = document.cookie.split('; ').find((row) => row.startsWith(`${COOKIE_NAME}=`));
 
   if (!match) return null;
 

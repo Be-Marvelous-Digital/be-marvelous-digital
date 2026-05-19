@@ -1,4 +1,4 @@
-@import (reference) "global";
+@import (reference) 'global';
 
 .blog-preview {
   background-color: @color-bg;
@@ -33,7 +33,9 @@
     color: @color-ink-secondary;
     text-decoration: none;
     flex-shrink: 0;
-    transition: color @transition-fast, gap @transition-fast;
+    transition:
+      color @transition-fast,
+      gap @transition-fast;
 
     &:hover {
       color: @color-accent;

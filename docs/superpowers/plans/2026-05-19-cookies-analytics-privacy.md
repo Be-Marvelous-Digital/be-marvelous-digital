@@ -12,29 +12,30 @@
 
 ## File Structure
 
-| Action | File | Responsibility |
-|--------|------|----------------|
-| Create | `src/components/CookieConsent/CookieConsent.tsx` | Cookie banner UI (client component) |
-| Create | `src/components/CookieConsent/CookieConsent.less` | Cookie banner styles |
-| Create | `src/lib/cookies.ts` | Cookie consent read/write helpers |
-| Create | `src/components/Analytics/GoogleAnalytics.tsx` | GA script loader (client component) |
-| Create | `src/components/Analytics/MetaPixel.tsx` | Meta Pixel script loader (client component) |
-| Create | `src/lib/analytics.ts` | Unified event tracking helpers (GA + Meta Pixel) |
-| Create | `src/app/[locale]/privacy-policy/page.tsx` | Privacy policy page |
-| Create | `src/app/[locale]/privacy-policy/privacy-policy.less` | Privacy policy page styles |
-| Modify | `src/app/[locale]/layout.tsx` | Add CookieConsent, GoogleAnalytics, MetaPixel |
-| Modify | `src/components/Contact/ContactForm/ContactForm.tsx` | Fire conversion events on form submit |
-| Modify | `src/components/Footer/Footer.tsx` | Add Privacy Policy link |
-| Modify | `messages/en.json` | Add cookie consent + privacy policy translations |
-| Modify | `messages/sk.json` | Add cookie consent + privacy policy translations |
-| Modify | `.env.example` | Add GA and Meta Pixel env vars |
-| Modify | `.env` | Add GA and Meta Pixel env vars (empty placeholders) |
+| Action | File                                                  | Responsibility                                      |
+| ------ | ----------------------------------------------------- | --------------------------------------------------- |
+| Create | `src/components/CookieConsent/CookieConsent.tsx`      | Cookie banner UI (client component)                 |
+| Create | `src/components/CookieConsent/CookieConsent.less`     | Cookie banner styles                                |
+| Create | `src/lib/cookies.ts`                                  | Cookie consent read/write helpers                   |
+| Create | `src/components/Analytics/GoogleAnalytics.tsx`        | GA script loader (client component)                 |
+| Create | `src/components/Analytics/MetaPixel.tsx`              | Meta Pixel script loader (client component)         |
+| Create | `src/lib/analytics.ts`                                | Unified event tracking helpers (GA + Meta Pixel)    |
+| Create | `src/app/[locale]/privacy-policy/page.tsx`            | Privacy policy page                                 |
+| Create | `src/app/[locale]/privacy-policy/privacy-policy.less` | Privacy policy page styles                          |
+| Modify | `src/app/[locale]/layout.tsx`                         | Add CookieConsent, GoogleAnalytics, MetaPixel       |
+| Modify | `src/components/Contact/ContactForm/ContactForm.tsx`  | Fire conversion events on form submit               |
+| Modify | `src/components/Footer/Footer.tsx`                    | Add Privacy Policy link                             |
+| Modify | `messages/en.json`                                    | Add cookie consent + privacy policy translations    |
+| Modify | `messages/sk.json`                                    | Add cookie consent + privacy policy translations    |
+| Modify | `.env.example`                                        | Add GA and Meta Pixel env vars                      |
+| Modify | `.env`                                                | Add GA and Meta Pixel env vars (empty placeholders) |
 
 ---
 
 ## Task 1: Environment Variables
 
 **Files:**
+
 - Modify: `.env.example`
 - Modify: `.env`
 
@@ -68,6 +69,7 @@ git commit -m "chore: add GA and Meta Pixel env vars"
 ## Task 2: Cookie Consent Helpers
 
 **Files:**
+
 - Create: `src/lib/cookies.ts`
 
 - [ ] **Step 1: Create cookie consent helpers**
@@ -86,9 +88,7 @@ const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 year in seconds
 export function getCookieConsent(): CookiePreferences | null {
   if (typeof document === 'undefined') return null;
 
-  const match = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith(`${COOKIE_NAME}=`));
+  const match = document.cookie.split('; ').find((row) => row.startsWith(`${COOKIE_NAME}=`));
 
   if (!match) return null;
 
@@ -121,6 +121,7 @@ git commit -m "feat: add cookie consent read/write helpers"
 ## Task 3: Cookie Consent Banner — Translations
 
 **Files:**
+
 - Modify: `messages/en.json`
 - Modify: `messages/sk.json`
 
@@ -286,6 +287,7 @@ git commit -m "feat: add cookie consent and privacy policy translations (SK/EN)"
 ## Task 4: Cookie Consent Banner — Component
 
 **Files:**
+
 - Create: `src/components/CookieConsent/CookieConsent.tsx`
 - Create: `src/components/CookieConsent/CookieConsent.less`
 
@@ -385,12 +387,10 @@ export const CookieConsent = ({ locale }: CookieConsentProps) => {
                 <span className="cookie-consent__option-name">{t('analytics')}</span>
                 <span className="cookie-consent__option-desc">{t('analyticsDesc')}</span>
               </span>
-              <input
-                type="checkbox"
-                checked={prefs.analytics}
-                onChange={handleToggleAnalytics}
+              <input type="checkbox" checked={prefs.analytics} onChange={handleToggleAnalytics} />
+              <span
+                className={`cookie-consent__toggle${prefs.analytics ? ' cookie-consent__toggle--on' : ''}`}
               />
-              <span className={`cookie-consent__toggle${prefs.analytics ? ' cookie-consent__toggle--on' : ''}`} />
             </label>
 
             <label className="cookie-consent__option">
@@ -398,12 +398,10 @@ export const CookieConsent = ({ locale }: CookieConsentProps) => {
                 <span className="cookie-consent__option-name">{t('marketing')}</span>
                 <span className="cookie-consent__option-desc">{t('marketingDesc')}</span>
               </span>
-              <input
-                type="checkbox"
-                checked={prefs.marketing}
-                onChange={handleToggleMarketing}
+              <input type="checkbox" checked={prefs.marketing} onChange={handleToggleMarketing} />
+              <span
+                className={`cookie-consent__toggle${prefs.marketing ? ' cookie-consent__toggle--on' : ''}`}
               />
-              <span className={`cookie-consent__toggle${prefs.marketing ? ' cookie-consent__toggle--on' : ''}`} />
             </label>
           </div>
         )}
@@ -600,6 +598,7 @@ git commit -m "feat: add cookie consent banner component with customizable prefe
 ## Task 5: Google Analytics Component
 
 **Files:**
+
 - Create: `src/components/Analytics/GoogleAnalytics.tsx`
 
 - [ ] **Step 1: Create GoogleAnalytics component**
@@ -667,6 +666,7 @@ git commit -m "feat: add Google Analytics component with consent gating"
 ## Task 6: Meta Pixel Component
 
 **Files:**
+
 - Create: `src/components/Analytics/MetaPixel.tsx`
 
 - [ ] **Step 1: Create MetaPixel component**
@@ -743,6 +743,7 @@ git commit -m "feat: add Meta Pixel component with consent gating"
 ## Task 7: Analytics Event Tracking Helpers
 
 **Files:**
+
 - Create: `src/lib/analytics.ts`
 
 - [ ] **Step 1: Create analytics event helpers**
@@ -785,6 +786,7 @@ git commit -m "feat: add unified analytics event tracking helpers"
 ## Task 8: Wire Contact Form to Fire Conversion Events
 
 **Files:**
+
 - Modify: `src/components/Contact/ContactForm/ContactForm.tsx`
 
 - [ ] **Step 1: Add conversion tracking to form submission**
@@ -792,11 +794,13 @@ git commit -m "feat: add unified analytics event tracking helpers"
 In `src/components/Contact/ContactForm/ContactForm.tsx`:
 
 1. Add import at top (after existing imports):
+
 ```typescript
 import { trackContactFormSubmission } from '@/lib/analytics';
 ```
 
 2. In the `handleSubmit` callback, add `trackContactFormSubmission()` after `setStatus('success')` on line 50:
+
 ```typescript
 setStatus('success');
 trackContactFormSubmission();
@@ -814,6 +818,7 @@ git commit -m "feat: fire GA and Meta Pixel conversion events on contact form su
 ## Task 9: Wire Analytics & Cookie Consent into Locale Layout
 
 **Files:**
+
 - Modify: `src/app/[locale]/layout.tsx`
 
 - [ ] **Step 1: Add components to locale layout**
@@ -871,6 +876,7 @@ git commit -m "feat: wire cookie consent, Google Analytics, and Meta Pixel into 
 ## Task 10: Privacy Policy Page
 
 **Files:**
+
 - Create: `src/app/[locale]/privacy-policy/page.tsx`
 - Create: `src/app/[locale]/privacy-policy/privacy-policy.less`
 
@@ -921,9 +927,7 @@ export default async function PrivacyPolicyPage() {
 
           {SECTION_KEYS.map((key) => (
             <section key={key} className="privacy__section">
-              <h2 className="privacy__section-title">
-                {t(`sections.${key}.title`)}
-              </h2>
+              <h2 className="privacy__section-title">{t(`sections.${key}.title`)}</h2>
               <div className="privacy__section-body">
                 {t(`sections.${key}.content`)
                   .split('\n\n')
@@ -1035,6 +1039,7 @@ git commit -m "feat: add bilingual privacy policy page (GDPR + Slovak law compli
 ## Task 11: Add Privacy Policy Link to Footer
 
 **Files:**
+
 - Modify: `src/components/Footer/Footer.tsx`
 
 - [ ] **Step 1: Add Privacy Policy to the "More" links**
@@ -1045,7 +1050,10 @@ In `src/components/Footer/Footer.tsx`, add a third entry to the `moreLinks` arra
 const moreLinks = [
   { href: `${prefix}/blog`, label: 'Blog' },
   { href: `${home}#contact`, label: locale === 'en' ? 'Contact' : 'Kontakt' },
-  { href: `${prefix}/privacy-policy`, label: locale === 'en' ? 'Privacy Policy' : 'Ochrana osobných údajov' },
+  {
+    href: `${prefix}/privacy-policy`,
+    label: locale === 'en' ? 'Privacy Policy' : 'Ochrana osobných údajov',
+  },
 ];
 ```
 
@@ -1061,6 +1069,7 @@ git commit -m "feat: add privacy policy link to footer"
 ## Self-Review
 
 **Spec coverage check:**
+
 - [x] Cookie consent bar — Task 2 (helpers), Task 3 (translations), Task 4 (component)
 - [x] Google Analytics setup with .env — Task 1 (env), Task 5 (component)
 - [x] Meta Pixel setup with .env — Task 1 (env), Task 6 (component)

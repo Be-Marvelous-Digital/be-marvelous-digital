@@ -18,16 +18,14 @@ export function ShaderAnimation() {
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src =
-      'https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js';
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js';
     script.onload = () => {
       if (containerRef.current && window.THREE) initThreeJS();
     };
     document.head.appendChild(script);
 
     return () => {
-      if (sceneRef.current.animationId)
-        cancelAnimationFrame(sceneRef.current.animationId);
+      if (sceneRef.current.animationId) cancelAnimationFrame(sceneRef.current.animationId);
       if (sceneRef.current.renderer) sceneRef.current.renderer.dispose();
       if (document.head.contains(script)) document.head.removeChild(script);
     };

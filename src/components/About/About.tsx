@@ -13,11 +13,7 @@ export const About = async () => {
   const advantages = t.raw('advantages') as Advantage[];
 
   return (
-    <section
-      className="about section section--dark"
-      id="about"
-      aria-labelledby="about-heading"
-    >
+    <section className="about section section--dark" id="about" aria-labelledby="about-heading">
       <div className="container">
         <div className="about__layout">
           <FadeIn className="about__left">
@@ -55,12 +51,7 @@ export const About = async () => {
                   <FadeIn delay={i * 0.1} direction="up">
                     <div className="about__advantage-inner">
                       <div className="about__advantage-icon" aria-hidden="true">
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                        >
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path
                             d="M3 8.5L6.5 12 13 5"
                             stroke="#2448FF"
@@ -72,9 +63,7 @@ export const About = async () => {
                       </div>
                       <div className="about__advantage-body">
                         <h3 className="about__advantage-title">{title}</h3>
-                        <p className="about__advantage-description">
-                          {description}
-                        </p>
+                        <p className="about__advantage-description">{description}</p>
                       </div>
                     </div>
                   </FadeIn>

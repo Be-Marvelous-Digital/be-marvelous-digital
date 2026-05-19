@@ -92,11 +92,7 @@ export const ProcessTimeline = ({ children }: ProcessTimelineProps) => {
   }, [started]);
 
   return (
-    <ol
-      ref={containerRef}
-      className="process__steps"
-      aria-label="Development process steps"
-    >
+    <ol ref={containerRef} className="process__steps" aria-label="Development process steps">
       {children}
     </ol>
   );

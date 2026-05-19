@@ -14,15 +14,24 @@ export const Process = async () => {
   const steps = t.raw('steps') as ProcessStep[];
 
   return (
-    <section className="process section section--surface" id="process" aria-labelledby="process-heading">
+    <section
+      className="process section section--surface"
+      id="process"
+      aria-labelledby="process-heading"
+    >
       <div className="container">
         <FadeIn>
           <div className="process__header">
             <span className="label-text">{t('label')}</span>
             <h2 className="process__title" id="process-heading">
-              {t('title').split('\n').map((line, i) => (
-                <span key={i}>{line}{i === 0 && <br />}</span>
-              ))}
+              {t('title')
+                .split('\n')
+                .map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i === 0 && <br />}
+                  </span>
+                ))}
             </h2>
           </div>
         </FadeIn>
