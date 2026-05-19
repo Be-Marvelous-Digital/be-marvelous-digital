@@ -26,6 +26,8 @@ jobs:
 
       - name: Generate Prisma client
         run: npx prisma generate
+        env:
+          DATABASE_URL: file:./dev.db
 
       - name: Format check
         run: npm run format:check
@@ -54,9 +56,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate Prisma client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: file:./dev.db
+
       - name: Build
         run: npm run build
         env:
+          DATABASE_URL: file:./dev.db
           NEXT_PUBLIC_SITE_URL: https://bemarvelousdigital.com
           NEXT_PUBLIC_GA_ID: ''
           NEXT_PUBLIC_META_PIXEL_ID: ''
