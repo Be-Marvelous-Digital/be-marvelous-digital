@@ -22,6 +22,10 @@ interface ContactFormProps {
   labels: ContactFormLabels;
 }
 
+// Replace with your Mailchimp audience POST URL
+const MAILCHIMP_URL =
+  'https://bemarvelousdigital.us9.list-manage.com/subscribe/post?u=fe54163fcf84aea5b7b950b46&amp;id=6c3a9dae75&amp;f_id=003f55e1f0';
+
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 type FieldErrors = {
@@ -74,12 +78,16 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
       setStatus('loading');
       setErrorMsg('');
       try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(values),
+        const params = new URLSearchParams({
+          EMAIL: values.email,
+          FNAME: values.name,
+          PHONE: values.phone,
+          MESSAGE: values.message,
         });
-        if (!res.ok) throw new Error('Failed');
+        await fetch(`${MAILCHIMP_URL}&${params.toString()}`, {
+          method: 'POST',
+          mode: 'no-cors',
+        });
         setStatus('success');
         trackContactFormSubmission();
       } catch {

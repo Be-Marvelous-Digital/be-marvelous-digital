@@ -38,8 +38,9 @@ export const ScrollReveal = ({
           if (entry.isIntersecting) {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
-          } else {
-            // Reverse when scrolling back up (same as toggleActions: play none none reverse)
+          } else if (entry.boundingClientRect.top > 0) {
+            // Only reverse when element leaves viewport from the bottom (scrolling back up)
+            // Not when it leaves from the top (scrolling down past it)
             el.style.opacity = '0';
             el.style.transform = `translateY(${yFrom}px)`;
           }
