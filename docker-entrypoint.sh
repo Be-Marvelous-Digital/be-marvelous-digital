@@ -1,12 +1,7 @@
 #!/bin/sh
 
-# Run migrations and seed as root (volume is root-owned)
-node node_modules/prisma/build/index.js migrate deploy
-
-if [ ! -f /app/prisma/.seeded ]; then
-  node node_modules/tsx/dist/cli.mjs prisma/seed.ts
-  touch /app/prisma/.seeded
-fi
+# Create tables and seed if empty
+node prisma/setup.mjs
 
 # Fix ownership so nextjs user can read/write the database
 chown -R nextjs:nodejs /app/prisma
