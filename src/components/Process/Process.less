@@ -37,33 +37,60 @@
   &__step {
     position: relative;
     padding: @spacing-8 0;
-    border-top: 2px solid @color-border;
+    padding-left: @spacing-8;
+    border-left: 2px solid @color-border;
+    border-top: none;
+
+    &:nth-child(even) {
+      border-left: none;
+      border-right: 2px solid @color-border;
+      padding-left: 0;
+      padding-right: @spacing-8;
+    }
 
     @media (min-width: @bp-lg) {
       padding: @spacing-12 @spacing-6;
-      border-top: none;
       border-left: 2px solid @color-border;
+      border-right: none;
+
+      &:nth-child(even) {
+        border-left: 2px solid @color-border;
+        border-right: none;
+        padding-left: @spacing-6;
+        padding-right: @spacing-6;
+      }
     }
   }
 
   &__step-divider {
-    display: none;
+    --progress: 0;
+
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    width: 2px;
+    height: calc(var(--progress) * 100%);
+    background: @color-accent;
+    transform: translateY(-50%);
+    will-change: height;
+
+    .process__step:nth-child(even) & {
+      left: auto;
+      right: -2px;
+    }
+
+    .process__step--done & {
+      background: @color-border-strong;
+    }
 
     @media (min-width: @bp-lg) {
-      --progress: 0;
-
-      display: block;
-      position: absolute;
-      top: 50%;
       left: -2px;
-      width: 2px;
-      height: calc(var(--progress) * 100%);
-      background: @color-accent;
-      transform: translateY(-50%);
-      will-change: height;
+      right: auto;
 
-      .process__step--done & {
-        background: @color-border-strong;
+      .process__step:nth-child(even) & {
+        left: -2px;
+        right: auto;
       }
     }
   }

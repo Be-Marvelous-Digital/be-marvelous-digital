@@ -1,10 +1,6 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -31,28 +27,29 @@ export const ScrollReveal = ({
 
     const yFrom = direction === 'up' ? distance : direction === 'down' ? -distance : 0;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: yFrom },
-        {
-          opacity: 1,
-          y: 0,
-          duration,
-          delay,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            end: 'top 55%',
-            // play forward entering viewport, reverse when scrolling back up
-            toggleActions: 'play none none reverse',
-          },
-        },
-      );
-    }, ref);
+    // Set initial hidden state
+    el.style.opacity = '0';
+    el.style.transform = `translateY(${yFrom}px)`;
+    el.style.transition = `opacity ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`;
 
-    return () => ctx.revert();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          } else {
+            // Reverse when scrolling back up (same as toggleActions: play none none reverse)
+            el.style.opacity = '0';
+            el.style.transform = `translateY(${yFrom}px)`;
+          }
+        }
+      },
+      { threshold: 0, rootMargin: '-12% 0px -45% 0px' },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [delay, direction, distance, duration]);
 
   return (

@@ -41,10 +41,11 @@ export const GoogleAnalytics = () => {
     return () => window.removeEventListener('cookie-consent-update', handleConsentUpdate);
   }, []);
 
-  if (!gaId || !enabled) return null;
+  if (!gaId) return null;
 
   return (
     <>
+      {/* Always load gtag.js so Search Console can detect the tag */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
         strategy="afterInteractive"
@@ -54,11 +55,27 @@ export const GoogleAnalytics = () => {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
+          gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied'
+          });
           gtag('config', '${gaId}', {
             anonymize_ip: true
           });
         `}
       </Script>
+      {/* Grant consent once user accepts */}
+      {enabled && (
+        <Script id="google-analytics-consent" strategy="afterInteractive">
+          {`
+            if (typeof gtag === 'function') {
+              gtag('consent', 'update', {
+                analytics_storage: 'granted'
+              });
+            }
+          `}
+        </Script>
+      )}
     </>
   );
 };

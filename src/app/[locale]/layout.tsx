@@ -7,7 +7,7 @@ import { CookieConsent } from '@/components/CookieConsent/CookieConsent';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 import { MetaPixel } from '@/components/Analytics/MetaPixel';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.sk';
 
 const ogMeta: Record<string, { title: string; description: string; locale: string }> = {
   sk: {
@@ -63,6 +63,44 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+function OrganizationJsonLd() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'Be Marvelous Digital',
+    url: siteUrl,
+    logo: `${siteUrl}/opengraph.png`,
+    image: `${siteUrl}/opengraph.png`,
+    description:
+      'Freelance web developer specialising in fast, modern websites built with Next.js and React. Based in Slovakia, working internationally.',
+    founder: {
+      '@type': 'Person',
+      name: 'Peter Lehocky',
+      jobTitle: 'Freelance Web Developer',
+      url: siteUrl,
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'SK',
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'Slovakia' },
+      { '@type': 'Country', name: 'Czech Republic' },
+      { '@type': 'Country', name: 'United Arab Emirates' },
+    ],
+    knowsLanguage: ['sk', 'en'],
+    priceRange: '$$',
+    sameAs: [],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
 
@@ -74,6 +112,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <OrganizationJsonLd />
       <GoogleAnalytics />
       <MetaPixel />
       {children}

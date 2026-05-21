@@ -28,19 +28,23 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const metaDescription =
     locale === 'sk' && project.descriptionSk ? project.descriptionSk : project.description;
 
+  const isSk = locale === 'sk';
+  const metaTitle = `${project.name} — ${isSk ? 'Prípadová štúdia' : 'Case Study'} | Be Marvelous Digital`;
+
   return {
-    title: project.name,
+    title: metaTitle,
     description: metaDescription,
     alternates: {
-      canonical: locale === 'sk' ? `/portfolio/${id}` : `/en/portfolio/${id}`,
+      canonical: isSk ? `/portfolio/${id}` : `/en/portfolio/${id}`,
       languages: {
         sk: `/portfolio/${id}`,
         en: `/en/portfolio/${id}`,
       },
     },
     openGraph: {
-      title: project.name,
+      title: metaTitle,
       description: metaDescription,
+      type: 'article',
       images: [{ url: project.screenshot, width: 1400, height: 720 }],
     },
   };

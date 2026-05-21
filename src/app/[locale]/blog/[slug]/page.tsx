@@ -6,6 +6,8 @@ import { Navigation } from '@/components/Navigation/Navigation';
 import { Footer } from '@/components/Footer/Footer';
 import './post.less';
 
+export const dynamic = 'force-dynamic';
+
 interface PostPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
@@ -26,27 +28,55 @@ export async function generateStaticParams() {
   return params;
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.sk';
+
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const { slug, locale } = await params;
+  const isSk = locale === 'sk';
   const post = await prisma.post
     .findFirst({
       where: {
         published: true,
         OR: [{ slug }, { slugSk: slug }],
       },
-      select: { title: true, excerpt: true, titleSk: true, excerptSk: true },
+      select: {
+        title: true,
+        excerpt: true,
+        titleSk: true,
+        excerptSk: true,
+        slug: true,
+        slugSk: true,
+        coverImage: true,
+        publishedAt: true,
+        author: true,
+      },
     })
     .catch(() => null);
 
   if (!post) return { title: 'Post not found' };
 
-  const metaTitle = locale === 'sk' && post.titleSk ? post.titleSk : post.title;
-  const metaExcerpt = locale === 'sk' && post.excerptSk ? post.excerptSk : post.excerpt;
+  const metaTitle = isSk && post.titleSk ? post.titleSk : post.title;
+  const metaExcerpt = isSk && post.excerptSk ? post.excerptSk : post.excerpt;
+  const skSlug = post.slugSk ?? post.slug;
 
   return {
     title: metaTitle,
     description: metaExcerpt,
-    openGraph: { title: metaTitle, description: metaExcerpt, type: 'article' },
+    alternates: {
+      canonical: isSk ? `/blog/${skSlug}` : `/en/blog/${post.slug}`,
+      languages: {
+        sk: `/blog/${skSlug}`,
+        en: `/en/blog/${post.slug}`,
+      },
+    },
+    openGraph: {
+      title: metaTitle,
+      description: metaExcerpt,
+      type: 'article',
+      publishedTime: post.publishedAt?.toISOString(),
+      authors: [post.author],
+      images: post.coverImage ? [{ url: post.coverImage, width: 1200, height: 630 }] : undefined,
+    },
   };
 }
 
@@ -92,8 +122,38 @@ export default async function PostPage({ params }: PostPageProps) {
     ctaButton: locale === 'sk' ? 'Začať rozhovor' : 'Start a conversation',
   };
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: displayTitle,
+    description: displayExcerpt,
+    image: post.coverImage ?? undefined,
+    datePublished: post.publishedAt?.toISOString(),
+    dateModified: post.updatedAt.toISOString(),
+    author: {
+      '@type': 'Person',
+      name: post.author,
+      url: siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Be Marvelous Digital',
+      url: siteUrl,
+      logo: { '@type': 'ImageObject', url: `${siteUrl}/opengraph.png` },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}${prefix}/blog/${slug}`,
+    },
+    inLanguage: locale === 'sk' ? 'sk' : 'en',
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <Navigation forceDark />
       <main>
         <article className="blog-post">

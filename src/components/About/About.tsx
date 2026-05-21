@@ -23,7 +23,7 @@ export const About = async () => {
                 alt="Peter Lehocky — freelance web developer"
                 fill
                 className="about__photo"
-                sizes="(max-width: 768px) 100vw, 400px"
+                sizes="(max-width: 768px) 100vw, 40vw"
               />
             </div>
             <span className="about__label">{t('label')}</span>

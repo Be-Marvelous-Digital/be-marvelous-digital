@@ -54,12 +54,13 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     padding-top: calc(@nav-height + @spacing-3);
     padding-bottom: @spacing-3;
     gap: @spacing-6;
 
     @media (min-width: @bp-lg) {
+      justify-content: center;
       padding-top: calc(@nav-height-lg + @spacing-6);
       padding-bottom: @spacing-6;
       gap: @spacing-6;
@@ -211,6 +212,7 @@
     border-top: 1px solid rgba(247, 244, 238, 0.1);
     animation: hero-fade @duration-slower @ease-out both;
     animation-delay: 800ms;
+    margin-top: auto;
 
     @media (max-width: @bp-sm) {
       padding-top: @spacing-8;
@@ -219,6 +221,10 @@
 
     @media (min-width: @bp-md) {
       grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (min-width: @bp-lg) {
+      margin-top: 0;
     }
   }
 

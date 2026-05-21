@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.sk'),
   icons: {
     icon: [
       { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -48,12 +48,18 @@ export const metadata: Metadata = {
     'React developer',
     'website development',
     'UI UX design',
+    'freelance webový vývojár',
+    'tvorba webstránok',
+    'webdizajn Slovensko',
+    'SEO optimalizácia',
+    'web developer Slovakia',
+    'Peter Lehocky',
   ],
-  authors: [{ name: 'Peter Lehocky', url: 'https://bemarvelousdigital.com' }],
+  authors: [{ name: 'Peter Lehocky', url: 'https://bemarvelousdigital.sk' }],
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://bemarvelousdigital.com',
+    locale: 'sk_SK',
+    url: 'https://bemarvelousdigital.sk',
     siteName: 'Be Marvelous Digital',
     title: 'Be Marvelous Digital — Freelance Web Developer',
     description:

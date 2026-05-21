@@ -14,10 +14,14 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
   const { locale } = await params;
   const isSk = locale === 'sk';
   return {
-    title: isSk ? 'Blog — Webdizajn a vývoj' : 'Blog — Web Development Insights',
+    title: isSk ? 'Blog — Webdizajn, výkon a SEO' : 'Blog — Web Design, Performance & SEO',
     description: isSk
-      ? 'Praktické články o webdizajne, výkone, SEO a všetkom, čo firmy potrebujú vedieť o online prítomnosti.'
-      : 'Practical articles on web performance, design, SEO, and everything businesses need to know to get the most out of their online presence.',
+      ? 'Praktické články o webdizajne, výkone, SEO a všetkom, čo firmy potrebujú vedieť o online prítomnosti. Od freelance webového vývojára Petra Lehockého.'
+      : 'Practical articles on web performance, mobile-first design, SEO, and everything businesses need to know about their online presence. By freelance developer Peter Lehocky.',
+    alternates: {
+      canonical: isSk ? '/blog' : '/en/blog',
+      languages: { sk: '/blog', en: '/en/blog' },
+    },
   };
 }
 
