@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Create tables and seed if empty
-node prisma/setup.mjs
+node scripts/setup.mjs
 
-# Fix ownership so nextjs user can read/write the database
-chown -R nextjs:nodejs /app/prisma
+# Fix ownership so nextjs user can read/write the database and uploads
+chown -R nextjs:nodejs /app/data 2>/dev/null || true
 chown -R nextjs:nodejs /app/public/uploads 2>/dev/null || true
 
 # Drop to nextjs user for the app

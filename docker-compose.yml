@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     volumes:
-      - sqlite-data:/app/prisma
+      - sqlite-data:/app/data
       - uploads:/app/public/uploads
     restart: unless-stopped
 
