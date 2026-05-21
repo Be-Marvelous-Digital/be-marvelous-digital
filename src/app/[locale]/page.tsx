@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
-
-export const dynamic = 'force-dynamic';
 import { Navigation } from '@/components/Navigation/Navigation';
 import { Hero } from '@/components/Hero/Hero';
 import { Services } from '@/components/Services/Services';

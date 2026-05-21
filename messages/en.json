@@ -37,12 +37,7 @@
         "number": "02",
         "title": "UI / UX Design",
         "description": "Interfaces that people actually enjoy using. Clean visual hierarchy, thoughtful interactions, and a design language that sets you apart from the competition.",
-        "highlights": [
-          "Figma prototyping",
-          "Design systems",
-          "Responsive layouts",
-          "Micro-interactions"
-        ]
+        "highlights": ["Figma prototyping", "Design systems", "Responsive layouts", "Micro-interactions"]
       },
       {
         "number": "03",

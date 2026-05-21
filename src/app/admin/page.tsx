@@ -5,7 +5,6 @@ import { signOut } from '@/lib/auth';
 import type { Metadata } from 'next';
 import './dashboard.less';
 
-export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Dashboard' };
 
 export default async function AdminDashboard() {

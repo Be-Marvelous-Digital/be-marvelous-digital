@@ -6,8 +6,6 @@ import type { Metadata } from 'next';
 import '../../../dashboard.less';
 import '../../new/new-post.less';
 
-export const dynamic = 'force-dynamic';
-
 interface EditPostPageProps {
   params: Promise<{ id: string }>;
 }

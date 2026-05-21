@@ -46,11 +46,12 @@ export const Contact = async () => {
             <div className="contact__quick">
               <p className="contact__quick-label">{t('emailLabel')}</p>
               <a
-                href="mailto:hello@bemarvelousdigital.com"
+                href="mailto:peter@bemarvelousdigital.sk"
+                target="_blank"
                 className="contact__email-link"
                 aria-label="Send an email"
               >
-                hello@bemarvelousdigital.com
+                  peter@bemarvelousdigital.sk
               </a>
 
               <div className="contact__availability">
