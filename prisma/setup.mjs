@@ -41,7 +41,7 @@ async function setup() {
     {
       title: 'Why Your Website Speed Is Losing You Customers (And How to Fix It)',
       slug: 'website-speed-losing-customers',
-      excerpt: "A one-second delay in page load time can reduce conversions by 7%.",
+      excerpt: 'A one-second delay in page load time can reduce conversions by 7%.',
       body: '<h2>The Silent Revenue Killer</h2><p>Your website can look stunning and still be bleeding customers every single day.</p>',
       published: true,
       publishedAt: new Date('2024-11-10'),
@@ -49,20 +49,22 @@ async function setup() {
       titleSk: 'Prečo rýchlosť webu prichádza o zákazníkov',
       slugSk: 'rychlost-webu-strata-zakaznikov',
       excerptSk: 'Sekundové oneskorenie načítania stránky môže znížiť konverzie o 7 %.',
-      bodySk: '<h2>Tichý zabijak príjmov</h2><p>Váš web môže vyzerať skvele a napriek tomu každý deň prichádzať o zákazníkov.</p>',
+      bodySk:
+        '<h2>Tichý zabijak príjmov</h2><p>Váš web môže vyzerať skvele a napriek tomu každý deň prichádzať o zákazníkov.</p>',
     },
     {
       title: 'Mobile-First Is Not Optional',
       slug: 'mobile-first-website-mistakes',
-      excerpt: "Over 60% of your website traffic is on mobile.",
-      body: '<h2>The Numbers Don\'t Lie</h2><p>Mobile now accounts for between 55% and 70% of web traffic.</p>',
+      excerpt: 'Over 60% of your website traffic is on mobile.',
+      body: "<h2>The Numbers Don't Lie</h2><p>Mobile now accounts for between 55% and 70% of web traffic.</p>",
       published: true,
       publishedAt: new Date('2024-12-03'),
       updatedAt: new Date(),
       titleSk: 'Mobile-first nie je voliteľné',
       slugSk: 'mobile-first-chyby-webov',
       excerptSk: 'Viac ako 60 % návštevnosti vášho webu pochádza z mobilu.',
-      bodySk: '<h2>Čísla neklamú</h2><p>Mobilné zariadenia tvoria 55–70 % webovej návštevnosti.</p>',
+      bodySk:
+        '<h2>Čísla neklamú</h2><p>Mobilné zariadenia tvoria 55–70 % webovej návštevnosti.</p>',
     },
     {
       title: 'The 5 Things Your Website Is Probably Missing',
@@ -75,7 +77,8 @@ async function setup() {
       titleSk: '5 vecí, ktoré váš web pravdepodobne nemá',
       slugSk: 'co-chyba-vasmu-webu',
       excerptSk: 'Päť technických prvkov, ktoré väčšina webov malých podnikov postrádá.',
-      bodySk: '<h2>Keď "dosť dobré" nestačí</h2><p>Väčšina webov chýba základné prvky, ktoré ticho obmedzujú ich efektivitu.</p>',
+      bodySk:
+        '<h2>Keď "dosť dobré" nestačí</h2><p>Väčšina webov chýba základné prvky, ktoré ticho obmedzujú ich efektivitu.</p>',
     },
   ];
 
