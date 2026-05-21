@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Run migrations and seed as root (volume is root-owned)
-npx prisma migrate deploy
+node node_modules/prisma/build/index.js migrate deploy
 
 if [ ! -f /app/prisma/.seeded ]; then
-  npx prisma db seed
+  node node_modules/tsx/dist/cli.mjs prisma/seed.ts
   touch /app/prisma/.seeded
 fi
 
