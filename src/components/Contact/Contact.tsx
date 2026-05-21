@@ -51,7 +51,7 @@ export const Contact = async () => {
                 className="contact__email-link"
                 aria-label="Send an email"
               >
-                  peter@bemarvelousdigital.sk
+                peter@bemarvelousdigital.sk
               </a>
 
               <div className="contact__availability">
