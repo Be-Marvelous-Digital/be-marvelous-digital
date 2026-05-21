@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google';
+import { SITE_URL } from '@/lib/constants';
 import '@/styles/global.less';
 import '@/app/globals.css';
 
@@ -25,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bemarvelousdigital.sk'),
+  metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
       { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -55,11 +56,11 @@ export const metadata: Metadata = {
     'web developer Slovakia',
     'Peter Lehocky',
   ],
-  authors: [{ name: 'Peter Lehocky', url: 'https://bemarvelousdigital.sk' }],
+  authors: [{ name: 'Peter Lehocky', url: SITE_URL }],
   openGraph: {
     type: 'website',
     locale: 'sk_SK',
-    url: 'https://bemarvelousdigital.sk',
+    url: SITE_URL,
     siteName: 'Be Marvelous Digital',
     title: 'Be Marvelous Digital — Freelance Web Developer',
     description:

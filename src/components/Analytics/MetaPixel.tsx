@@ -28,7 +28,7 @@ function handleConsentUpdate(e: Event) {
 
 export const MetaPixel = () => {
   const enabled = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const pixelId = ''; // Add Meta Pixel ID here when available
 
   useEffect(() => {
     const existing = getCookieConsent();

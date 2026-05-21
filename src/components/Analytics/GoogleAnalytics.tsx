@@ -28,7 +28,7 @@ function handleConsentUpdate(e: Event) {
 
 export const GoogleAnalytics = () => {
   const enabled = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const gaId = 'G-LM36LV03TR';
 
   useEffect(() => {
     const existing = getCookieConsent();
