@@ -47,8 +47,6 @@ COPY --from=builder /app/node_modules/esbuild ./node_modules/esbuild
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/docker-entrypoint.sh ./docker-entrypoint.sh
 
-USER nextjs
-
 EXPOSE 3000
 
 ENV PORT=3000
