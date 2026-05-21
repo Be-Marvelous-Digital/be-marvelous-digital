@@ -9,6 +9,7 @@ services:
       - .env
     volumes:
       - sqlite-data:/app/prisma
+      - uploads:/app/public/uploads
     restart: unless-stopped
 
   nginx:
@@ -26,5 +27,6 @@ services:
 
 volumes:
   sqlite-data:
+  uploads:
   certbot-webroot:
   certbot-certs:

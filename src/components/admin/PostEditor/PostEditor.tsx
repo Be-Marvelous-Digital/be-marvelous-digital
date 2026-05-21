@@ -18,6 +18,7 @@ interface PostEditorProps {
     slug?: string;
     excerpt?: string;
     body?: string;
+    coverImage?: string | null;
     titleSk?: string | null;
     slugSk?: string | null;
     excerptSk?: string | null;
@@ -47,6 +48,8 @@ export const PostEditor = ({ initialData }: PostEditorProps) => {
   const [titleSk, setTitleSk] = useState(initialData?.titleSk ?? '');
   const [slugSk, setSlugSk] = useState(initialData?.slugSk ?? '');
   const [excerptSk, setExcerptSk] = useState(initialData?.excerptSk ?? '');
+  const [coverImage, setCoverImage] = useState(initialData?.coverImage ?? '');
+  const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -76,6 +79,29 @@ export const PostEditor = ({ initialData }: PostEditorProps) => {
 
   const activeEditor = activeTab === 'en' ? editorEn : editorSk;
 
+  const handleCoverUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError('');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const res = await fetch('/api/upload', { method: 'POST', body: formData });
+    setUploading(false);
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      setError(data.error ?? 'Upload failed');
+      return;
+    }
+
+    const data = await res.json();
+    setCoverImage(data.url);
+  }, []);
+
   const handleTitleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
@@ -104,6 +130,7 @@ export const PostEditor = ({ initialData }: PostEditorProps) => {
         title,
         slug,
         excerpt,
+        coverImage: coverImage || null,
         body: editorEn.getHTML(),
         titleSk: titleSk || null,
         slugSk: slugSk || null,
@@ -139,6 +166,7 @@ export const PostEditor = ({ initialData }: PostEditorProps) => {
       title,
       slug,
       excerpt,
+      coverImage,
       titleSk,
       slugSk,
       excerptSk,
@@ -246,6 +274,51 @@ export const PostEditor = ({ initialData }: PostEditorProps) => {
 
   return (
     <div className="post-editor">
+      <div className="post-editor__field">
+        <label className="post-editor__label">Cover Image</label>
+        <div className="post-editor__cover-upload">
+          {coverImage ? (
+            <div className="post-editor__cover-preview">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={coverImage} alt="Cover preview" className="post-editor__cover-img" />
+              <div className="post-editor__cover-actions">
+                <label className="btn btn--secondary post-editor__upload-btn">
+                  Replace Image
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+                    onChange={handleCoverUpload}
+                    disabled={uploading}
+                    hidden
+                  />
+                </label>
+                <button
+                  type="button"
+                  className="post-editor__cover-remove"
+                  onClick={() => setCoverImage('')}
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ) : (
+            <label className="post-editor__upload-area">
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+                onChange={handleCoverUpload}
+                disabled={uploading}
+                hidden
+              />
+              <span className="post-editor__upload-icon">+</span>
+              <span className="post-editor__upload-text">
+                {uploading ? 'Uploading...' : 'Click to upload cover image'}
+              </span>
+            </label>
+          )}
+        </div>
+      </div>
+
       <div className="post-editor__tabs">
         <button
           type="button"

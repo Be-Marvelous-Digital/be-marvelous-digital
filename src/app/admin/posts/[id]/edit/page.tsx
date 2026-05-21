@@ -34,6 +34,7 @@ export default async function EditPostPage({ params }: EditPostPageProps) {
       title: true,
       slug: true,
       excerpt: true,
+      coverImage: true,
       body: true,
       titleSk: true,
       slugSk: true,
