@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.sk'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bemarvelousdigital.sk'),
   icons: {
     icon: [
       { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },

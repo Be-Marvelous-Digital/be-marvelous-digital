@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { prisma } from '@/lib/prisma';
 import { portfolioProjects } from '@/data/portfolio';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.sk';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bemarvelousdigital.sk';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages — both SK (default, no prefix) and EN (/en)

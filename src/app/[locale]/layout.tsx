@@ -7,7 +7,7 @@ import { CookieConsent } from '@/components/CookieConsent/CookieConsent';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 import { MetaPixel } from '@/components/Analytics/MetaPixel';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.sk';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bemarvelousdigital.sk';
 
 const ogMeta: Record<string, { title: string; description: string; locale: string }> = {
   sk: {

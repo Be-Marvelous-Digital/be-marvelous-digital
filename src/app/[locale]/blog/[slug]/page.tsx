@@ -28,7 +28,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bemarvelousdigital.sk';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bemarvelousdigital.sk';
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const { slug, locale } = await params;
