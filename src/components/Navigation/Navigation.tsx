@@ -73,48 +73,50 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
   const isScrolledState = forceDark || (heroIntersecting !== null ? !heroIntersecting : scrolled);
 
   return (
-    <header className={`navigation ${isScrolledState ? 'navigation--scrolled' : ''}`}>
-      <div className="navigation__inner container">
-        <Logo
-          href={locale === 'en' ? '/en' : '/'}
-          className="navigation__logo"
-          onClick={closeMenu}
-        />
+    <>
+      <header className={`navigation ${isScrolledState ? 'navigation--scrolled' : ''}`}>
+        <div className="navigation__inner container">
+          <Logo
+            href={locale === 'en' ? '/en' : '/'}
+            className="navigation__logo"
+            onClick={closeMenu}
+          />
 
-        <nav className="navigation__links" aria-label="Main navigation">
-          {navLinks.map(({ href, label }) => (
-            <Link key={href} href={href} className="navigation__link">
-              {label}
-            </Link>
-          ))}
-        </nav>
+          <nav className="navigation__links" aria-label="Main navigation">
+            {navLinks.map(({ href, label }) => (
+              <Link key={href} href={href} className="navigation__link">
+                {label}
+              </Link>
+            ))}
+          </nav>
 
-        <Link
-          href={locale === 'en' ? '/en#contact' : '/#contact'}
-          className="btn btn--primary navigation__cta"
-        >
-          {ctaLabel}
-        </Link>
+          <Link
+            href={locale === 'en' ? '/en#contact' : '/#contact'}
+            className="btn btn--primary navigation__cta"
+          >
+            {ctaLabel}
+          </Link>
 
-        <a
-          href={altHref}
-          className="navigation__locale-toggle"
-          aria-label={`Switch to ${altLocale}`}
-        >
-          {altLocale}
-        </a>
+          <a
+            href={altHref}
+            className="navigation__locale-toggle"
+            aria-label={`Switch to ${altLocale}`}
+          >
+            {altLocale}
+          </a>
 
-        <button
-          className={`navigation__burger ${menuOpen ? 'navigation__burger--open' : ''}`}
-          onClick={toggleMenu}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      </div>
+          <button
+            className={`navigation__burger ${menuOpen ? 'navigation__burger--open' : ''}`}
+            onClick={toggleMenu}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+      </header>
 
       <div
         className={`navigation__mobile ${menuOpen ? 'navigation__mobile--open' : ''}`}
@@ -149,6 +151,6 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
           </a>
         </nav>
       </div>
-    </header>
+    </>
   );
 };

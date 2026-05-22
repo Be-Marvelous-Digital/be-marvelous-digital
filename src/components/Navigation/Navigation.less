@@ -151,7 +151,10 @@
 
   &__mobile {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
     background: @color-surface;
     z-index: @z-overlay;
     display: flex;
@@ -159,10 +162,10 @@
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-100%);
+    visibility: hidden;
     transition:
       opacity @transition-slow,
-      transform @transition-slow;
+      visibility 0s @duration-slow;
 
     @media (min-width: @bp-lg) {
       display: none;
@@ -171,7 +174,10 @@
     &--open {
       opacity: 1;
       pointer-events: all;
-      transform: translateY(0);
+      visibility: visible;
+      transition:
+        opacity @transition-slow,
+        visibility 0s;
     }
   }
 
