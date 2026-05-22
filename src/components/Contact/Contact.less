@@ -90,6 +90,24 @@
     }
   }
 
+  &__phone-link {
+    font-family: @font-display;
+    font-size: @font-size-lg;
+    font-weight: @font-weight-bold;
+    color: @color-ink-inverse;
+    text-decoration: none;
+    letter-spacing: @tracking-tight;
+    transition: color @transition-fast;
+
+    &:hover {
+      color: @color-accent;
+    }
+
+    @media (min-width: @bp-lg) {
+      font-size: @font-size-xl;
+    }
+  }
+
   &__availability {
     display: inline-flex;
     align-items: center;

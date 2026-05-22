@@ -13,14 +13,14 @@
     "line1": "TVORÍM",
     "line2": "ÚŽASNÉ",
     "line3": "WEBY",
-    "description": "Vysokokvalitné webstránky s precíznou pozornosťou na dizajn a výkon — pre firmy, ktoré chcú zanechať trvalý dojem. Keď so mnou pracujete, komunikujete priamo s vývojárom, ktorý vašu stránku buduje. Žiadni account manageri. Žiadne odovzdávanie projektov.",
+    "description": "Výsledky na úrovni agentúry za cenu freelancera. Dostanete skúseného vývojára, ktorý navrhne, postaví a dodá — žiadni prostredníci, žiadne nafúknuté faktúry. Rýchla komunikácia, precízne spracovanie a web, ktorý naozaj predáva.",
     "ctaPrimary": "Začať projekt",
     "ctaSecondary": "Pozrieť portfólio",
     "stats": {
       "projects": "Projektov",
       "experience": "Rokov skúseností",
-      "communication": "Priama komunikácia",
-      "response": "Priem. čas odpovede"
+      "communication": "Spokojnosť klientov",
+      "response": "Premárnených na agentúrach"
     }
   },
   "services": {
@@ -118,7 +118,7 @@
   "contact": {
     "label": "Kontakt",
     "title": "Poďme spolu\nstvoriť niečo\núžasné.",
-    "description": "Napíšte mi o svojom projekte. Odpoviem do 48 hodín s úprimnými otázkami a realistickým odhadom.",
+    "description": "Napíšte mi o svojom projekte. Odpoviem do 24 hodín s úprimnými otázkami a realistickým odhadom.",
     "emailLabel": "Alebo ma kontaktujte priamo",
     "divider": "alebo",
     "availability": "Dostupný pre nové projekty — aktuálna kapacita: 2 projekty",
@@ -130,7 +130,7 @@
       "submit": "Odoslať správu",
       "submitting": "Odosielam…",
       "success": "Správa odoslaná!",
-      "successDetail": "Ozvem sa vám do 48 hodín.",
+      "successDetail": "Ozvem sa vám do 24 hodín.",
       "error": "Niečo sa pokazilo. Skúste znova alebo mi napíšte priamo.",
       "invalidEmail": "Prosím, zadajte platnú e-mailovú adresu.",
       "invalidPhone": "Prosím, zadajte platné telefónne číslo."

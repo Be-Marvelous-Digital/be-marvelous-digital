@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
+import { Navigation } from '@/components/Navigation/Navigation';
 import './privacy-policy.less';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -28,6 +29,8 @@ export default async function PrivacyPolicyPage() {
   const t = await getTranslations('privacy');
 
   return (
+    <>
+    <Navigation forceDark />
     <main className="privacy">
       <div className="container">
         <div className="privacy__header">
@@ -53,5 +56,6 @@ export default async function PrivacyPolicyPage() {
         </div>
       </div>
     </main>
+    </>
   );
 }

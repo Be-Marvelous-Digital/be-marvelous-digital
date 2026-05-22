@@ -13,7 +13,7 @@ const WORDS_EN = [
   'STUNNING',
   'FUNCTIONAL',
 ];
-const WORDS_SK = ['ÚŽASNÉ', 'VÝKONNÉ', 'KRÁSNE', 'ZISKOVÉ', 'INOVATÍVNE', 'FUNKČNÉ'];
+const WORDS_SK = ['ÚŽASNÉ', 'VÝKONNÉ', 'DIZAJNOVÉ', 'INOVATÍVNE', 'FUNKČNÉ'];
 
 interface HeroWordCyclerProps {
   locale: string;

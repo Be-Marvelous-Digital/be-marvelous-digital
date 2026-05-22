@@ -11,7 +11,7 @@ export const Hero = async () => {
     { value: '50+', label: t('stats.projects') },
     { value: '8+', label: t('stats.experience') },
     { value: '100%', label: t('stats.communication') },
-    { value: '48h', label: t('stats.response') },
+    { value: '0€', label: t('stats.response') },
   ];
 
   return (

@@ -20,6 +20,16 @@
   }
 }
 
+@keyframes badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(255, 77, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 77, 0, 0.3);
+  }
+}
+
 @keyframes scroll-pulse {
   0%,
   100% {
@@ -84,11 +94,12 @@
     font-weight: @font-weight-semibold;
     letter-spacing: @tracking-widest;
     text-transform: uppercase;
-    color: #ff4d00;
+    color: @color-accent-warm;
     padding: @spacing-1 @spacing-3;
     border: 1px solid rgba(255, 77, 0, 0.4);
     border-radius: @radius-full;
     white-space: nowrap;
+    animation: badge-glow 3s ease-in-out infinite;
 
     @media (max-width: @bp-sm) {
       letter-spacing: @tracking-wide;
@@ -147,8 +158,12 @@
   }
 
   &__title-accent {
-    color: @color-accent;
     display: inline-block;
+    background: linear-gradient(135deg, @color-accent, #6b8aff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 24px rgba(36, 72, 255, 0.35));
   }
 
   &__side {
@@ -169,7 +184,12 @@
   &__description {
     font-size: @font-size-md;
     line-height: @line-height-relaxed;
-    color: @color-ink-inverse;
+    color: rgba(247, 244, 238, 0.85);
+
+    @media (max-width: @bp-lg) {
+      padding-left: @spacing-4;
+      border-left: 2px solid @color-accent;
+    }
 
     @media (max-width: @bp-sm) {
       font-size: @font-size-sm;
@@ -195,10 +215,15 @@
     color: @color-ink-inverse;
     border: @border-width-medium solid rgba(247, 244, 238, 0.3);
     text-decoration: none;
+    transition:
+      background @transition-base,
+      border-color @transition-base,
+      box-shadow @transition-base;
 
     &:hover {
       background: rgba(247, 244, 238, 0.08);
       border-color: rgba(247, 244, 238, 0.6);
+      box-shadow: 0 0 20px rgba(247, 244, 238, 0.1);
       color: @color-ink-inverse;
     }
   }
@@ -209,7 +234,8 @@
     align-items: start;
     gap: @spacing-6;
     padding-top: @spacing-12;
-    border-top: 1px solid rgba(247, 244, 238, 0.1);
+    border-top: 1px solid transparent;
+    border-image: linear-gradient(90deg, @color-accent, rgba(247, 244, 238, 0.15), @color-accent) 1;
     animation: hero-fade @duration-slower @ease-out both;
     animation-delay: 800ms;
     margin-top: auto;
@@ -239,8 +265,11 @@
     font-size: @font-size-3xl;
     font-weight: @font-weight-black;
     line-height: @line-height-none;
-    color: @color-ink-inverse;
     letter-spacing: @tracking-tight;
+    background: linear-gradient(135deg, @color-ink-inverse, @color-accent);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
     @media (max-width: @bp-sm) {
       font-size: @font-size-2xl;

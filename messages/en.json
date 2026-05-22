@@ -13,14 +13,14 @@
     "line1": "I BUILD",
     "line2": "MARVELOUS",
     "line3": "WEBSITES.",
-    "description": "High-quality websites built with obsessive attention to design and performance — for businesses that want to make a lasting impression. When you work with me, you always talk directly to the developer building your site. No account managers. No handoffs.",
+    "description": "Agency-level results at freelancer prices. You get a senior developer who designs, builds, and ships — no middlemen, no bloated invoices. Fast communication, pixel-perfect execution, and a website that actually converts.",
     "ctaPrimary": "Start a Project",
     "ctaSecondary": "See My Work",
     "stats": {
       "projects": "Projects delivered",
       "experience": "Years of experience",
-      "communication": "Direct communication",
-      "response": "Average response time"
+      "communication": "Client satisfaction",
+      "response": "Wasted on agency overhead"
     }
   },
   "services": {
@@ -118,7 +118,7 @@
   "contact": {
     "label": "Contact",
     "title": "Let's build something\nmarvelous together.",
-    "description": "Tell me about your project. I'll reply within 48 hours with honest questions and a realistic estimate.",
+    "description": "Tell me about your project. I'll reply within 24 hours with honest questions and a realistic estimate.",
     "emailLabel": "Or reach me directly",
     "divider": "or",
     "availability": "Available for new projects — current capacity: 2 projects",
@@ -130,7 +130,7 @@
       "submit": "Send Message",
       "submitting": "Sending…",
       "success": "Message sent!",
-      "successDetail": "I'll get back to you within 48 hours.",
+      "successDetail": "I'll get back to you within 24 hours.",
       "error": "Something went wrong. Please try again or email me directly.",
       "invalidEmail": "Please enter a valid email address.",
       "invalidPhone": "Please enter a valid phone number."

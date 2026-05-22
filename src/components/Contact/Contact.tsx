@@ -53,6 +53,13 @@ export const Contact = async () => {
               >
                 peter@bemarvelousdigital.sk
               </a>
+              <a
+                href="tel:+421949154514"
+                className="contact__phone-link"
+                aria-label="Call me"
+              >
+                +421 949 154 514
+              </a>
 
               <div className="contact__availability">
                 <div className="contact__availability-dot" aria-hidden="true" />
