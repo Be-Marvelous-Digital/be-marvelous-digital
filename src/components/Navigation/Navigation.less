@@ -214,7 +214,6 @@
     color: @color-ink;
     text-decoration: none;
     letter-spacing: @tracking-tight;
-    transition: color @transition-fast;
 
     &:hover {
       color: @color-accent;
@@ -258,6 +257,19 @@
     }
   }
 
+  &__mobile-item {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      opacity @transition-base,
+      transform @transition-base;
+
+    .navigation__mobile--open & {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   &__mobile-locale {
     font-family: @font-display;
     font-size: @font-size-xl;
@@ -265,7 +277,6 @@
     color: @color-ink-secondary;
     text-decoration: none;
     letter-spacing: @tracking-tight;
-    transition: color @transition-fast;
     margin-top: @spacing-4;
 
     &:hover {

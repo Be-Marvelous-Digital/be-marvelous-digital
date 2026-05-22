@@ -134,19 +134,31 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
           </svg>
         </button>
         <nav className="navigation__mobile-links">
-          {navLinks.map(({ href, label }) => (
-            <Link key={href} href={href} className="navigation__mobile-link" onClick={closeMenu}>
+          {navLinks.map(({ href, label }, index) => (
+            <Link
+              key={href}
+              href={href}
+              className="navigation__mobile-link navigation__mobile-item"
+              style={{ transitionDelay: `${index * 0.06 + 0.15}s` }}
+              onClick={closeMenu}
+            >
               {label}
             </Link>
           ))}
           <Link
             href={locale === 'en' ? '/en#contact' : '/#contact'}
-            className="btn btn--primary"
+            className="btn btn--primary navigation__mobile-item"
+            style={{ transitionDelay: `${navLinks.length * 0.06 + 0.15}s` }}
             onClick={closeMenu}
           >
             {ctaLabel}
           </Link>
-          <a href={altHref} className="navigation__mobile-locale" onClick={closeMenu}>
+          <a
+            href={altHref}
+            className="navigation__mobile-locale navigation__mobile-item"
+            style={{ transitionDelay: `${navLinks.length * 0.06 + 0.35}s` }}
+            onClick={closeMenu}
+          >
             {altLocale}
           </a>
         </nav>
