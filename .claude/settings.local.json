@@ -13,7 +13,9 @@
       "Bash(head -5 grep -o \"shrink[^;{}]*[;}]\" .next/static/chunks/0-desp00-syed.css)",
       "Bash(head -5 grep -o \"scale[^;{}]*[;}]\" .next/static/chunks/0-desp00-syed.css)",
       "Read(//dev/**)",
-      "Bash(find /Users/petusko/Documents/Claude/Projects/BeMarvelousDigital/bmarvelous-digital -maxdepth 2 \\\\\\(-type f -name Dockerfile* -o -type f -name docker-compose* -o -type f -name .prettierrc* -o -type f -name prettier.config.* -o -type d -name .github \\\\\\))"
+      "Bash(find /Users/petusko/Documents/Claude/Projects/BeMarvelousDigital/bmarvelous-digital -maxdepth 2 \\\\\\(-type f -name Dockerfile* -o -type f -name docker-compose* -o -type f -name .prettierrc* -o -type f -name prettier.config.* -o -type d -name .github \\\\\\))",
+      "Bash(graphify claude *)",
+      "Bash(graphify hook *)"
     ]
   }
 }
