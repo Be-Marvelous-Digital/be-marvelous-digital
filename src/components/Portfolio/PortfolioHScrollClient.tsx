@@ -45,18 +45,23 @@ export const PortfolioHScrollClient = ({ children }: PortfolioHScrollClientProps
         scrollTrigger: {
           trigger: container,
           pin: true,
-          scrub: true,
+          scrub: 3,
           start: 'top top',
-          end: () => `+=${getScrollDistance()}`,
+          end: () => `+=${getScrollDistance() + window.innerHeight}`,
           invalidateOnRefresh: true,
           anticipatePin: 1,
         },
       });
 
-      tl.to(track, {
-        x: () => -getScrollDistance(),
-        ease: 'none',
-      });
+      // Ease in at start, linear through middle, ease out at end
+      tl.fromTo(
+        track,
+        { x: 0 },
+        {
+          x: () => -getScrollDistance(),
+          ease: 'power2.inOut',
+        },
+      );
     }, container);
 
     return () => ctx.revert();
