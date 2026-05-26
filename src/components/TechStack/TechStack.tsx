@@ -27,12 +27,16 @@ export const TechStack = async () => {
   ];
 
   return (
-    <section className="techstack section--dark" id="stack" aria-labelledby="techstack-heading" data-nav-dark>
+    <section
+      className="techstack section--dark"
+      id="stack"
+      aria-labelledby="techstack-heading"
+      data-nav-dark
+    >
       <div className="container techstack__header-wrap">
         <span className="label-text techstack__label">{t('label')}</span>
         <h2 className="techstack__title" id="techstack-heading">
-          {t('titlePlain')}{' '}
-          <span className="techstack__title-outline">{t('titleAccent')}</span>{' '}
+          {t('titlePlain')} <span className="techstack__title-outline">{t('titleAccent')}</span>{' '}
           {t('titleSuffix')}
         </h2>
       </div>

@@ -16,11 +16,7 @@ export const HeroReveal = () => {
     });
 
     // 1. Badge + location slide up
-    tl.fromTo(
-      '.hero__top-bar',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.65 },
-    );
+    tl.fromTo('.hero__top-bar', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.65 });
 
     // 2. Title lines rise from behind clip containers (lines 1 & 3)
     tl.fromTo(
@@ -31,20 +27,10 @@ export const HeroReveal = () => {
     );
 
     // 3. Line 2 (HeroWordCycler) fades in simultaneously with line 3
-    tl.fromTo(
-      '.hero__title-line--2',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.85 },
-      '-=0.95',
-    );
+    tl.fromTo('.hero__title-line--2', { opacity: 0 }, { opacity: 1, duration: 0.85 }, '-=0.95');
 
     // 4. Description + CTAs
-    tl.fromTo(
-      '.hero__side',
-      { opacity: 0, y: 28 },
-      { opacity: 1, y: 0, duration: 0.85 },
-      '-=0.6',
-    );
+    tl.fromTo('.hero__side', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.85 }, '-=0.6');
 
     // 5. Stats stagger in
     tl.fromTo(

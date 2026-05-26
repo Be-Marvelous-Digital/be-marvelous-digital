@@ -27,10 +27,7 @@ export const Footer = async () => {
     },
   ];
 
-  const marqueeText =
-    locale === 'en'
-      ? "Let's build something marvelous"
-      : 'Postavme niečo úžasné';
+  const marqueeText = locale === 'en' ? "Let's build something marvelous" : 'Postavme niečo úžasné';
 
   return (
     <footer className="footer">
@@ -40,7 +37,9 @@ export const Footer = async () => {
           {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="footer__marquee-item">
               {marqueeText}
-              <span className="footer__marquee-dot" aria-hidden="true">✦</span>
+              <span className="footer__marquee-dot" aria-hidden="true">
+                ✦
+              </span>
             </span>
           ))}
         </div>
