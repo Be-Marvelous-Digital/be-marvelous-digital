@@ -62,13 +62,11 @@
 
   &__track {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-start;
     height: 100%;
     gap: @spacing-6;
-    // Symmetric padding centres both first and last card in the viewport
     padding-block: 0;
-    padding-bottom: 10vh;
     padding-left: calc(50vw - 280px); // 560px card ÷ 2
     padding-right: calc(50vw - 280px);
     will-change: transform;
@@ -79,8 +77,11 @@
     }
 
     @media (max-width: @bp-md) {
-      padding-left: 22vw;
-      padding-right: 22vw;
+      align-items: flex-end;
+      padding-bottom: 6vh;
+      padding-left: calc(50vw - 38vw); // center 76vw card
+      padding-right: calc(50vw - 38vw);
+      gap: @spacing-4;
     }
   }
 
@@ -109,8 +110,8 @@
     }
 
     @media (max-width: @bp-md) {
-      width: 56vw;
-      height: 70vh;
+      width: 76vw;
+      height: 50vh;
       flex-shrink: 0;
     }
 
