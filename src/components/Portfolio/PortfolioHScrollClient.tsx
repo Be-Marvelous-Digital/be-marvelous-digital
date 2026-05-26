@@ -45,7 +45,7 @@ export const PortfolioHScrollClient = ({ children }: PortfolioHScrollClientProps
         scrollTrigger: {
           trigger: container,
           pin: true,
-          scrub: 3,
+          scrub: 2,
           start: 'top top',
           end: () => `+=${getScrollDistance() + window.innerHeight}`,
           invalidateOnRefresh: true,

@@ -5,7 +5,7 @@
   bottom: @spacing-5;
   left: @spacing-5;
   right: @spacing-5;
-  z-index: @z-toast;
+  z-index: 9999;
   animation: cookie-slide-up @duration-slow @ease-out both;
 
   @media (min-width: @bp-md) {
@@ -15,11 +15,11 @@
   }
 
   &__inner {
-    background: @color-surface;
-    border: @border-default;
+    background: #0f0c14;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: @radius-xl;
     padding: @spacing-6;
-    box-shadow: @shadow-xl;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
   }
 
   &__text {
