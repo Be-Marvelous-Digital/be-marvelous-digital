@@ -133,7 +133,29 @@
       "successDetail": "I'll get back to you within 24 hours.",
       "error": "Something went wrong. Please try again or email me directly.",
       "invalidEmail": "Please enter a valid email address.",
-      "invalidPhone": "Please enter a valid phone number."
+      "invalidPhone": "Please enter a valid phone number.",
+      "required": "This field is required."
+    }
+  },
+  "stack": {
+    "label": "Tech Stack",
+    "title": "Tools I Build With",
+    "titlePlain": "Tools I",
+    "titleAccent": "Build",
+    "titleSuffix": "With",
+    "skills": {
+      "react": "The reason my UI is smarter than me most of the time!",
+      "redux": "Where I store all my app's secrets... and probably yours too.",
+      "js": "The chaotic good that keeps my projects alive.",
+      "css": "Making things beautiful while giving me nightmares about alignment.",
+      "tailwind": "Because writing custom CSS is so 2010.",
+      "html": "The skeleton of every masterpiece, no bones about it.",
+      "git": "My time machine for code (but I still mess up the branches).",
+      "ts": "When I want my JavaScript to act all grown up.",
+      "graphql": "My favorite way to ask for data, politely and efficiently.",
+      "docker": "The magic box where all my code feels at home.",
+      "node": "The reason my backend runs without catching fire. Usually.",
+      "figma": "Where my design dreams meet the reality of feedback."
     }
   },
   "footer": {

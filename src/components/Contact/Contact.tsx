@@ -18,6 +18,7 @@ export const Contact = async () => {
     error: t('form.error'),
     invalidEmail: t('form.invalidEmail'),
     invalidPhone: t('form.invalidPhone'),
+    required: t('form.required'),
   };
 
   return (
@@ -25,10 +26,28 @@ export const Contact = async () => {
       className="contact section section--dark"
       id="contact"
       aria-labelledby="contact-heading"
+      data-nav-dark
     >
+      {/* ── Big full-width email CTA ─────────────────────────────────────── */}
+      <FadeIn>
+        <div className="container contact__big-cta">
+          <span className="label-text contact__big-label">{t('label')}</span>
+          <a
+            href="mailto:peter@bemarvelousdigital.sk"
+            className="contact__big-email"
+            aria-label="Send Peter an email"
+          >
+            peter@bemarvelousdigital.sk
+          </a>
+          <a href="tel:+421949154514" className="contact__big-phone" aria-label="Call Peter">
+            +421 949 154 514
+          </a>
+        </div>
+      </FadeIn>
+
+      {/* ── Form + left copy ────────────────────────────────────────────── */}
       <div className="container">
         <div className="contact__inner">
-          {/* Left — copy + quick-contact info */}
           <FadeIn className="contact__left">
             <span className="label-text">{t('label')}</span>
             <h2 className="contact__title" id="contact-heading">
@@ -44,19 +63,6 @@ export const Contact = async () => {
             <p className="contact__description">{t('description')}</p>
 
             <div className="contact__quick">
-              <p className="contact__quick-label">{t('emailLabel')}</p>
-              <a
-                href="mailto:peter@bemarvelousdigital.sk"
-                target="_blank"
-                className="contact__email-link"
-                aria-label="Send an email"
-              >
-                peter@bemarvelousdigital.sk
-              </a>
-              <a href="tel:+421949154514" className="contact__phone-link" aria-label="Call me">
-                +421 949 154 514
-              </a>
-
               <div className="contact__availability">
                 <div className="contact__availability-dot" aria-hidden="true" />
                 <span className="contact__availability-text">{t('availability')}</span>
@@ -64,7 +70,6 @@ export const Contact = async () => {
             </div>
           </FadeIn>
 
-          {/* Right — contact form */}
           <FadeIn className="contact__right" delay={0.15}>
             <div className="contact__form-shell">
               <ContactForm labels={formLabels} />

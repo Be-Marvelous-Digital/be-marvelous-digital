@@ -1,0 +1,176 @@
+@import (reference) 'global';
+
+// ── Marquee keyframes ─────────────────────────────────────────────────────────
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// ── Section ───────────────────────────────────────────────────────────────────
+
+.techstack {
+  overflow: hidden;
+  padding-top: @section-padding-y-desktop;
+  padding-bottom: @section-padding-y-desktop;
+
+  @media (max-width: @bp-md) {
+    padding-top: @section-padding-y-tablet;
+    padding-bottom: @section-padding-y-tablet;
+  }
+
+  // ── Header ─────────────────────────────────────────────────────────────────
+
+  &__header-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-4;
+    margin-bottom: @spacing-16;
+
+    @media (min-width: @bp-lg) {
+      margin-bottom: @spacing-20;
+    }
+  }
+
+  &__label {
+    color: @color-ink-inverse-muted;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-weight: @font-weight-ultra;
+    line-height: @line-height-tight;
+    letter-spacing: @tracking-tight;
+    color: @color-ink-inverse;
+    font-size: clamp(2.5rem, 7vw, @font-size-hero);
+  }
+
+  &__title-outline {
+    color: transparent;
+    -webkit-text-stroke: 2px @color-accent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  // ── Marquee rows ────────────────────────────────────────────────────────────
+
+  &__rows {
+    margin-top: @spacing-8;
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-4;
+  }
+
+  &__row {
+    overflow: hidden;
+    width: 100%;
+
+    &--left {
+      transform: rotate(-2deg);
+    }
+
+    &--right {
+      transform: rotate(2deg);
+    }
+
+    &-inner {
+      display: flex;
+      gap: @spacing-4;
+      width: max-content;
+      will-change: transform;
+      // Vertical padding gives cards room to translateY(-4px) on hover
+      // without being clipped by the row's overflow: hidden boundary
+      padding-block: 10px;
+    }
+
+    &--left &-inner {
+      animation: marquee-left 38s linear infinite;
+    }
+
+    &--right &-inner {
+      animation: marquee-right 34s linear infinite;
+    }
+
+    &:hover &-inner {
+      animation-play-state: paused;
+    }
+  }
+
+  // ── Skill cards ─────────────────────────────────────────────────────────────
+
+  &__card {
+    display: flex;
+    align-items: center;
+    gap: @spacing-4;
+    padding: @spacing-4 @spacing-6;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid @color-border-dark;
+    border-radius: @radius-2xl;
+    flex-shrink: 0;
+    min-width: 290px;
+    cursor: default;
+    transition:
+      background @transition-base,
+      border-color @transition-base,
+      transform @transition-base,
+      box-shadow @transition-base;
+
+    &:hover {
+      background: rgba(36, 72, 255, 0.07);
+      border-color: rgba(36, 72, 255, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 44px rgba(36, 72, 255, 0.14);
+    }
+
+    &-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: @radius-lg;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: @spacing-1;
+    }
+
+    &-name {
+      font-family: @font-display;
+      font-size: @font-size-sm;
+      font-weight: @font-weight-bold;
+      color: @color-ink-inverse;
+      text-transform: uppercase;
+      letter-spacing: @tracking-wider;
+    }
+
+    &-desc {
+      font-size: 0.725rem;
+      color: @color-ink-inverse-muted;
+      line-height: @line-height-snug;
+      max-width: 210px;
+      white-space: normal;
+    }
+  }
+}

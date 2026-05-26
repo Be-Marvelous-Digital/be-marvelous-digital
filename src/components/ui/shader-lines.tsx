@@ -46,7 +46,7 @@ export function ShaderAnimation() {
     if (!canvas) return;
 
     const gl = canvas.getContext('webgl', {
-      alpha: false,
+      alpha: true,
       antialias: false,
       powerPreference: 'low-power',
     });

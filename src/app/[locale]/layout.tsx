@@ -6,6 +6,8 @@ import { routing } from '@/i18n/config';
 import { CookieConsent } from '@/components/CookieConsent/CookieConsent';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 import { MetaPixel } from '@/components/Analytics/MetaPixel';
+import { CustomCursor } from '@/components/ui/CustomCursor/CustomCursor';
+import { AmbientOrbs } from '@/components/ui/AmbientOrbs/AmbientOrbs';
 
 import { SITE_URL as siteUrl } from '@/lib/constants';
 
@@ -115,6 +117,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <OrganizationJsonLd />
       <GoogleAnalytics />
       <MetaPixel />
+      <CustomCursor />
+      <AmbientOrbs />
       {children}
       <CookieConsent locale={locale} />
     </NextIntlClientProvider>

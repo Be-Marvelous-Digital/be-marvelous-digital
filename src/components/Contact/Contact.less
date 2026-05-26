@@ -10,15 +10,102 @@
   }
 }
 
-.contact {
-  background-color: @color-bg-dark-alt;
+@keyframes marquee-contact {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 
-  // ─── Main grid ─────────────────────────────────────────────────────────────
+.contact {
+  background-color: @color-bg-dark;
+  overflow: hidden;
+
+  // ── Bold full-width email CTA (above the form) ────────────────────────────
+
+  &__big-cta {
+    border-bottom: 1px solid rgba(247, 244, 238, 0.07);
+    padding-block: @spacing-20;
+    margin-bottom: 0;
+
+    @media (max-width: @bp-md) {
+      padding-block: @spacing-12;
+    }
+  }
+
+  &__big-label {
+    color: @color-ink-inverse-muted;
+    display: block;
+    margin-bottom: @spacing-6;
+  }
+
+  &__big-email {
+    display: block;
+    font-family: @font-display;
+    font-weight: @font-weight-ultra;
+    line-height: 0.95;
+    letter-spacing: @tracking-tight;
+    color: @color-ink-inverse;
+    text-decoration: none;
+    // Scale with viewport so the full address always fits on one line
+    font-size: clamp(0.9rem, 3.5vw, 5rem);
+    white-space: nowrap;
+    position: relative;
+    transition: color @transition-base;
+    padding-bottom: @spacing-2;
+
+    // Sliding underline
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, @color-accent, @color-accent-warm);
+      border-radius: @radius-full;
+      transition: width @duration-slow @ease-out;
+    }
+
+    &:hover {
+      color: @color-accent;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__big-phone {
+    display: block;
+    font-family: @font-display;
+    font-weight: @font-weight-bold;
+    font-size: clamp(@font-size-xl, 3vw, @font-size-4xl);
+    letter-spacing: @tracking-tight;
+    color: @color-ink-inverse-muted;
+    text-decoration: none;
+    margin-top: @spacing-4;
+    transition: color @transition-base;
+    width: fit-content;
+
+    &:hover {
+      color: @color-ink-inverse;
+    }
+  }
+
+  // ─── Main grid (below the big CTA) ─────────────────────────────────────────
 
   &__inner {
     display: grid;
     grid-template-columns: 1fr;
     gap: @spacing-16;
+    padding-top: @section-padding-y-desktop;
+
+    @media (max-width: @bp-md) {
+      padding-top: @section-padding-y-tablet;
+    }
 
     @media (min-width: @bp-lg) {
       grid-template-columns: 5fr 7fr;
@@ -149,7 +236,6 @@
     border-radius: @radius-2xl;
     border: 1px solid rgba(247, 244, 238, 0.08);
 
-    // Subtle accent glow on top edge
     &::before {
       content: '';
       position: absolute;

@@ -16,6 +16,7 @@ interface ContactFormLabels {
   error: string;
   invalidEmail: string;
   invalidPhone: string;
+  required: string;
 }
 
 interface ContactFormProps {
@@ -29,8 +30,10 @@ const MAILCHIMP_URL =
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 type FieldErrors = {
+  name?: string;
   email?: string;
   phone?: string;
+  message?: string;
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,7 +61,13 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
   const validate = useCallback((): boolean => {
     const errors: FieldErrors = {};
 
-    if (values.email && !EMAIL_REGEX.test(values.email)) {
+    if (!values.name.trim()) {
+      errors.name = labels.required;
+    }
+
+    if (!values.email.trim()) {
+      errors.email = labels.required;
+    } else if (!EMAIL_REGEX.test(values.email)) {
       errors.email = labels.invalidEmail;
     }
 
@@ -66,9 +75,13 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
       errors.phone = labels.invalidPhone;
     }
 
+    if (!values.message.trim()) {
+      errors.message = labels.required;
+    }
+
     setFieldErrors(errors);
     return Object.keys(errors).length === 0;
-  }, [values.email, values.phone, labels.invalidEmail, labels.invalidPhone]);
+  }, [values, labels]);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -126,7 +139,7 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <div className="contact-form__row">
         <div
-          className={`contact-form__field${isActive('name') ? ' contact-form__field--active' : ''}`}
+          className={`contact-form__field${isActive('name') ? ' contact-form__field--active' : ''}${fieldErrors.name ? ' contact-form__field--error' : ''}`}
         >
           <input
             type="text"
@@ -145,6 +158,11 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
             {labels.name}
           </label>
           <span className="contact-form__line" aria-hidden="true" />
+          {fieldErrors.name && (
+            <span className="contact-form__field-error" role="alert">
+              {fieldErrors.name}
+            </span>
+          )}
         </div>
 
         <div
@@ -202,7 +220,7 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
       </div>
 
       <div
-        className={`contact-form__field contact-form__field--textarea${isActive('message') ? ' contact-form__field--active' : ''}`}
+        className={`contact-form__field contact-form__field--textarea${isActive('message') ? ' contact-form__field--active' : ''}${fieldErrors.message ? ' contact-form__field--error' : ''}`}
       >
         <textarea
           id="cf-message"
@@ -223,6 +241,11 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
         <span className="contact-form__char-count" aria-hidden="true">
           {values.message.length}
         </span>
+        {fieldErrors.message && (
+          <span className="contact-form__field-error" role="alert">
+            {fieldErrors.message}
+          </span>
+        )}
       </div>
 
       {status === 'error' && (

@@ -16,6 +16,10 @@
   },
   "dependencies": {
     "@prisma/client": "^6.0.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.95",
     "@tabler/icons-react": "^3.44.0",
     "@tiptap/extension-character-count": "^2.11.0",
     "@tiptap/extension-image": "^2.11.0",

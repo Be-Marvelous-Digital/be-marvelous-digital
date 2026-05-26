@@ -1,0 +1,73 @@
+@import (reference) 'global';
+
+// ── Hide native cursor when custom cursor is active ───────────────────────────
+
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+// ── Cursor elements (desktop hover-capable devices only) ─────────────────────
+
+@media (hover: hover) {
+  .cursor__ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 38px;
+    height: 38px;
+    margin-top: -19px;
+    margin-left: -19px;
+    border: 1.5px solid rgba(36, 72, 255, 0.65);
+    border-radius: @radius-full;
+    pointer-events: none;
+    z-index: 99998;
+    will-change: transform;
+    // Only animate size/color — position is handled by JS
+    transition:
+      width @duration-slow @ease-spring,
+      height @duration-slow @ease-spring,
+      margin @duration-slow @ease-spring,
+      border-color @transition-slow,
+      background @transition-slow,
+      opacity @transition-base;
+
+    &--hover {
+      width: 66px;
+      height: 66px;
+      margin-top: -33px;
+      margin-left: -33px;
+      border-color: @color-accent;
+      background: rgba(36, 72, 255, 0.06);
+    }
+  }
+
+  .cursor__dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    margin-left: -3px;
+    background: @color-accent;
+    border-radius: @radius-full;
+    pointer-events: none;
+    z-index: 99999;
+    will-change: transform;
+    // Animate size/color only — transform is managed entirely by the RAF loop
+    transition:
+      width @duration-fast @ease-spring,
+      height @duration-fast @ease-spring,
+      margin @duration-fast @ease-spring,
+      background @duration-fast @ease-spring;
+
+    &--click {
+      width: 14px;
+      height: 14px;
+      margin-top: -7px;
+      margin-left: -7px;
+      background: @color-accent-warm;
+    }
+  }
+}

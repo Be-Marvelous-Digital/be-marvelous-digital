@@ -1,15 +1,74 @@
 @import (reference) 'global';
 
+@keyframes footer-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .footer {
   background-color: @color-bg-dark;
   border-top: 1px solid rgba(247, 244, 238, 0.06);
-  padding-block: @spacing-16;
+  padding-top: 0;
+  padding-bottom: @spacing-16;
+
+  // ── Marquee CTA band ─────────────────────────────────────────────────────
+
+  &__marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(247, 244, 238, 0.07);
+    padding-block: @spacing-8;
+
+    @media (min-width: @bp-lg) {
+      padding-block: @spacing-10;
+    }
+
+    &:hover .footer__marquee-inner {
+      animation-play-state: paused;
+    }
+  }
+
+  &__marquee-inner {
+    display: flex;
+    width: max-content;
+    animation: footer-marquee 22s linear infinite;
+    will-change: transform;
+  }
+
+  &__marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: @spacing-6;
+    padding-right: @spacing-6;
+    font-family: @font-display;
+    font-weight: @font-weight-black;
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
+    letter-spacing: @tracking-tight;
+    white-space: nowrap;
+    color: @color-ink-inverse;
+    line-height: 1;
+
+    // Alternate items slightly dimmer for rhythm
+    &:nth-child(even) {
+      color: @color-ink-inverse-muted;
+    }
+  }
+
+  &__marquee-dot {
+    color: @color-accent;
+    font-size: 0.6em;
+    line-height: 1;
+  }
 
   &__top {
     display: grid;
     grid-template-columns: 1fr;
     gap: @spacing-12;
-    padding-bottom: @spacing-12;
+    padding: @spacing-12 0;
     border-bottom: 1px solid rgba(247, 244, 238, 0.06);
 
     @media (min-width: @bp-lg) {

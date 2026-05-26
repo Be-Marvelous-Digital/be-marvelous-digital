@@ -13,17 +13,17 @@
 
 // ─── Backgrounds ─────────────────────────────────────────────────────────────
 
-@color-bg: #f7f4ee; // Warm cream — main background
-@color-bg-dark: #0b0b0a; // Near-black — hero, footer, dark sections
+@color-bg: #060509; // Near-black — main background
+@color-bg-dark: #060509; // Same as main — unified dark
 @color-bg-dark-alt: #141412; // Slightly lighter dark surface
-@color-surface: #ffffff; // Pure white — cards, modals
-@color-surface-alt: #efece5; // Muted cream — alternating sections
+@color-surface: rgba(255, 255, 255, 0.04); // Subtle glass card surface
+@color-surface-alt: rgba(255, 255, 255, 0.06); // Slightly more visible surface
 
 // ─── Text ────────────────────────────────────────────────────────────────────
 
-@color-ink: #0d0d0b; // Primary text (near-black, slightly warm)
-@color-ink-secondary: #5c5950; // Secondary / subheadings
-@color-ink-tertiary: #9c9890; // Captions, meta, placeholders
+@color-ink: #f7f4ee; // Primary text (light on dark)
+@color-ink-secondary: rgba(247, 244, 238, 0.7); // Secondary / subheadings
+@color-ink-tertiary: rgba(247, 244, 238, 0.45); // Captions, meta, placeholders
 @color-ink-inverse: #f7f4ee; // Text on dark backgrounds
 @color-ink-inverse-dim: rgba(247, 244, 238, 0.7); // Dimmed text on dark backgrounds
 @color-ink-inverse-muted: rgba(247, 244, 238, 0.5); // Muted text on dark backgrounds
@@ -32,8 +32,8 @@
 
 // ─── UI / Borders ────────────────────────────────────────────────────────────
 
-@color-border: #e4e1da; // Default border
-@color-border-strong: #c6c3bb; // Emphasized border
+@color-border: rgba(255, 255, 255, 0.1); // Default border
+@color-border-strong: rgba(255, 255, 255, 0.18); // Emphasized border
 @color-border-dark: rgba(255, 255, 255, 0.12); // Border on dark backgrounds
 @color-focus: @color-accent;
 
@@ -157,8 +157,8 @@
 @container-md: 768px;
 @container-lg: 1024px;
 @container-xl: 1280px;
-@container-2xl: 1440px;
-@container-max: 1600px;
+@container-2xl: 1920px;
+@container-max: 2200px;
 
 @container-padding-x-mobile: @spacing-5; // 20px
 @container-padding-x-tablet: @spacing-8; // 32px
@@ -292,7 +292,7 @@
 
 @nav-height: 4rem; // 64px
 @nav-height-lg: 5rem; // 80px
-@nav-bg: rgba(247, 244, 238, 0.92);
+@nav-bg: rgba(11, 11, 10, 0.85);
 @nav-bg-dark: rgba(11, 11, 10, 0.92);
 @nav-backdrop: blur(16px) saturate(180%);
 @nav-border: @border-default;
@@ -339,6 +339,7 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: @color-bg;
 }
 
 body {
@@ -420,6 +421,68 @@ select {
   color: @color-ink;
 }
 
+// ─── Film-grain overlay ──────────────────────────────────────────────────────
+// Subtle animated noise texture that adds depth and premium tactility
+
+@keyframes grain-shift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-4%, -8%);
+  }
+  20% {
+    transform: translate(-12%, 4%);
+  }
+  30% {
+    transform: translate(6%, -20%);
+  }
+  40% {
+    transform: translate(-4%, 22%);
+  }
+  50% {
+    transform: translate(-14%, 8%);
+  }
+  60% {
+    transform: translate(14%, 0%);
+  }
+  70% {
+    transform: translate(0%, 12%);
+  }
+  80% {
+    transform: translate(2%, 30%);
+  }
+  90% {
+    transform: translate(-8%, 8%);
+  }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  // SVG feTurbulence noise pattern — generates real film grain inline
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: grain-shift 0.35s steps(1) infinite;
+  opacity: 0.032;
+  pointer-events: none;
+  z-index: 99997;
+  mix-blend-mode: overlay;
+}
+
+// ─── Split-line reveal utility ───────────────────────────────────────────────
+// Wrap heading lines in this to mask GSAP translateY reveals
+
+.split-line {
+  overflow: hidden;
+  display: block;
+}
+
 // ─── Scrollbar (WebKit) ──────────────────────────────────────────────────────
 
 ::-webkit-scrollbar {
@@ -456,6 +519,10 @@ select {
 
   @media (min-width: @bp-lg) {
     padding-inline: @container-padding-x-desktop;
+  }
+
+  @media (min-width: @container-max) {
+    max-width: @container-max;
   }
 
   &--wide {
@@ -586,13 +653,20 @@ select {
 
   &--dark {
     background-color: @color-ink-inverse;
-    color: @color-ink;
+    color: @color-bg;
+    border: @border-width-medium solid @color-ink-inverse;
 
     &:hover {
-      background-color: @color-bg;
-      color: @color-ink;
+      background-color: transparent;
+      color: @color-ink-inverse;
+      border-color: @color-ink-inverse;
       transform: translateY(-1px);
-      box-shadow: @shadow-lg;
+      box-shadow: 0 0 20px rgba(247, 244, 238, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
     }
   }
 

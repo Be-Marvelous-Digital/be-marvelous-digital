@@ -36,9 +36,22 @@ export const Services = async () => {
           <div className="services__grid">
             {items.map((service) => (
               <article key={service.number} className="services__card">
-                <span className="services__card-number" aria-hidden="true">
-                  {service.number}
-                </span>
+                <div className="services__card-top">
+                  <span className="services__card-number" aria-hidden="true">
+                    {service.number}
+                  </span>
+                  <span className="services__card-arrow" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path
+                        d="M4 16L16 4M16 4H8M16 4v8"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
                 <h3 className="services__card-title">{service.title}</h3>
                 <p className="services__card-description">{service.description}</p>
                 <ul className="services__card-highlights" aria-label="Key features">

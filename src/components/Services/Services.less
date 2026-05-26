@@ -30,8 +30,8 @@
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: @spacing-px;
-    background-color: @color-border;
+    gap: 0;
+    border-top: 1px solid @color-border;
 
     @media (min-width: @bp-md) {
       grid-template-columns: repeat(2, 1fr);
@@ -42,23 +42,84 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: @spacing-4;
+    gap: @spacing-5;
     padding: @spacing-10 @spacing-8;
     background-color: @color-bg;
-    transition: background-color @transition-base;
+    border-bottom: 1px solid @color-border;
+    border-right: none;
+    overflow: hidden;
+    transition:
+      background-color @transition-base,
+      transform @transition-slow;
+
+    @media (min-width: @bp-md) {
+      border-right: 1px solid @color-border;
+
+      &:nth-child(even) {
+        border-right: none;
+      }
+    }
 
     @media (min-width: @bp-lg) {
       padding: @spacing-12 @spacing-10;
+    }
+
+    // Sliding accent fill — comes in from left
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(36, 72, 255, 0.04), rgba(36, 72, 255, 0.01));
+      transform: translateX(-100%);
+      transition: transform @duration-slow @ease-out;
+    }
+
+    // Accent left-border that grows on hover
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: linear-gradient(to bottom, @color-accent, @color-accent-warm);
+      border-radius: 0 @radius-sm @radius-sm 0;
+      transition: height @duration-slow @ease-out;
     }
 
     &:hover {
       background-color: @color-surface;
       z-index: @z-above;
 
+      &::before {
+        transform: translateX(0);
+      }
+
+      &::after {
+        height: 100%;
+      }
+
       .services__card-number {
         color: @color-accent;
+        border-color: @color-accent;
+        background: rgba(36, 72, 255, 0.06);
+      }
+
+      .services__card-arrow {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+
+      .services__card-title {
+        color: @color-ink;
       }
     }
+  }
+
+  &__card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__card-number {
@@ -68,11 +129,30 @@
     letter-spacing: @tracking-widest;
     text-transform: uppercase;
     color: @color-ink-tertiary;
-    transition: color @transition-fast;
+    transition:
+      color @transition-base,
+      border-color @transition-base,
+      background @transition-base;
     align-self: flex-start;
     padding: @spacing-1 @spacing-3;
     border: 1px solid @color-border;
     border-radius: @radius-full;
+  }
+
+  // Arrow icon — reveals on hover
+  &__card-arrow {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: @color-accent;
+    opacity: 0;
+    transform: translate(-8px, 8px);
+    transition:
+      opacity @transition-base,
+      transform @transition-base;
+    flex-shrink: 0;
   }
 
   &__card-title {
@@ -81,6 +161,7 @@
     font-weight: @font-weight-bold;
     color: @color-ink;
     letter-spacing: @tracking-tight;
+    transition: color @transition-fast;
   }
 
   &__card-description {
@@ -106,5 +187,15 @@
     background: @color-surface-alt;
     border-radius: @radius-full;
     border: 1px solid @color-border;
+    transition:
+      background @transition-fast,
+      border-color @transition-fast,
+      color @transition-fast;
+
+    .services__card:hover & {
+      background: rgba(36, 72, 255, 0.05);
+      border-color: rgba(36, 72, 255, 0.2);
+      color: @color-ink;
+    }
   }
 }

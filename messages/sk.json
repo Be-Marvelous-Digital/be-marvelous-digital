@@ -133,7 +133,29 @@
       "successDetail": "Ozvem sa vám do 24 hodín.",
       "error": "Niečo sa pokazilo. Skúste znova alebo mi napíšte priamo.",
       "invalidEmail": "Prosím, zadajte platnú e-mailovú adresu.",
-      "invalidPhone": "Prosím, zadajte platné telefónne číslo."
+      "invalidPhone": "Prosím, zadajte platné telefónne číslo.",
+      "required": "Toto pole je povinné."
+    }
+  },
+  "stack": {
+    "label": "Technológie",
+    "title": "Nástroje, ktorými tvorím",
+    "titlePlain": "Nástroje,",
+    "titleAccent": "ktorými",
+    "titleSuffix": "tvorím",
+    "skills": {
+      "react": "Dôvod, prečo je moje UI chytrejšie ako ja väčšinu času!",
+      "redux": "Kde uchovávam všetky tajomstvá aplikácie... a možno aj vaše.",
+      "js": "Chaotické dobro, ktoré udržiava moje projekty pri živote.",
+      "css": "Robím veci krásnymi a zároveň mám nočné mory z zarovnania.",
+      "tailwind": "Lebo písať vlastné CSS je tak z roku 2010.",
+      "html": "Kostra každého majstrovského diela — bez kostičky na tom.",
+      "git": "Môj stroj času pre kód (aj keď stále kalamitujem s vetvami).",
+      "ts": "Keď chcem, aby môj JavaScript pôsobil dospelo.",
+      "graphql": "Môj obľúbený spôsob žiadania o dáta — zdvorilo a efektívne.",
+      "docker": "Magická krabica, kde sa môj kód cíti ako doma.",
+      "node": "Dôvod, prečo môj backend beží bez toho, aby chytil plameň. Väčšinou.",
+      "figma": "Kde sa moje dizajnové sny stretávajú s realitou spätnej väzby."
     }
   },
   "footer": {

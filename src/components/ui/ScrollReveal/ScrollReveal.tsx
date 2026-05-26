@@ -1,6 +1,10 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -16,8 +20,8 @@ export const ScrollReveal = ({
   delay = 0,
   direction = 'up',
   className,
-  distance = 32,
-  duration = 0.7,
+  distance = 44,
+  duration = 0.9,
 }: ScrollRevealProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -25,32 +29,24 @@ export const ScrollReveal = ({
     const el = ref.current;
     if (!el) return;
 
-    const yFrom = direction === 'up' ? distance : direction === 'down' ? -distance : 0;
+    const y = direction === 'up' ? distance : direction === 'down' ? -distance : 0;
 
-    // Set initial hidden state
-    el.style.opacity = '0';
-    el.style.transform = `translateY(${yFrom}px)`;
-    el.style.transition = `opacity ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`;
+    const ctx = gsap.context(() => {
+      gsap.from(el, {
+        y,
+        opacity: 0,
+        duration,
+        delay,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          } else if (entry.boundingClientRect.top > 0) {
-            // Only reverse when element leaves viewport from the bottom (scrolling back up)
-            // Not when it leaves from the top (scrolling down past it)
-            el.style.opacity = '0';
-            el.style.transform = `translateY(${yFrom}px)`;
-          }
-        }
-      },
-      { threshold: 0, rootMargin: '0px 0px -15% 0px' },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
+    return () => ctx.revert();
   }, [delay, direction, distance, duration]);
 
   return (

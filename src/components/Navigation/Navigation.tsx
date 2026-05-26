@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '@/hooks/useLocale';
@@ -30,8 +30,11 @@ interface NavigationProps {
 
 export const Navigation = ({ forceDark = false }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [heroIntersecting, setHeroIntersecting] = useState<boolean | null>(null);
+  const darkSectionsRef = useRef(new Set<Element>());
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
   const locale = useLocale();
   const navLinks = locale === 'en' ? NAV_LINKS_EN : NAV_LINKS_SK;
@@ -40,7 +43,21 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
   const altHref = getAlternateHref(pathname, locale);
 
   const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 60);
+    const currentY = window.scrollY;
+    setScrolled(currentY > 60);
+
+    // Hide on scroll down, show on scroll up
+    if (currentY > 100) {
+      setHidden(currentY > lastScrollY.current);
+    } else {
+      setHidden(false);
+    }
+    lastScrollY.current = currentY;
+
+    // Drive the CSS progress bar via a custom property on <html>
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? currentY / scrollable : 0;
+    document.documentElement.style.setProperty('--scroll-progress', String(progress));
   }, []);
 
   useEffect(() => {
@@ -49,15 +66,30 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
   }, [handleScroll]);
 
   useEffect(() => {
-    const darkElement = document.querySelector('[data-nav-dark]');
-    if (!darkElement) return;
+    const darkElements = document.querySelectorAll('[data-nav-dark]');
+    if (!darkElements.length) return;
+
+    darkSectionsRef.current.clear();
 
     const observer = new IntersectionObserver(
-      ([entry]) => setHeroIntersecting(entry.isIntersecting),
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            darkSectionsRef.current.add(entry.target);
+          } else {
+            darkSectionsRef.current.delete(entry.target);
+          }
+        });
+        setHeroIntersecting(darkSectionsRef.current.size > 0);
+      },
       { threshold: 0 },
     );
-    observer.observe(darkElement);
-    return () => observer.disconnect();
+
+    darkElements.forEach((el) => observer.observe(el));
+    return () => {
+      observer.disconnect();
+      darkSectionsRef.current.clear();
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -70,11 +102,22 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
 
-  const isScrolledState = forceDark || (heroIntersecting !== null ? !heroIntersecting : scrolled);
+  const isDarkSection = heroIntersecting === true || forceDark;
+  const isScrolledState = scrolled;
+  const isDarkScrolled = false; // entire page is dark now
+
+  const navClassName = [
+    'navigation',
+    isScrolledState ? 'navigation--scrolled' : '',
+    isDarkScrolled ? 'navigation--dark-scrolled' : '',
+    hidden && !menuOpen ? 'navigation--hidden' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <>
-      <header className={`navigation ${isScrolledState ? 'navigation--scrolled' : ''}`}>
+      <header className={navClassName}>
         <div className="navigation__inner container">
           <Logo
             href={locale === 'en' ? '/en' : '/'}

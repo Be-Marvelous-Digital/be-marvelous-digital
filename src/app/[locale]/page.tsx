@@ -4,6 +4,7 @@ import { Navigation } from '@/components/Navigation/Navigation';
 import { Hero } from '@/components/Hero/Hero';
 import { Services } from '@/components/Services/Services';
 import { Portfolio } from '@/components/Portfolio/Portfolio';
+import { TechStack } from '@/components/TechStack/TechStack';
 import { Process } from '@/components/Process/Process';
 import { About } from '@/components/About/About';
 import { BlogPreview } from '@/components/BlogPreview/BlogPreview';
@@ -86,6 +87,7 @@ export default async function HomePage() {
         <Hero />
         <Services />
         <Portfolio />
+        <TechStack />
         <Process />
         <About />
         {posts.length > 0 && <BlogPreview posts={posts} />}

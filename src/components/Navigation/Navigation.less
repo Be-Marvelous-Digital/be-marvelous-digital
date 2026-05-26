@@ -7,18 +7,42 @@
   right: 0;
   z-index: @z-sticky;
   padding-block: @spacing-5;
+  background: @color-bg;
   transition:
-    background @transition-base,
     padding @transition-base,
-    box-shadow @transition-base;
+    box-shadow @transition-base,
+    transform 0.3s ease;
+
+  // Soft blur fade at bottom edge
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(11, 11, 10, 0.6), transparent);
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  // Scroll progress bar along the very top — REMOVED
+
+  &--hidden {
+    transform: translateY(-100%);
+  }
 
   &--scrolled {
     padding-block: @spacing-3;
-    background: @nav-bg;
-    backdrop-filter: @nav-backdrop;
-    -webkit-backdrop-filter: @nav-backdrop;
     box-shadow: @shadow-sm;
-    border-bottom: @border-default;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &--dark-scrolled {
+    padding-block: @spacing-3;
+    box-shadow: @shadow-sm;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   &__inner {
@@ -29,10 +53,6 @@
 
   &__logo {
     color: @color-ink-inverse;
-
-    .navigation--scrolled & {
-      color: @color-ink;
-    }
   }
 
   &__links {
@@ -72,14 +92,6 @@
 
       &::after {
         width: 100%;
-      }
-    }
-
-    .navigation--scrolled & {
-      color: @color-ink-secondary;
-
-      &:hover {
-        color: @color-ink;
       }
     }
   }
@@ -155,17 +167,21 @@
     left: 0;
     width: 100vw;
     height: 100dvh;
-    background: @color-surface;
+    background: @color-bg-dark;
     z-index: @z-overlay;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: @spacing-10 @spacing-8;
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+    clip-path: inset(0 0 100% 0);
     transition:
       opacity @transition-slow,
-      visibility 0s @duration-slow;
+      clip-path @duration-slower @ease-out,
+      visibility 0s @duration-slower;
 
     @media (min-width: @bp-lg) {
       display: none;
@@ -175,9 +191,22 @@
       opacity: 1;
       pointer-events: all;
       visibility: visible;
+      clip-path: inset(0 0 0% 0);
       transition:
         opacity @transition-slow,
+        clip-path @duration-slower @ease-out,
         visibility 0s;
+    }
+
+    // Accent gradient line at top
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, @color-accent, transparent);
     }
   }
 
@@ -190,33 +219,46 @@
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    color: @color-ink;
+    color: @color-ink-inverse-muted;
     cursor: pointer;
     transition: color @transition-fast;
 
     &:hover {
-      color: @color-accent;
+      color: @color-ink-inverse;
     }
   }
 
   &__mobile-links {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: @spacing-6;
-    text-align: center;
+    align-items: flex-start;
+    gap: 0;
+    text-align: left;
+    width: 100%;
   }
 
   &__mobile-link {
     font-family: @font-display;
-    font-size: @font-size-3xl;
-    font-weight: @font-weight-bold;
-    color: @color-ink;
+    font-size: clamp(2.5rem, 10vw, @font-size-hero);
+    font-weight: @font-weight-black;
+    color: @color-ink-inverse;
     text-decoration: none;
     letter-spacing: @tracking-tight;
+    line-height: 1.05;
+    padding-block: @spacing-3;
+    border-bottom: 1px solid rgba(247, 244, 238, 0.06);
+    width: 100%;
+    transition:
+      color @transition-base,
+      padding-left @transition-base;
+
+    &:first-child {
+      border-top: 1px solid rgba(247, 244, 238, 0.06);
+    }
 
     &:hover {
       color: @color-accent;
+      padding-left: @spacing-4;
     }
   }
 
@@ -259,10 +301,10 @@
 
   &__mobile-item {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(16px);
     transition:
-      opacity @transition-base,
-      transform @transition-base;
+      opacity @transition-slow,
+      transform @transition-slow;
 
     .navigation__mobile--open & {
       opacity: 1;
@@ -271,16 +313,20 @@
   }
 
   &__mobile-locale {
-    font-family: @font-display;
-    font-size: @font-size-xl;
-    font-weight: @font-weight-bold;
-    color: @color-ink-secondary;
+    font-size: @font-size-sm;
+    font-weight: @font-weight-semibold;
+    letter-spacing: @tracking-widest;
+    text-transform: uppercase;
+    color: @color-ink-inverse-muted;
     text-decoration: none;
-    letter-spacing: @tracking-tight;
-    margin-top: @spacing-4;
+    margin-top: @spacing-8;
+    padding: @spacing-2 @spacing-4;
+    border: 1px solid rgba(247, 244, 238, 0.15);
+    border-radius: @radius-full;
 
     &:hover {
-      color: @color-accent;
+      color: @color-ink-inverse;
+      border-color: rgba(247, 244, 238, 0.4);
     }
   }
 }

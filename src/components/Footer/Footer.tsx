@@ -27,8 +27,25 @@ export const Footer = async () => {
     },
   ];
 
+  const marqueeText =
+    locale === 'en'
+      ? "Let's build something marvelous"
+      : 'Postavme niečo úžasné';
+
   return (
     <footer className="footer">
+      {/* ── Full-width marquee CTA ───────────────────────────────── */}
+      <div className="footer__marquee-wrap" aria-hidden="true">
+        <div className="footer__marquee-inner">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span key={i} className="footer__marquee-item">
+              {marqueeText}
+              <span className="footer__marquee-dot" aria-hidden="true">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
