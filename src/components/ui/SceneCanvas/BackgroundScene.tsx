@@ -36,7 +36,7 @@ function FlyAcrossShape() {
 
     // Hero wrapper is 220svh, animation ends at ~80% = ~176vh
     // Stats wrapper starts after hero wrapper — extend 400px further
-    const flyStart = vh * 1.5;
+    const flyStart = 1;
     const flyEnd = vh * 3 + 400;
     const range = flyEnd - flyStart;
     const rawT = range > 0 ? Math.max(0, Math.min(1, (scrollY - flyStart) / range)) : 0;
