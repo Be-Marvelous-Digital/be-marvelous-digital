@@ -1,16 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getPerformanceTier } from '@/utils/performanceTier';
 
 type PerformanceTier = 'low' | 'mid' | 'high';
 
 export function usePerformanceTier(): PerformanceTier {
-  const [tier, setTier] = useState<PerformanceTier>('mid');
-
-  useEffect(() => {
-    setTier(getPerformanceTier());
-  }, []);
+  const [tier] = useState<PerformanceTier>(() => {
+    if (typeof window === 'undefined') return 'mid';
+    return getPerformanceTier();
+  });
 
   return tier;
 }

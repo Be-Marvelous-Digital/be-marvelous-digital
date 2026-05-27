@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, Suspense, lazy } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import { getPerformanceTier } from '@/utils/performanceTier';
 
 const ProcessFlythrough = lazy(() =>
@@ -21,12 +21,10 @@ interface ProcessSwitchProps {
 }
 
 export const ProcessSwitch = ({ steps, fallback }: ProcessSwitchProps) => {
-  const [useFlythrough, setUseFlythrough] = useState(false);
-
-  useEffect(() => {
-    const tier = getPerformanceTier();
-    setUseFlythrough(tier !== 'low');
-  }, []);
+  const [useFlythrough] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return getPerformanceTier() !== 'low';
+  });
 
   if (!useFlythrough) {
     return <>{fallback}</>;

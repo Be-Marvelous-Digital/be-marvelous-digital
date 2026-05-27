@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useSyncExternalStore } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -13,8 +13,17 @@ interface LenisProviderProps {
 }
 
 export const LenisProvider = ({ children }: LenisProviderProps) => {
-  const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const listenersRef = useRef(new Set<() => void>());
+
+  const subscribe = (onStoreChange: () => void) => {
+    listenersRef.current.add(onStoreChange);
+    return () => { listenersRef.current.delete(onStoreChange); };
+  };
+
+  const getSnapshot = () => lenisRef.current;
+
+  const lenisInstance = useSyncExternalStore(subscribe, getSnapshot, () => null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -28,7 +37,7 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
     });
 
     lenisRef.current = lenis;
-    setLenisInstance(lenis);
+    listenersRef.current.forEach((cb) => cb());
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -43,7 +52,7 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
       gsap.ticker.remove(update);
       lenis.destroy();
       lenisRef.current = null;
-      setLenisInstance(null);
+      listenersRef.current.forEach((cb) => cb());
     };
   }, []);
 

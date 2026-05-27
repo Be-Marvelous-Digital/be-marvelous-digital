@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { getPerformanceTier, getDprForTier } from '@/utils/performanceTier';
 import './SceneCanvas.less';
 
@@ -11,25 +11,21 @@ const BackgroundScene = lazy(() =>
 );
 
 export const SceneCanvas = () => {
-  const [mounted, setMounted] = useState(false);
-  const [tier, setTier] = useState<'low' | 'mid' | 'high'>('mid');
+  const [config] = useState(() => {
+    if (typeof window === 'undefined') return null;
+    const tier = getPerformanceTier();
+    return { tier, dpr: getDprForTier(tier) };
+  });
 
-  useEffect(() => {
-    setTier(getPerformanceTier());
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
-  const dpr = getDprForTier(tier);
+  if (!config) return null;
 
   return (
     <div className="scene-canvas" aria-hidden="true">
       <Suspense fallback={null}>
         <Canvas
-          dpr={dpr}
+          dpr={config.dpr}
           gl={{
-            antialias: tier !== 'low',
+            antialias: config.tier !== 'low',
             alpha: true,
             powerPreference: 'high-performance',
           }}
@@ -38,7 +34,7 @@ export const SceneCanvas = () => {
           style={{ pointerEvents: 'none' }}
         >
           <Suspense fallback={null}>
-            <BackgroundScene tier={tier} />
+            <BackgroundScene tier={config.tier} />
           </Suspense>
         </Canvas>
       </Suspense>
