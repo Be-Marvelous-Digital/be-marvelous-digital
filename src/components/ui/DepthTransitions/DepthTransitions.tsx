@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { isTouchDevice } from '@/utils/performanceTier';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +20,9 @@ export const DepthTransitions = () => {
   const ctxRef = useRef<gsap.Context | null>(null);
 
   useEffect(() => {
+    // Skip heavy GSAP depth animations on touch devices
+    if (isTouchDevice()) return;
+
     // Delay to let HeroReveal entrance finish
     const timer = setTimeout(() => {
       const hero = document.querySelector<HTMLElement>('.hero');

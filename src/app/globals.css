@@ -23,3 +23,57 @@ html.lenis body {
 .lenis.lenis-stopped {
   overflow: clip;
 }
+
+/* Kill heavy GPU effects on touch/mobile devices */
+@media (hover: none) {
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    will-change: auto !important;
+  }
+
+  .scene-canvas {
+    display: none !important;
+  }
+
+  /* Disable ambient floating orbs */
+  .ambient-orbs {
+    display: none !important;
+  }
+
+  /* Disable film grain overlay (body::before pseudo-element) */
+  body::before {
+    animation: none !important;
+    display: none !important;
+  }
+
+  /* Disable hero background orb animations */
+  .hero__bg::before,
+  .hero__bg::after {
+    animation: none !important;
+  }
+
+  /* Disable process orbit shape animation */
+  .process-flythrough__orbit-shape {
+    display: none !important;
+  }
+
+  /* Disable continuous CSS animations that burn GPU */
+  .hero__label {
+    animation: none !important;
+  }
+
+  .hero__scroll-line {
+    animation: none !important;
+  }
+
+  .navigation__pulse-ring {
+    animation: none !important;
+  }
+
+  /* Simplify marquee animations — use shorter duration, no will-change */
+  .tech-stack__track,
+  .footer-marquee__track {
+    animation-duration: 60s !important;
+  }
+}

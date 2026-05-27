@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { LenisContext } from '@/hooks/useLenis';
+import { isTouchDevice } from '@/utils/performanceTier';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,13 +29,14 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
   const lenisInstance = useSyncExternalStore(subscribe, getSnapshot, () => null);
 
   useEffect(() => {
+    // Skip Lenis on touch devices — native scroll is lighter
+    if (isTouchDevice()) return;
+
     const lenis = new Lenis({
       duration: 1.6,
       smoothWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
+      syncTouch: false,
       wheelMultiplier: 0.58,
-      touchMultiplier: 1.2,
       autoRaf: false,
     });
 

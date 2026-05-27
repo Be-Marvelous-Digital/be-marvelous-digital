@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { isTouchDevice } from '@/utils/performanceTier';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,9 @@ export const AboutAnimations = () => {
   const ctxRef = useRef<gsap.Context | null>(null);
 
   useEffect(() => {
+    // Skip scroll-driven animations on touch devices for performance
+    if (isTouchDevice()) return;
+
     const timer = setTimeout(() => {
       const section = document.querySelector<HTMLElement>('#about');
       if (!section) return;

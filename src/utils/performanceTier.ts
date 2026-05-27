@@ -10,9 +10,9 @@ export function getPerformanceTier(): PerformanceTier {
   const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 4;
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-  if (memory <= 2 || cores <= 2) {
+  if (isMobile || memory <= 2 || cores <= 2) {
     cachedTier = 'low';
-  } else if (isMobile) {
+  } else if (cores <= 4 || memory <= 4) {
     cachedTier = 'mid';
   } else {
     cachedTier = 'high';
