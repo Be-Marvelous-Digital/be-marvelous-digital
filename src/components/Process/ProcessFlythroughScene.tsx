@@ -185,7 +185,7 @@ export const ProcessFlythroughScene = ({
     camera.lookAt(lookTarget);
   });
 
-  const particleCount = tier === 'low' ? 100 : tier === 'mid' ? 300 : 600;
+  const particleCount = tier === 'low' ? 60 : tier === 'mid' ? 150 : 400;
 
   return (
     <>

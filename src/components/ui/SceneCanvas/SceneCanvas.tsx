@@ -14,6 +14,8 @@ export const SceneCanvas = () => {
   const [config] = useState(() => {
     if (typeof window === 'undefined') return null;
     const tier = getPerformanceTier();
+    // Skip 3D canvas entirely on low-tier devices
+    if (tier === 'low') return null;
     return { tier, dpr: getDprForTier(tier) };
   });
 
@@ -25,7 +27,7 @@ export const SceneCanvas = () => {
         <Canvas
           dpr={config.dpr}
           gl={{
-            antialias: config.tier !== 'low',
+            antialias: config.tier === 'high',
             alpha: true,
             powerPreference: 'high-performance',
           }}

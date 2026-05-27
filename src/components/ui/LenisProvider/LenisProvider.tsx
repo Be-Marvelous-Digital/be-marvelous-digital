@@ -29,12 +29,12 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 2.2,
+      duration: 1.6,
       smoothWheel: true,
       syncTouch: true,
-      syncTouchLerp: 0.03,
+      syncTouchLerp: 0.075,
       wheelMultiplier: 0.58,
-      touchMultiplier: 0.6,
+      touchMultiplier: 1.2,
       autoRaf: false,
     });
 

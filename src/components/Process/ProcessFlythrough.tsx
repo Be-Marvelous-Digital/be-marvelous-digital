@@ -42,8 +42,8 @@ export const ProcessFlythrough = ({ steps }: ProcessFlythroughProps) => {
     const t = getPerformanceTier();
     return {
       tier: t,
-      dpr: t === 'low' ? 1 : t === 'mid' ? 1.5 : 2,
-      antialias: t !== 'low',
+      dpr: t === 'low' ? 1 : t === 'mid' ? 1 : 1.5,
+      antialias: t === 'high',
     };
   });
 
