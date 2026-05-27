@@ -18,7 +18,9 @@ export const LenisProvider = ({ children }: LenisProviderProps) => {
 
   const subscribe = (onStoreChange: () => void) => {
     listenersRef.current.add(onStoreChange);
-    return () => { listenersRef.current.delete(onStoreChange); };
+    return () => {
+      listenersRef.current.delete(onStoreChange);
+    };
   };
 
   const getSnapshot = () => lenisRef.current;
