@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 import './CustomCursor.less';
 
 export const CustomCursor = () => {
   const ringRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+
+  useMagneticEffect();
 
   useEffect(() => {
     const ring = ringRef.current;

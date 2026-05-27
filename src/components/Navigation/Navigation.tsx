@@ -28,10 +28,14 @@ interface NavigationProps {
   forceDark?: boolean;
 }
 
+const HERO_ZONE_PX = 100;
+
 export const Navigation = ({ forceDark = false }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [atTop, setAtTop] = useState(true);
+  const [navExpanded, setNavExpanded] = useState(false);
   const [heroIntersecting, setHeroIntersecting] = useState<boolean | null>(null);
   const darkSectionsRef = useRef(new Set<Element>());
   const lastScrollY = useRef(0);
@@ -44,10 +48,18 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY;
-    setScrolled(currentY > 60);
+    const isAtTop = currentY <= HERO_ZONE_PX;
 
-    // Hide on scroll down, show on scroll up
-    if (currentY > 100) {
+    setScrolled(currentY > 60);
+    setAtTop(isAtTop);
+
+    // Collapse the expanded nav when scrolling past the hero zone
+    if (!isAtTop) {
+      setNavExpanded(false);
+    }
+
+    // Hide on scroll down, show on scroll up (only outside hero zone)
+    if (currentY > HERO_ZONE_PX) {
       setHidden(currentY > lastScrollY.current);
     } else {
       setHidden(false);
@@ -59,6 +71,8 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
     const progress = scrollable > 0 ? currentY / scrollable : 0;
     document.documentElement.style.setProperty('--scroll-progress', String(progress));
   }, []);
+
+  const toggleNavExpanded = useCallback(() => setNavExpanded((prev) => !prev), []);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -105,18 +119,38 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
   const isDarkSection = heroIntersecting === true || forceDark;
   const isScrolledState = scrolled;
   const isDarkScrolled = false; // entire page is dark now
+  const showHeroIcon = atTop && !navExpanded;
 
   const navClassName = [
     'navigation',
     isScrolledState ? 'navigation--scrolled' : '',
     isDarkScrolled ? 'navigation--dark-scrolled' : '',
     hidden && !menuOpen ? 'navigation--hidden' : '',
+    showHeroIcon ? 'navigation--hero-icon' : '',
+    atTop && navExpanded ? 'navigation--expanded' : '',
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
     <>
+      {/* Pulsing menu icon at top of page */}
+      <button
+        className={`navigation__pulse-trigger ${!showHeroIcon ? 'navigation__pulse-trigger--hidden' : ''}`}
+        onClick={toggleNavExpanded}
+        aria-label="Open navigation"
+      >
+        <span className="navigation__pulse-ring" />
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M4 7h16M4 12h16M4 17h16"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </button>
+
       <header className={navClassName}>
         <div className="navigation__inner container">
           <Logo
@@ -136,6 +170,7 @@ export const Navigation = ({ forceDark = false }: NavigationProps) => {
           <Link
             href={locale === 'en' ? '/en#contact' : '/#contact'}
             className="btn btn--primary navigation__cta"
+            data-magnetic
           >
             {ctaLabel}
           </Link>

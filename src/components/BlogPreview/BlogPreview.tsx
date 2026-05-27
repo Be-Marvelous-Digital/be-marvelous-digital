@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { FadeIn } from '@/components/ui/FadeIn/FadeIn';
+import { SplitTextReveal } from '@/components/ui/SplitTextReveal/SplitTextReveal';
 import type { Post } from '@prisma/client';
 import './BlogPreview.less';
 
@@ -38,14 +39,21 @@ export const BlogPreview = async ({ posts }: BlogPreviewProps) => {
   return (
     <section className="blog-preview section" id="blog" aria-labelledby="blog-preview-heading">
       <div className="container">
-        <FadeIn>
-          <div className="blog-preview__header">
-            <div>
+        <div className="blog-preview__header">
+          <div>
+            <FadeIn>
               <span className="label-text">{t('preview.label')}</span>
-              <h2 className="blog-preview__title" id="blog-preview-heading">
-                {t('title')}
-              </h2>
-            </div>
+            </FadeIn>
+            <SplitTextReveal
+              as="h2"
+              className="blog-preview__title"
+              id="blog-preview-heading"
+              triggerStart="top 88%"
+            >
+              {t('title')}
+            </SplitTextReveal>
+          </div>
+          <FadeIn>
             <Link href={`${prefix}/blog`} className="blog-preview__all-link">
               {t('preview.all')}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -58,8 +66,8 @@ export const BlogPreview = async ({ posts }: BlogPreviewProps) => {
                 />
               </svg>
             </Link>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </div>
 
         <div className="blog-preview__grid">
           {posts.map((post, index) => {

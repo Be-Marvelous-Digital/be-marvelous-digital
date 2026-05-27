@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { FadeIn } from '@/components/ui/FadeIn/FadeIn';
+import { SplitTextReveal } from '@/components/ui/SplitTextReveal/SplitTextReveal';
 import { PortfolioHScrollClient } from './PortfolioHScrollClient';
 import './Portfolio.less';
 
@@ -10,22 +11,22 @@ export const Portfolio = async () => {
     <section className="portfolio section--dark" id="portfolio" aria-labelledby="portfolio-heading">
       <PortfolioHScrollClient>
         <div className="container" data-nav-dark>
-          <FadeIn>
-            <div className="portfolio__header">
+          <div className="portfolio__header">
+            <FadeIn>
               <span className="label-text portfolio__label">{t('label')}</span>
-              <h2 className="portfolio__title" id="portfolio-heading">
-                {t('title')
-                  .split('\n')
-                  .map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      {i === 0 && <br />}
-                    </span>
-                  ))}
-              </h2>
+            </FadeIn>
+            <SplitTextReveal
+              as="h2"
+              className="portfolio__title"
+              id="portfolio-heading"
+              triggerStart="top bottom"
+            >
+              {t('title')}
+            </SplitTextReveal>
+            <FadeIn>
               <p className="portfolio__subtitle">{t('subtitle')}</p>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
       </PortfolioHScrollClient>
     </section>

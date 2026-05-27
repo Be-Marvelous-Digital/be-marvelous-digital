@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { FadeIn } from '@/components/ui/FadeIn/FadeIn';
+import { SplitTextReveal } from '@/components/ui/SplitTextReveal/SplitTextReveal';
 import './Services.less';
 
 interface ServiceItem {
@@ -16,21 +17,19 @@ export const Services = async () => {
   return (
     <section className="services section" id="services" aria-labelledby="services-heading">
       <div className="container">
-        <FadeIn>
-          <div className="services__header">
+        <div className="services__header">
+          <FadeIn>
             <span className="label-text">{t('label')}</span>
-            <h2 className="services__title" id="services-heading">
-              {t('title')
-                .split('\n')
-                .map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i === 0 && <br />}
-                  </span>
-                ))}
-            </h2>
-          </div>
-        </FadeIn>
+          </FadeIn>
+          <SplitTextReveal
+            as="h2"
+            className="services__title"
+            id="services-heading"
+            triggerStart="top 88%"
+          >
+            {t('title')}
+          </SplitTextReveal>
+        </div>
 
         <FadeIn>
           <div className="services__grid">

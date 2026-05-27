@@ -7,7 +7,10 @@ import { CookieConsent } from '@/components/CookieConsent/CookieConsent';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 import { MetaPixel } from '@/components/Analytics/MetaPixel';
 import { CustomCursor } from '@/components/ui/CustomCursor/CustomCursor';
+import { TouchRipple } from '@/components/ui/TouchRipple/TouchRipple';
 import { AmbientOrbs } from '@/components/ui/AmbientOrbs/AmbientOrbs';
+import { LenisProvider } from '@/components/ui/LenisProvider/LenisProvider';
+import { SceneCanvas } from '@/components/ui/SceneCanvas/SceneCanvas';
 
 import { SITE_URL as siteUrl } from '@/lib/constants';
 
@@ -117,10 +120,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <OrganizationJsonLd />
       <GoogleAnalytics />
       <MetaPixel />
-      <CustomCursor />
-      <AmbientOrbs />
-      {children}
-      <CookieConsent locale={locale} />
+      <SceneCanvas />
+      <LenisProvider>
+        <CustomCursor />
+        <TouchRipple />
+        <AmbientOrbs />
+        {children}
+        <CookieConsent locale={locale} />
+      </LenisProvider>
     </NextIntlClientProvider>
   );
 }

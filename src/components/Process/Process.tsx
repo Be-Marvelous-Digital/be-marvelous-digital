@@ -1,6 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 import { FadeIn } from '@/components/ui/FadeIn/FadeIn';
+import { SplitTextReveal } from '@/components/ui/SplitTextReveal/SplitTextReveal';
 import { ProcessTimeline } from './ProcessTimeline';
+import { ProcessSwitch } from './ProcessSwitch';
 import './Process.less';
 
 interface ProcessStep {
@@ -13,29 +15,28 @@ export const Process = async () => {
   const t = await getTranslations('process');
   const steps = t.raw('steps') as ProcessStep[];
 
-  return (
+  const timelineFallback = (
     <section
       className="process section section--surface"
       id="process"
       aria-labelledby="process-heading"
     >
       <div className="container">
-        <FadeIn>
-          <div className="process__header">
+        {' '}
+        <h2 className="process__heading">Proces</h2>
+        <div className="process__header">
+          <FadeIn>
             <span className="label-text">{t('label')}</span>
-            <h2 className="process__title" id="process-heading">
-              {t('title')
-                .split('\n')
-                .map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i === 0 && <br />}
-                  </span>
-                ))}
-            </h2>
-          </div>
-        </FadeIn>
-
+          </FadeIn>
+          <SplitTextReveal
+            as="h2"
+            className="process__title"
+            id="process-heading"
+            triggerStart="top 88%"
+          >
+            {t('title')}
+          </SplitTextReveal>
+        </div>
         <ProcessTimeline>
           {steps.map((step, i) => (
             <li key={step.number} className="process__step">
@@ -57,4 +58,6 @@ export const Process = async () => {
       </div>
     </section>
   );
+
+  return <ProcessSwitch steps={steps} fallback={timelineFallback} />;
 };

@@ -2,14 +2,34 @@
 
 import { useEffect } from 'react';
 import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+import { getPerformanceTier } from '@/utils/performanceTier';
+
+gsap.registerPlugin(SplitText);
 
 /**
  * Orchestrates the hero entrance animation via GSAP.
  * Renders nothing — purely a side-effect component.
- * Must be placed inside the hero section so GSAP targets are in the DOM.
+ * Uses SplitText for per-character title reveals on high-tier devices,
+ * per-word on mid/low tier.
  */
 export const HeroReveal = () => {
   useEffect(() => {
+    const tier = getPerformanceTier();
+    const isCharLevel = tier === 'high';
+
+    const titleInners = gsap.utils.toArray<HTMLElement>('.hero__title-inner');
+    const splits: SplitText[] = [];
+
+    titleInners.forEach((el) => {
+      const split = new SplitText(el, {
+        type: isCharLevel ? 'chars,words' : 'words',
+      });
+      splits.push(split);
+    });
+
+    const allTargets = splits.flatMap((s) => (isCharLevel ? (s.chars ?? []) : (s.words ?? [])));
+
     const tl = gsap.timeline({
       defaults: { ease: 'power4.out' },
       delay: 0.05,
@@ -18,15 +38,23 @@ export const HeroReveal = () => {
     // 1. Badge + location slide up
     tl.fromTo('.hero__top-bar', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.65 });
 
-    // 2. Title lines rise from behind clip containers (lines 1 & 3)
-    tl.fromTo(
-      '.hero__title-inner',
-      { yPercent: 108 },
-      { yPercent: 0, duration: 1.1, stagger: 0.14 },
-      '-=0.35',
-    );
+    // 2. Title chars/words cascade in from below
+    if (allTargets.length > 0) {
+      tl.fromTo(
+        allTargets,
+        { yPercent: 110, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          duration: isCharLevel ? 0.9 : 1.0,
+          stagger: isCharLevel ? 0.018 : 0.05,
+          ease: 'power4.out',
+        },
+        '-=0.35',
+      );
+    }
 
-    // 3. Line 2 (HeroWordCycler) fades in simultaneously with line 3
+    // 3. Line 2 (HeroWordCycler) fades in simultaneously
     tl.fromTo('.hero__title-line--2', { opacity: 0 }, { opacity: 1, duration: 0.85 }, '-=0.95');
 
     // 4. Description + CTAs
@@ -50,6 +78,7 @@ export const HeroReveal = () => {
 
     return () => {
       tl.kill();
+      splits.forEach((s) => s.revert());
     };
   }, []);
 

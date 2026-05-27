@@ -1,5 +1,63 @@
 @import (reference) 'global';
 
+// ── Pulsing icon shown at top of page ────────────────────────────────────────
+
+.navigation__pulse-trigger {
+  position: fixed;
+  top: @spacing-5;
+  right: @spacing-5;
+  z-index: @z-sticky + 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: @radius-full;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: @color-ink-inverse;
+  cursor: pointer;
+  transition:
+    opacity @transition-base,
+    transform @transition-base,
+    background @transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.08);
+  }
+
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+  }
+}
+
+.navigation__pulse-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: @radius-full;
+  border: 1.5px solid @color-accent;
+  animation: nav-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes nav-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+// ── Main navigation bar ──────────────────────────────────────────────────────
+
 .navigation {
   position: fixed;
   top: 0;
@@ -7,13 +65,16 @@
   right: 0;
   z-index: @z-sticky;
   padding-block: @spacing-5;
-  background: @color-bg;
+  background: transparent;
+  transform-origin: top center;
   transition:
     padding @transition-base,
+    background @transition-base,
     box-shadow @transition-base,
-    transform 0.3s ease;
+    transform 0.4s @ease-out,
+    opacity 0.4s @ease-out;
 
-  // Soft blur fade at bottom edge
+  // Soft blur fade at bottom edge — only visible when scrolled
   &::after {
     content: '';
     position: absolute;
@@ -25,24 +86,55 @@
     pointer-events: none;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity @transition-base;
   }
 
   // Scroll progress bar along the very top — REMOVED
 
-  &--hidden {
+  // At top of page: hide the full bar, only the pulse icon is visible
+  &--hero-icon {
+    opacity: 0;
+    pointer-events: none;
     transform: translateY(-100%);
   }
 
+  // Pulse icon was clicked: show full bar with transparent bg
+  &--expanded {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    background: rgba(6, 5, 9, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  &--hidden {
+    opacity: 0;
+    transform: translateY(-1rem) scale(0.95);
+    pointer-events: none;
+  }
+
   &--scrolled {
+    background: @color-bg;
     padding-block: @spacing-3;
     box-shadow: @shadow-sm;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    &::after {
+      opacity: 1;
+    }
   }
 
   &--dark-scrolled {
+    background: @color-bg;
     padding-block: @spacing-3;
     box-shadow: @shadow-sm;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    &::after {
+      opacity: 1;
+    }
   }
 
   &__inner {

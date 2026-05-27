@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { FadeIn } from '@/components/ui/FadeIn/FadeIn';
+import { SplitTextReveal } from '@/components/ui/SplitTextReveal/SplitTextReveal';
 import { ContactForm } from './ContactForm/ContactForm';
 import './Contact.less';
 
@@ -50,16 +51,14 @@ export const Contact = async () => {
         <div className="contact__inner">
           <FadeIn className="contact__left">
             <span className="label-text">{t('label')}</span>
-            <h2 className="contact__title" id="contact-heading">
-              {t('title')
-                .split('\n')
-                .map((line, i, arr) => (
-                  <span key={i}>
-                    {line}
-                    {i < arr.length - 1 && <br />}
-                  </span>
-                ))}
-            </h2>
+            <SplitTextReveal
+              as="h2"
+              className="contact__title"
+              id="contact-heading"
+              triggerStart="top 88%"
+            >
+              {t('title')}
+            </SplitTextReveal>
             <p className="contact__description">{t('description')}</p>
 
             <div className="contact__quick">

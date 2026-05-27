@@ -54,8 +54,14 @@
 
 // ── Section ───────────────────────────────────────────────────────────────────
 
+.hero-sticky-wrapper {
+  height: 220svh;
+}
+
 .hero {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 0;
   min-height: 100svh;
   background-color: @color-bg-dark;
   color: @color-ink-inverse;
@@ -262,6 +268,16 @@
     }
   }
 
+  &__h2 {
+    font-family: @font-display;
+    font-size: clamp(@font-size-2xl, 4vw, @font-size-4xl);
+    font-weight: @font-weight-bold;
+    line-height: @line-height-tight;
+    letter-spacing: @tracking-tight;
+    color: @color-ink;
+    max-width: 28rem;
+  }
+
   &__description {
     font-size: @font-size-md;
     line-height: @line-height-relaxed;
@@ -452,11 +468,30 @@
 
 // ── Stats Section (below fold) ──────────────────────────────────────────────
 
-.hero-stats-section {
+.hero-stats-sticky-wrapper {
   position: relative;
+  z-index: @z-above;
+  height: 250svh;
+}
+
+.hero-stats-section {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: @spacing-12;
+  align-items: center;
   padding-block: @spacing-20;
-  background-color: @color-bg;
+  padding-top: 20vh;
   color: @color-ink-inverse;
+
+  p {
+    max-width: 65%;
+    text-align: center;
+    font-size: @font-size-lg;
+    line-height: @line-height-relaxed;
+    color: rgba(247, 244, 238, 0.85);
+  }
 
   @media (max-width: @bp-md) {
     padding-block: @spacing-12;

@@ -1,7 +1,9 @@
 @import (reference) 'global';
 
 .services {
-  background-color: @color-bg;
+  position: relative;
+  z-index: @z-above;
+  background-color: transparent;
 
   &__header {
     display: flex;
@@ -44,7 +46,6 @@
     flex-direction: column;
     gap: @spacing-5;
     padding: @spacing-10 @spacing-8;
-    background-color: @color-bg;
     border-bottom: 1px solid @color-border;
     border-right: none;
     overflow: hidden;

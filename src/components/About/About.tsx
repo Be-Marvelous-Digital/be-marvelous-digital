@@ -1,6 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { FadeIn } from '@/components/ui/FadeIn/FadeIn';
+import { SplitTextReveal } from '@/components/ui/SplitTextReveal/SplitTextReveal';
+import { AboutAnimations } from './AboutAnimations';
 import './About.less';
 
 interface Advantage {
@@ -14,6 +16,7 @@ export const About = async () => {
 
   return (
     <section className="about section section--dark" id="about" aria-labelledby="about-heading">
+      <AboutAnimations />
       <div className="container">
         <div className="about__layout">
           <FadeIn className="about__left">
@@ -27,19 +30,17 @@ export const About = async () => {
               />
             </div>
             <span className="about__label">{t('label')}</span>
-            <h2 className="about__title" id="about-heading">
-              {t('title')
-                .split('\n')
-                .map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i === 0 && <br />}
-                  </span>
-                ))}
-            </h2>
+            <SplitTextReveal
+              as="h2"
+              className="about__title"
+              id="about-heading"
+              triggerStart="top 88%"
+            >
+              {t('title')}
+            </SplitTextReveal>
             <p className="about__intro">{t('intro1')}</p>
             <p className="about__intro">{t('intro2')}</p>
-            <a href="#contact" className="btn btn--dark about__cta">
+            <a href="#contact" className="btn btn--dark about__cta" data-magnetic>
               {t('cta')}
             </a>
           </FadeIn>

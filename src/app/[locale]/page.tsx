@@ -10,6 +10,7 @@ import { About } from '@/components/About/About';
 import { BlogPreview } from '@/components/BlogPreview/BlogPreview';
 import { Contact } from '@/components/Contact/Contact';
 import { Footer } from '@/components/Footer/Footer';
+import { DepthTransitions } from '@/components/ui/DepthTransitions/DepthTransitions';
 import type { Post } from '@prisma/client';
 
 type PostPreview = Pick<
@@ -82,6 +83,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <DepthTransitions />
       <Navigation />
       <main>
         <Hero />

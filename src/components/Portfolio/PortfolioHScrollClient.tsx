@@ -45,21 +45,21 @@ export const PortfolioHScrollClient = ({ children }: PortfolioHScrollClientProps
         scrollTrigger: {
           trigger: container,
           pin: true,
-          scrub: 2,
+          scrub: 0.9,
           start: 'top top',
-          end: () => `+=${getScrollDistance() + window.innerHeight}`,
+          end: () => `+=${getScrollDistance() + window.innerHeight * 0.35}`,
           invalidateOnRefresh: true,
           anticipatePin: 1,
         },
       });
 
-      // Ease in at start, linear through middle, ease out at end
+      // Keep portfolio track more direct; global Lenis already adds momentum.
       tl.fromTo(
         track,
         { x: 0 },
         {
           x: () => -getScrollDistance(),
-          ease: 'power2.inOut',
+          ease: 'none',
         },
       );
     }, container);
