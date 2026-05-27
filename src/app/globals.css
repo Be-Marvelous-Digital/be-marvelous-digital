@@ -76,4 +76,26 @@ html.lenis body {
   .footer-marquee__track {
     animation-duration: 60s !important;
   }
+
+  /* Collapse sticky wrappers — no depth animations on mobile */
+  .hero-sticky-wrapper {
+    height: auto !important;
+  }
+
+  .hero-stats-sticky-wrapper {
+    height: auto !important;
+  }
+
+  .hero {
+    position: relative !important;
+  }
+
+  .hero-stats-section {
+    position: relative !important;
+  }
+
+  /* Hide orphaned absolute heading in Process fallback */
+  .process__heading {
+    display: none !important;
+  }
 }

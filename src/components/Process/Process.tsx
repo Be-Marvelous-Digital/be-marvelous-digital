@@ -22,8 +22,6 @@ export const Process = async () => {
       aria-labelledby="process-heading"
     >
       <div className="container">
-        {' '}
-        <h2 className="process__heading">Proces</h2>
         <div className="process__header">
           <FadeIn>
             <span className="label-text">{t('label')}</span>
