@@ -13,6 +13,12 @@ function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
+/** Deterministic pseudo-random based on seed — avoids Math.random in render. */
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+  return x - Math.floor(x);
+}
+
 /**
  * A 3D shape that flies across the screen during the hero→stats gap,
  * driven by scroll position in the transition zone.
@@ -183,11 +189,11 @@ function DeepSpaceStars({ count, tier }: { count: number; tier: string }) {
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const radius = 3 + Math.random() * 25;
+      const angle = seededRandom(i * 3) * Math.PI * 2;
+      const radius = 3 + seededRandom(i * 3 + 1) * 25;
       pos[i * 3] = Math.cos(angle) * radius;
       pos[i * 3 + 1] = Math.sin(angle) * radius;
-      pos[i * 3 + 2] = 10 + Math.random() * 30;
+      pos[i * 3 + 2] = 10 + seededRandom(i * 3 + 2) * 30;
     }
     return pos;
   }, [count]);
@@ -417,9 +423,9 @@ function DeepSpaceEnvironment({ tier }: { tier: 'low' | 'mid' | 'high' }) {
 
     return Array.from({ length: gemCount }, (_, i) => ({
       basePosition: [
-        (Math.random() - 0.5) * 28,
-        (Math.random() - 0.5) * 18,
-        20 + Math.random() * 15,
+        (seededRandom(i * 3 + 100) - 0.5) * 28,
+        (seededRandom(i * 3 + 101) - 0.5) * 18,
+        20 + seededRandom(i * 3 + 102) * 15,
       ] as [number, number, number],
       geoType: geoTypes[i % geoTypes.length],
       color: colors[i % colors.length],

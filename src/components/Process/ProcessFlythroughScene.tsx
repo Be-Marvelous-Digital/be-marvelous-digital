@@ -15,6 +15,11 @@ function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+  return x - Math.floor(x);
+}
+
 function WaypointGeometry({
   position,
   color,
@@ -85,12 +90,12 @@ function TunnelParticles({ count, tier }: { count: number; tier: string }) {
     const maxRadius = isMobile ? 6 : 12;
     const minRadius = isMobile ? 1.5 : 3;
     for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const radius = minRadius + Math.random() * maxRadius;
+      const angle = seededRandom(i * 4) * Math.PI * 2;
+      const radius = minRadius + seededRandom(i * 4 + 1) * maxRadius;
       pos[i * 3] = Math.cos(angle) * radius;
       pos[i * 3 + 1] = Math.sin(angle) * radius;
-      pos[i * 3 + 2] = -Math.random() * 100;
-      sz[i] = 0.5 + Math.random() * 1.5;
+      pos[i * 3 + 2] = -seededRandom(i * 4 + 2) * 100;
+      sz[i] = 0.5 + seededRandom(i * 4 + 3) * 1.5;
     }
     return [pos, sz];
   }, [count, isMobile]);
